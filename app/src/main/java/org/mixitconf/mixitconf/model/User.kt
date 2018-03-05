@@ -1,5 +1,8 @@
 package org.mixitconf.mixitconf.model
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class User(
         val login: String,
         val firstname: String,
