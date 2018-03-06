@@ -1,8 +1,10 @@
 package org.mixitconf.mixitconf.repository
 
+import android.content.Context
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -12,20 +14,27 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class TalkReaderTest {
 
-    val reader = TalkReader()
+    lateinit var reader: TalkReader
+    lateinit var appContext: Context
+
+    @Before
+    fun init() {
+        appContext = InstrumentationRegistry.getTargetContext()
+        reader = TalkReader(appContext)
+    }
 
     @Test
     fun findAll() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertTrue(reader.findAll(appContext).size > 10)
+        assertTrue(reader.findAll().size > 10)
     }
 
     @Test
     fun findOne() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        val talk = reader.findOne(appContext, "5a706948840deb00141a7240")
+        val talk = reader.findOne("5a706948840deb00141a7240")
         assertEquals("Modern Android Development", talk.title)
     }
 

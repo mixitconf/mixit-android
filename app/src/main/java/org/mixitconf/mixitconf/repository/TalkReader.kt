@@ -5,24 +5,27 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.mixitconf.mixitconf.R
+import org.mixitconf.mixitconf.SingletonHolder
 import org.mixitconf.mixitconf.model.Talk
 
 /**
  * Talk are read from Json file
  */
-class TalkReader{
+class TalkReader(private val context: Context){
 
     val objectMapper:ObjectMapper = jacksonObjectMapper()
 
-    private fun readFile(context:Context): List<Talk>{
+    private fun readFile(): List<Talk>{
         val jsonInputStream = context.resources.openRawResource(R.raw.talks_2018)
         val talks: List<Talk> = objectMapper.readValue(jsonInputStream)
         return talks
     }
 
-    fun findAll(context:Context): List<Talk> = readFile(context)
+    fun findAll(): List<Talk> = readFile()
 
-    fun findOne(context:Context, id: String): Talk = readFile(context).filter { it.id == id }.first()
+    fun findOne(id: String): Talk = readFile().filter { it.id == id }.first()
+
+    companion object : SingletonHolder<TalkReader, Context>(::TalkReader)
 }
 
 

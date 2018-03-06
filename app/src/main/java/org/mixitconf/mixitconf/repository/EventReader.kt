@@ -6,21 +6,24 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.mixitconf.mixitconf.R
 import org.mixitconf.mixitconf.model.Event
+import org.mixitconf.mixitconf.SingletonHolder
 
 /**
  * Events are read from Json file
  */
-class EventReader {
+class EventReader(private val context: Context) {
 
     val objectMapper: ObjectMapper = jacksonObjectMapper()
 
-    private fun readFile(context: Context): List<Event>{
+    private fun readFile(): List<Event>{
         val jsonInputStream = context.resources.openRawResource(R.raw.events)
         val events: List<Event> = objectMapper.readValue(jsonInputStream)
         return events
     }
 
-    fun findAll(context: Context): List<Event> = readFile(context)
+    fun findAll(): List<Event> = readFile()
 
-    fun findOne(context: Context, id: String): Event = readFile(context).filter { it.id == id }.first()
+    fun findOne(id: String): Event = readFile().filter { it.id == id }.first()
+
+    companion object : SingletonHolder<EventReader, Context> (::EventReader)
 }
