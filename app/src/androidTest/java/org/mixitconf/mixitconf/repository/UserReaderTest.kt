@@ -25,14 +25,12 @@ class UserReaderTest {
     @Test
     fun findAll() {
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getTargetContext()
         Assert.assertTrue(reader.findAll().size > 10)
     }
 
     @Test
     fun findOne() {
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getTargetContext()
         val user = reader.findOne("romainguy@curious-creature.com")
         Assert.assertEquals("Guy", user.lastname)
         Assert.assertEquals("Romain", user.firstname)
@@ -41,7 +39,6 @@ class UserReaderTest {
     @Test
     fun findByLogins() {
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getTargetContext()
         val users = reader.findByLogins(listOf("romainguy@curious-creature.com", "graphicsgeek1@gmail.com"))
         Assert.assertEquals("Guy", users.get(0).lastname)
         Assert.assertEquals("Haase", users.get(1).lastname)
