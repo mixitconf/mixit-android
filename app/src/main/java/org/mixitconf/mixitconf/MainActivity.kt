@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_talks -> {
-                fragmentTransaction.replace(R.id.homeFragment, SpeakerFragment()).commit()
+                fragmentTransaction.replace(R.id.homeFragment, TalkFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_speakers -> {
-                fragmentTransaction.replace(R.id.homeFragment, TalkFragment()).commit()
+                fragmentTransaction.replace(R.id.homeFragment, SpeakerFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
         }

@@ -12,7 +12,9 @@ import org.mixitconf.mixitconf.R
 import org.mixitconf.mixitconf.model.User
 import java.io.File
 
-class UserListAdapter(val listener: OnMemberClickListener,
+typealias OnClickListener<T> = (T) -> Unit
+
+class UserListAdapter(val listener: OnClickListener<User>,
                       val items: List<User>) : RecyclerView.Adapter<UserListAdapter.MemberViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
@@ -46,7 +48,7 @@ class UserListAdapter(val listener: OnMemberClickListener,
             val context = itemView.context
 
             speaker_name.setText("${user.firstname} ${user.lastname}".trim())
-            speaker_bio.setText("${user.company}")
+            speaker_bio.setText("${if (user.company == null) "" else user.company}")
 
             // Speaker images are downloaded on the app startup
             val speakerImage = File(context.getExternalFilesDir(Environment.DIRECTORY_DCIM), "speaker_${user.firstname}_${user.lastname}")
@@ -64,11 +66,7 @@ class UserListAdapter(val listener: OnMemberClickListener,
         }
 
         fun listen(user: User) {
-            itemView.setOnClickListener { v -> listener.onTalkClicked(user) }
+            itemView.setOnClickListener { v -> listener.invoke(user) }
         }
-    }
-
-    interface OnMemberClickListener {
-        fun onTalkClicked(user: User)
     }
 }
