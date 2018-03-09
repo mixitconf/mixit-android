@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MiXiT</string>
+    <string name="title_home">Home</string>
+    <string name="title_talks">Talks\tSessions</string>
+    <string name="title_speakers">Speakers</string>
+    <string name="talk_no_date">Pas de dates</string>
+    <string name="talk_time_range">"%1$s de %2$s à %3$s "</string>
+
+    <string name="amphi1">Amphithéâtre Lovelace</string>
+    <string name="amphi2">Amphithéâtre Hamilton</string>
+    <string name="room1">Salle Gosling</string>
+    <string name="room2">Salle Eich</string>
+    <string name="room3">Salle Nonaka</string>
+    <string name="room4">Salle Dijkstra</string>
+    <string name="room5">Salle Turing</string>
+    <string name="room6">Salle Lovelace</string>
+    <string name="room7">Mezzanine</string>
+    <string name="unknown">Salle inconnue</string>
+</resources>

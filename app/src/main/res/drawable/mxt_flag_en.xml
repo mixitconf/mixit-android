@@ -1,0 +1,10 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#00247d"/>
+            <size android:width="24dp" android:height="12dp"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/mxt_flag_cross">
+    </item>
+</layer-list>

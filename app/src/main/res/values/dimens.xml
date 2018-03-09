@@ -5,6 +5,8 @@
     <dimen name="logo_height">30dp</dimen>
     <dimen name="logo_width">144dp</dimen>
 
-    <dimen name="speaker_image_size">48dp</dimen>
-    <dimen name="speaker_image_padding">8dp</dimen>
+    <dimen name="item_image_size">48dp</dimen>
+    <dimen name="item_image_padding">10dp</dimen>
+
+    <dimen name="small_list_text">8dp</dimen>
 </resources>

@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">MiXiT</string>
     <string name="title_home">Home</string>
-    <string name="title_talks">Talks</string>
+    <string name="title_talks">Talks\tSessions</string>
     <string name="title_speakers">Speakers</string>
+    <string name="talk_no_date">No date</string>
+    <string name="talk_time_range">"%1$s from %2$s to %3$s "</string>
+
+    <string name="amphi1">Lovelace Amphitheatre</string>
+    <string name="amphi2">Hamilton Amphitheatre</string>
+    <string name="room1">Room Gosling</string>
+    <string name="room2">Room Eich</string>
+    <string name="room3">Room Nonaka</string>
+    <string name="room4">Room Dijkstra</string>
+    <string name="room5">Room Turing</string>
+    <string name="room6">Room Lovelace</string>
+    <string name="room7">Mezzanine</string>
+    <string name="unknown">Unknown room</string>
 </resources>

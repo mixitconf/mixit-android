@@ -12,17 +12,15 @@ import org.mixitconf.mixitconf.R
 import org.mixitconf.mixitconf.model.User
 import java.io.File
 
-typealias OnClickListener<T> = (T) -> Unit
-
 class UserListAdapter(val listener: OnClickListener<User>,
-                      val items: List<User>) : RecyclerView.Adapter<UserListAdapter.MemberViewHolder>() {
+                      val items: List<User>) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_speaker_item, parent, false)
-        return MemberViewHolder(view)
+        return UserViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MemberViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.bind(items[position])
         holder.listen(items[position])
     }
@@ -31,24 +29,24 @@ class UserListAdapter(val listener: OnClickListener<User>,
         return items.size
     }
 
-    inner class MemberViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val speaker_name: TextView
-        private val speaker_bio: TextView
-        private val speaker_flag: TextView
-        private val speaker_image: ImageView
+    inner class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val speakerName: TextView
+        private val speakerBio: TextView
+        private val speakerFlag: TextView
+        private val speakerImage: ImageView
 
         init {
-            speaker_image = view.findViewById(R.id.speaker_image)
-            speaker_name = view.findViewById(R.id.speaker_name)
-            speaker_bio = view.findViewById(R.id.speaker_bio)
-            speaker_flag = view.findViewById(R.id.speaker_flag)
+            speakerImage = view.findViewById(R.id.speaker_image)
+            speakerName = view.findViewById(R.id.speaker_name)
+            speakerBio = view.findViewById(R.id.speaker_bio)
+            speakerFlag = view.findViewById(R.id.speaker_flag)
         }
 
         fun bind(user: User) {
             val context = itemView.context
 
-            speaker_name.setText("${user.firstname} ${user.lastname}".trim())
-            speaker_bio.setText("${if (user.company == null) "" else user.company}")
+            speakerName.setText("${user.firstname} ${user.lastname}".trim())
+            speakerBio.setText("${if (user.company == null) "" else user.company}")
 
             // Speaker images are downloaded on the app startup
             val speakerImage = File(context.getExternalFilesDir(Environment.DIRECTORY_DCIM), "speaker_${user.firstname}_${user.lastname}")
@@ -57,11 +55,11 @@ class UserListAdapter(val listener: OnClickListener<User>,
                 Picasso
                         .with(context)
                         .load(speakerImage)
-                        .resizeDimen(R.dimen.speaker_image_size, R.dimen.speaker_image_size)
+                        .resizeDimen(R.dimen.item_image_size, R.dimen.item_image_size)
                         .placeholder(R.drawable.ic_unknown_24dp)
-                        .into(speaker_image)
+                        .into(this.speakerImage)
             } else {
-                speaker_image.setImageResource(R.drawable.ic_unknown_24dp)
+                this.speakerImage.setImageResource(R.drawable.ic_unknown_24dp)
             }
         }
 

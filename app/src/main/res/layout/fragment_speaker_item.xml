@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/item_person"
+    android:id="@+id/item_talk"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
@@ -11,12 +11,12 @@
 
     <ImageView
         android:id="@+id/speaker_image"
-        android:layout_width="@dimen/speaker_image_size"
-        android:layout_height="@dimen/speaker_image_size"
+        android:layout_width="@dimen/item_image_size"
+        android:layout_height="@dimen/item_image_size"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center_vertical"
-        android:layout_marginRight="@dimen/speaker_image_padding"
+        android:layout_marginRight="@dimen/item_image_padding"
         android:paddingBottom="4dp"
         android:paddingLeft="4dp"
         android:paddingTop="4dp"
