@@ -7,6 +7,7 @@
 
     <dimen name="item_image_size">48dp</dimen>
     <dimen name="item_image_padding">10dp</dimen>
+    <dimen name="item_list_size">60dp</dimen>
 
     <dimen name="small_list_text">8dp</dimen>
     <dimen name="room_button_text_size">22sp</dimen>

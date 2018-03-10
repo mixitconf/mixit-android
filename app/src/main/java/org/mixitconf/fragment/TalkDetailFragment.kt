@@ -3,7 +3,6 @@ package org.mixitconf.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
@@ -115,7 +114,7 @@ class TalkDetailFragment : Fragment() {
         super.onResume()
 
         if (arguments.getString(TALK_ID).isEmpty()) {
-            (activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.homeFragment, TalkFragment.newInstance()).commit()
+            //(activity as AppCompatActivity).supportFragmentManager.beginTransaction().replace(R.id.homeFragment, TalkFragment.newInstance()).commit()
         }
 
         with(viewBuilder) {
@@ -136,7 +135,7 @@ class TalkDetailFragment : Fragment() {
                 tableLayout.layoutParams = tableParams
 
                 UserReader.getInstance(context).findByLogins(arguments.getStringArrayList(SPEAKERS)).forEach {
-                    val row = mInflater!!.inflate(R.layout.fragment_talk_item, tableLayout, false) as LinearLayout
+                    val row = mInflater!!.inflate(R.layout.activity_talk_item, tableLayout, false) as LinearLayout
 
                     speakerImage = row.findViewById(R.id.speaker_image)
                     speakerName = view.findViewById(R.id.speaker_name)

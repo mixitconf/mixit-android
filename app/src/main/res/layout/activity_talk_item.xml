@@ -10,12 +10,13 @@
     android:scrollbars="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+
         <ImageView
             android:id="@+id/talk_image"
-            android:layout_width="@dimen/item_image_size"
+            android:layout_width="@dimen/item_list_size"
             android:layout_height="@dimen/item_image_size"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -35,11 +36,12 @@
             android:textSize="@dimen/small_list_text"
             android:gravity="center"
             android:textStyle="bold"/>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -89,7 +91,10 @@
             android:layout_height="wrap_content"
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="4"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+
 
     </LinearLayout>
 </LinearLayout>
