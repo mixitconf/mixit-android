@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.mixitconf.R
-import org.mixitconf.SingletonHolder
 import org.mixitconf.model.User
+import org.mixitconf.service.SingletonHolder
 
 /**
  * Speakers are read from Json file
@@ -31,6 +31,6 @@ class UserReader(private val context: Context) {
     fun findByLogins(logins: List<String>): List<User> = readFile().filter { logins.contains(it.login) }
 
     companion object : SingletonHolder<UserReader, Context>(::UserReader){
-        val users:MutableList<User> = mutableListOf()
+        private val users:MutableList<User> = mutableListOf()
     }
 }

@@ -5,7 +5,6 @@ import android.os.Environment
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import org.mixitconf.R
-import org.mixitconf.SingletonHolder
 import org.mixitconf.model.User
 import org.mixitconf.repository.TalkReader
 import org.mixitconf.repository.UserReader

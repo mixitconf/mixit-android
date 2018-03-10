@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class TalkListAdapter(val listener: OnClickListener<Talk>, val items: List<Talk>, val context: Context) :
+class TalkListAdapter(val items: List<Talk>, val context: Context) :
         RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
 
     val DATE_FORMAT = SimpleDateFormat("EEE", Locale.getDefault())
@@ -47,11 +47,6 @@ class TalkListAdapter(val listener: OnClickListener<Talk>, val items: List<Talk>
             holder.langageImage.setImageResource(R.drawable.mxt_flag_fr)
         }
 
-        //holder.bind(items.get(position))
-        //holder.listen(items.get(position))
-        //if(!talk.dummy){
-        //    itemView.setOnClickListener { v -> listener.invoke(talk) }
-        //}
     }
 
     override fun getItemCount(): Int {

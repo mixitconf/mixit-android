@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.mixitconf.R
-import org.mixitconf.SingletonHolder
 import org.mixitconf.model.Event
+import org.mixitconf.service.SingletonHolder
 
 /**
  * Events are read from Json file

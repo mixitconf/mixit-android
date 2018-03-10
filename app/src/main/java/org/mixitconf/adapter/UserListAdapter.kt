@@ -15,7 +15,7 @@ class UserListAdapter(val listener: OnClickListener<User>, val items: List<User>
         RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_speaker_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_speaker_item, parent, false)
         return UserViewHolder(view)
     }
 

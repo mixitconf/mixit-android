@@ -1,16 +1,18 @@
 package org.mixitconf
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.MotionEvent
 import kotlinx.android.synthetic.main.activity_main.*
-import org.mixitconf.adapter.OnClickListener
 import org.mixitconf.adapter.TalkListAdapter
 import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat
 import org.mixitconf.repository.TalkReader
+
 
 class TalkActivity : AbstractMixitActivity() {
 
@@ -30,7 +32,7 @@ class TalkActivity : AbstractMixitActivity() {
                 .sortedBy { it.start }
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = TalkListAdapter(TalkOnClickListener(this), talks, this)
+        viewAdapter = TalkListAdapter(talks, this)
 
         // Lookup the recyclerview in activity layout
         recyclerView = findViewById<RecyclerView>(R.id.talk_list).apply {
@@ -38,13 +40,23 @@ class TalkActivity : AbstractMixitActivity() {
             layoutManager = viewManager
             adapter = viewAdapter
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
+            addOnItemTouchListener(OnTalkClickListener(context, talks))
         }
     }
 
-    class TalkOnClickListener(val parent: AppCompatActivity) : OnClickListener<Talk> {
-        override fun invoke(talk: Talk) {
-            //parent.supportFragmentManager.beginTransaction().replace(R.id.homeFragment, TalkDetailFragment.newInstance(talk)).commit()
-        }
+    inner class OnTalkClickListener(val context: Context, val talks:List<Talk>): RecyclerView.SimpleOnItemTouchListener(){
+        override fun onTouchEvent(view: RecyclerView, e: MotionEvent) {
+            val childView = view.findChildViewUnder(e.x, e.y)
+            val position = view.getChildAdapterPosition(childView)
+            val talk = talks.get(position)
 
+            //if(!talk.dummy) {
+                val intent = Intent(context, TalkDetailActivity::class.java).apply {
+                    putExtra(TalkDetailActivity.TALK_ID, talk.id)
+                }
+                context.startActivity(intent)
+            //}
+        }
     }
 }

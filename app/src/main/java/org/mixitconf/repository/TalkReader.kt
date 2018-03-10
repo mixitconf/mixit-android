@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.mixitconf.R
-import org.mixitconf.SingletonHolder
 import org.mixitconf.model.Talk
+import org.mixitconf.service.SingletonHolder
 
 /**
  * Talk are read from Json file
@@ -30,7 +30,7 @@ class TalkReader(private val context: Context){
     fun findOne(id: String): Talk = readFile().filter { it.id == id }.first()
 
     companion object : SingletonHolder<TalkReader, Context>(::TalkReader){
-        val talks:MutableList<Talk> = mutableListOf()
+        private val talks:MutableList<Talk> = mutableListOf()
     }
 }
 
