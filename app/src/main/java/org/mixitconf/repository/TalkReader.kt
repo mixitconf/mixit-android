@@ -17,15 +17,21 @@ class TalkReader(private val context: Context){
 
     private fun readFile(): List<Talk>{
         val jsonInputStream = context.resources.openRawResource(R.raw.talks_2018)
-        val talks: List<Talk> = objectMapper.readValue(jsonInputStream)
-        return talks
+        if(TalkReader.talks.isEmpty()){
+            val talks: List<Talk> = objectMapper.readValue(jsonInputStream)
+            talks.forEach { TalkReader.talks.add(it) }
+        }
+        return TalkReader.talks
+
     }
 
     fun findAll(): List<Talk> = readFile()
 
     fun findOne(id: String): Talk = readFile().filter { it.id == id }.first()
 
-    companion object : SingletonHolder<TalkReader, Context>(::TalkReader)
+    companion object : SingletonHolder<TalkReader, Context>(::TalkReader){
+        val talks:MutableList<Talk> = mutableListOf()
+    }
 }
 
 

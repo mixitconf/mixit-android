@@ -17,8 +17,11 @@ class UserReader(private val context: Context) {
 
     private fun readFile(): List<User>{
         val jsonInputStream = context.resources.openRawResource(R.raw.users)
-        val events: List<User> = objectMapper.readValue(jsonInputStream)
-        return events
+        if(UserReader.users.isEmpty()){
+            val users: List<User> = objectMapper.readValue(jsonInputStream)
+            users.forEach { UserReader.users.add(it) }
+        }
+        return UserReader.users
     }
 
     fun findAll(): List<User> = readFile()
@@ -27,5 +30,7 @@ class UserReader(private val context: Context) {
 
     fun findByLogins(logins: List<String>): List<User> = readFile().filter { logins.contains(it.login) }
 
-    companion object : SingletonHolder<UserReader, Context>(::UserReader)
+    companion object : SingletonHolder<UserReader, Context>(::UserReader){
+        val users:MutableList<User> = mutableListOf()
+    }
 }
