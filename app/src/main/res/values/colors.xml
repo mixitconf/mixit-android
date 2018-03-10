@@ -7,4 +7,14 @@
     <color name="textPrimary">#2C233D</color>
     <color name="textShadow">#888888</color>
 
+    <color name="room1">#F691B2</color>
+    <color name="room2">#FBE983</color>
+    <color name="room3">#B3DC6C</color>
+    <color name="room4">#FAD165</color>
+    <color name="room5">#9A9CFF</color>
+    <color name="room6">#D8436D</color>
+    <color name="room7">#E1F40E</color>
+    <color name="room8">#3D9E94</color>
+    <color name="room9">#E8A814</color>
+    <color name="unknown">#cccccc</color>
 </resources>

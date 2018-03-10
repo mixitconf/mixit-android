@@ -9,4 +9,5 @@
     <dimen name="item_image_padding">10dp</dimen>
 
     <dimen name="small_list_text">8dp</dimen>
+    <dimen name="room_button_text_size">22sp</dimen>
 </resources>

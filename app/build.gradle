@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "org.mixitconf.mixitconf"
+        applicationId "org.mixitconf"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.4'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.4'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.rjeschke:txtmark:0.13'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
