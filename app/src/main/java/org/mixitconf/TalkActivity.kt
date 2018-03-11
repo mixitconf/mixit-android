@@ -19,15 +19,15 @@ class TalkActivity : AbstractMixitActivity() {
         val talks = TalkReader.getInstance(baseContext)
                 .findAll()
                 .filter { it.format != TalkFormat.RANDOM }
-                .sortedBy { it.room }
-                .sortedBy { it.start }
+                .toMutableList()
 
+        talks.addAll(TalkReader.getInstance(baseContext).findMarkers())
 
         // Lookup the recyclerview in activity layout
         talkList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = TalkListAdapter(talks, context)
+            adapter = TalkListAdapter(talks.sortedBy { it.room }.sortedBy { it.start }, context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
     }

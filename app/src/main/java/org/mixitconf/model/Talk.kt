@@ -18,8 +18,7 @@ data class Talk(
         val room: Room,
         val start: Date,
         val end: Date,
-        val id: String,
-        val dummy: Boolean = false
+        val id: String
 ){
     fun getTopicDrawableRessource(): Int = when(topic){
         "aliens" -> R.drawable.mxt_topic_alien
@@ -34,10 +33,21 @@ data class Talk(
 
 enum class TalkFormat(val duration: Int) {
     TALK(50),
-    LIGHTNING_TALK(5),
     WORKSHOP(110),
     RANDOM(25),
-    KEYNOTE(25)
+    KEYNOTE(25),
+
+    SESSION_INTRO(5),
+    PAUSE_10_MIN(10),
+    PAUSE_20_MIN(20),
+    PAUSE_30_MIN(30),
+    PARTY(210),
+    LUNCH(70),
+    ORGA(10),
+    DAY(0),
+    TIME(0);
+
+    fun isConference() = this == TALK || this == WORKSHOP || this == KEYNOTE
 }
 
 @Suppress("UNUSED_PARAMETER")

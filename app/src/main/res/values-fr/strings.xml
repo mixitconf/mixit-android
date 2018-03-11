@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MiXiT</string>
+    <string name="event_day1">Jeudi 19 avril</string>
+    <string name="event_day2">Vendredi 20 avril</string>
+
     <string name="title_home">Home</string>
     <string name="title_talks">Talks\tSessions</string>
     <string name="title_speakers">Speakers</string>
     <string name="title_links">Liens</string>
+
+    <string name="menu_about">A propos</string>
 
     <string name="talk_no_date">Pas de dates</string>
     <string name="talk_time_range">"%1$s de %2$s à %3$s "</string>
@@ -23,4 +28,14 @@
     <string name="room6">Salle Lovelace</string>
     <string name="room7">Mezzanine</string>
     <string name="unknown">Salle inconnue</string>
+    <string name="menu_map">Plan du lieu</string>
+
+    <string name="about_title" translatable="false">MiXiT 2018 Client</string>
+    <string name="about_description">This app was created by MiXiT team to help you to follow the conference. If you want to increase this app you can. The project is Open Source and available on <a href="https://github.com/mixitconf/mixit-android">Github</a>. For more informations you can go on our <a href="https://mixitconf.org">website</a> </string>
+    <string name="planning_team_word">Le mot de la team</string>
+    <string name="planning_team_outro">Le mot de la fin de la team</string>
+    <string name="planning_session_intro">Présentation des sessions</string>
+    <string name="planning_pause">Pause</string>
+    <string name="planning_lunch">Déjeuner</string>
+    <string name="planning_random">Sessions random</string>
 </resources>
