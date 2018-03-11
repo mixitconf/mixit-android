@@ -34,7 +34,6 @@
                 android:id="@+id/talkRoom"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/room_button_text_size"
-                android:layout_alignWithParentIfMissing="true"
                 android:gravity="top"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/textShadow"
@@ -44,8 +43,6 @@
                 android:id="@+id/talkTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignWithParentIfMissing="true"
-                android:layout_below="@+id/talkItemRoom"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/textShadow"
                 android:textStyle="bold"/>
@@ -54,7 +51,6 @@
                 android:id="@+id/talkImageLanguage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/talkItemTime"
                 android:paddingTop="1dp"
                 android:scaleType="fitCenter" />
 
@@ -91,11 +87,12 @@
                     android:id="@+id/talkImageTrack"
                     android:layout_width="@dimen/item_image_size"
                     android:layout_height="@dimen/item_image_size"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_gravity="center_vertical"
                     android:paddingBottom="4dp"
-                    android:paddingLeft="4dp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="2dp"
                     android:paddingTop="4dp"
                     android:scaleType="fitCenter" />
 
@@ -104,18 +101,19 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/talkTopic"
                     android:layout_gravity="center_vertical"
-                    android:paddingLeft="2dp"
+                    android:paddingStart="2dp"
+                    android:paddingEnd="2dp"
                     android:paddingBottom="4dp"
                     android:paddingTop="4dp"
                     android:text="@string/title_speakers"
-                    android:layout_toRightOf="@id/talkImageTrack"
+                    android:layout_toEndOf="@id/talkImageTrack"
                     android:textStyle="bold" />
             </RelativeLayout>
             <TextView
                 android:id="@+id/speakersTitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="2dp"
+                android:paddingStart="2dp"
                 android:paddingTop="8dp"
                 android:text="@string/title_speakers"
                 android:textStyle="bold" />
