@@ -8,32 +8,28 @@ import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.rjeschke.txtmark.Processor
-import kotlinx.android.synthetic.main.activity_talk_detail.*
+import kotlinx.android.synthetic.main.activity_speakers.*
 import org.mixitconf.adapter.UserListAdapter
 import org.mixitconf.model.Language
 import org.mixitconf.repository.TalkReader
 import org.mixitconf.repository.UserReader
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
-class TalkDetailActivity : AbstractMixitActivity() {
+class SpeakerDetailActivity : AbstractMixitActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
     companion object {
-        val TALK_ID = "talkId"
-        val DATE_FORMAT = SimpleDateFormat("EEE", Locale.getDefault())
+        val SPEAKER_ID = "talkId"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_talk_detail)
-        talkNavigation.setOnNavigationItemSelectedListener(getNavigationItemSelectedListener())
+        speakersNavigation.setOnNavigationItemSelectedListener(getNavigationItemSelectedListener())
 
-        val talk = TalkReader.getInstance(this).findOne(intent.getStringExtra(TALK_ID))
+        val talk = TalkReader.getInstance(this).findOne(intent.getStringExtra(SPEAKER_ID))
 
         findViewById<TextView>(R.id.talk_name).apply {
             setText(talk.title)
@@ -43,12 +39,6 @@ class TalkDetailActivity : AbstractMixitActivity() {
         }
         findViewById<TextView>(R.id.talk_descrition).apply {
             setText(if (talk.description != null) Html.fromHtml(Processor.process(talk.description)) else "")
-        }
-        findViewById<TextView>(R.id.talk_time).apply {
-            setText(String.format(resources.getString(R.string.talk_time_range),
-                    DATE_FORMAT.format(talk.start),
-                    DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.start),
-                    DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.end)))
         }
         findViewById<TextView>(R.id.talk_room).apply {
             setText(talk.title)

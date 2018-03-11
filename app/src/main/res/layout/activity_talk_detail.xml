@@ -30,66 +30,33 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold"/>
 
+            <TextView
+                android:id="@+id/talk_room"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/room_button_text_size"
+                android:layout_alignWithParentIfMissing="true"
+                android:gravity="top"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/textShadow"
+                android:textStyle="bold"/>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
+            <TextView
+                android:id="@+id/talk_time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/talk_header">
-                <FrameLayout
-                    android:id="@+id/talk_frame_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    >
-                </FrameLayout>
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_below="@+id/talk_room"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/textShadow"
+                android:textStyle="bold"/>
 
-                <TextView
-                    android:id="@+id/talk_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignWithParentIfMissing="true"
-                    android:layout_toRightOf="@id/talk_frame_image"
-                    android:layout_toEndOf="@id/talk_frame_image"
-                    android:paddingTop="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-
-                <TextView
-                    android:id="@+id/talk_level"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignWithParentIfMissing="true"
-                    android:layout_below="@id/talk_time"
-                    android:layout_toRightOf="@id/talk_frame_image"
-                    android:layout_toEndOf="@id/talk_frame_image"
-                    />
-
-                <ImageView
-                    android:id="@+id/talk_image_language"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/talk_time"
-                    android:layout_toRightOf="@+id/talk_level"
-                    android:layout_toEndOf="@+id/talk_level"
-                    android:paddingLeft="4dp"
-                    android:paddingTop="1dp"
-                    android:scaleType="fitCenter" />
-
-                <TextView
-                    android:id="@+id/talk_room"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/room_button_text_size"
-                    android:layout_alignWithParentIfMissing="true"
-                    android:layout_toRightOf="@+id/talk_image_language"
-                    android:layout_toEndOf="@+id/talk_image_language"
-                    android:layout_below="@+id/talk_time"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="top"
-                    android:padding="2dp"
-                    android:layout_marginStart="4dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/talk_image_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/talk_time"
+                android:paddingTop="1dp"
+                android:scaleType="fitCenter" />
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -164,7 +131,7 @@
     </ScrollView>
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/talkNavigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="0dp"

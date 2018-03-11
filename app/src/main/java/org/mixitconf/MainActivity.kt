@@ -9,7 +9,7 @@ open class MainActivity : AbstractMixitActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navigation.setOnNavigationItemSelectedListener(getNavigationItemSelectedListener())
+        mainNavigation.setOnNavigationItemSelectedListener(getNavigationItemSelectedListener())
 
         TalkReader.getInstance(baseContext)
     }

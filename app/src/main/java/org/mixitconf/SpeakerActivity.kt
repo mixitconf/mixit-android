@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_speakers.*
 import org.mixitconf.adapter.OnClickListener
 import org.mixitconf.adapter.UserListAdapter
 import org.mixitconf.model.User
@@ -20,7 +20,7 @@ class SpeakerActivity : AbstractMixitActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speakers)
-        navigation.setOnNavigationItemSelectedListener(getNavigationItemSelectedListener())
+        speakersNavigation.setOnNavigationItemSelectedListener(getNavigationItemSelectedListener())
 
         val speakers = SpeakerService.getInstance(this).findSpeakers()
         viewManager = LinearLayoutManager(this)

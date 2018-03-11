@@ -21,8 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TalkActivity"></activity>
-        <activity android:name=".SpeakerActivity"></activity>
+        <activity android:name=".TalkActivity"/>
+        <activity android:name=".SpeakerActivity"/>
+        <activity android:name=".TalkDetailActivity"/>
     </application>
 
 </manifest>
