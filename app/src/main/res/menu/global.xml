@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".HomeActivity">
+
+    <item android:id="@+id/menu_map"
+        android:title="@string/menu_map"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/menu_about"
+        android:title="@string/menu_about"
+        app:showAsAction="never"/>
+
+</menu>
