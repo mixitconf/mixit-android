@@ -35,7 +35,7 @@ class TalkDetailActivity : AbstractMixitActivity() {
 
         val talk = TalkReader.getInstance(this).findOne(intent.getStringExtra(TALK_ID))
 
-        findViewById<TextView>(R.id.talk_name).apply {
+        findViewById<TextView>(R.id.talkItemName).apply {
             setText(talk.title)
         }
         findViewById<TextView>(R.id.talk_summary).apply {
@@ -44,16 +44,16 @@ class TalkDetailActivity : AbstractMixitActivity() {
         findViewById<TextView>(R.id.talk_descrition).apply {
             setText(if (talk.description != null) Html.fromHtml(Processor.process(talk.description)) else "")
         }
-        findViewById<TextView>(R.id.talk_time).apply {
+        findViewById<TextView>(R.id.talkItemTime).apply {
             setText(String.format(resources.getString(R.string.talk_time_range),
                     DATE_FORMAT.format(talk.start),
                     DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.start),
                     DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.end)))
         }
-        findViewById<TextView>(R.id.talk_room).apply {
+        findViewById<TextView>(R.id.talkItemRoom).apply {
             setText(talk.title)
         }
-        findViewById<TextView>(R.id.talk_room).apply {
+        findViewById<TextView>(R.id.talkItemRoom).apply {
             setText(context.resources.getIdentifier(talk.room.name.toLowerCase(), "string", context.applicationInfo.packageName))
         }
         findViewById<TextView>(R.id.talk_topic).apply {
@@ -62,7 +62,7 @@ class TalkDetailActivity : AbstractMixitActivity() {
         findViewById<ImageView>(R.id.talk_image_track).apply {
             setImageResource(talk.getTopicDrawableRessource())
         }
-        findViewById<ImageView>(R.id.talk_image_language).apply {
+        findViewById<ImageView>(R.id.talkItemImageLanguage).apply {
             setImageResource(if (talk.language == Language.ENGLISH) R.drawable.mxt_flag_en else R.drawable.mxt_flag_fr)
         }
 

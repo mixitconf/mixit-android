@@ -24,13 +24,13 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) :
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val image = view.findViewById<ImageView>(R.id.talk_image)
-        val langageImage = view.findViewById<ImageView>(R.id.talk_image_language)
-        val name = view.findViewById<TextView>(R.id.talk_name)
-        val description = view.findViewById<TextView>(R.id.talk_description)
-        val time = view.findViewById<TextView>(R.id.talk_time)
-        val room = view.findViewById<TextView>(R.id.talk_room)
-        val type = view.findViewById<TextView>(R.id.talk_type)
+        val image = view.findViewById<ImageView>(R.id.talkItemImage)
+        val langageImage = view.findViewById<ImageView>(R.id.talkItemImageLanguage)
+        val name = view.findViewById<TextView>(R.id.talkItemName)
+        val description = view.findViewById<TextView>(R.id.talkItemDescription)
+        val time = view.findViewById<TextView>(R.id.talkItemTime)
+        val room = view.findViewById<TextView>(R.id.talkItemRoom)
+        val type = view.findViewById<TextView>(R.id.talkItemType)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TalkListAdapter.ViewHolder {

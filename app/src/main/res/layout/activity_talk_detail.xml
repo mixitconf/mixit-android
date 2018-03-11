@@ -21,7 +21,7 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/talk_name"
+                android:id="@+id/talkItemName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
@@ -31,7 +31,7 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/talk_room"
+                android:id="@+id/talkItemRoom"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/room_button_text_size"
                 android:layout_alignWithParentIfMissing="true"
@@ -41,20 +41,20 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/talk_time"
+                android:id="@+id/talkItemTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignWithParentIfMissing="true"
-                android:layout_below="@+id/talk_room"
+                android:layout_below="@+id/talkItemRoom"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/textShadow"
                 android:textStyle="bold"/>
 
             <ImageView
-                android:id="@+id/talk_image_language"
+                android:id="@+id/talkItemImageLanguage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/talk_time"
+                android:layout_below="@id/talkItemTime"
                 android:paddingTop="1dp"
                 android:scaleType="fitCenter" />
 
