@@ -34,10 +34,10 @@ class SpeakerDetailActivity : AbstractMixitActivity() {
         findViewById<TextView>(R.id.talkItemName).apply {
             setText(talk.title)
         }
-        findViewById<TextView>(R.id.talk_summary).apply {
+        findViewById<TextView>(R.id.talkSummary).apply {
             setText(Html.fromHtml(Processor.process(talk.summary)))
         }
-        findViewById<TextView>(R.id.talk_descrition).apply {
+        findViewById<TextView>(R.id.talkDescrition).apply {
             setText(if (talk.description != null) Html.fromHtml(Processor.process(talk.description)) else "")
         }
         findViewById<TextView>(R.id.talkItemRoom).apply {
@@ -46,10 +46,10 @@ class SpeakerDetailActivity : AbstractMixitActivity() {
         findViewById<TextView>(R.id.talkItemRoom).apply {
             setText(context.resources.getIdentifier(talk.room.name.toLowerCase(), "string", context.applicationInfo.packageName))
         }
-        findViewById<TextView>(R.id.talk_topic).apply {
+        findViewById<TextView>(R.id.talkTopic).apply {
             setText(talk.topic)
         }
-        findViewById<ImageView>(R.id.talk_image_track).apply {
+        findViewById<ImageView>(R.id.talkImageTrack).apply {
             setImageResource(talk.getTopicDrawableRessource())
         }
         findViewById<ImageView>(R.id.talkItemImageLanguage).apply {
