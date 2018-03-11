@@ -63,7 +63,7 @@ class SpeakerDetailActivity : AbstractMixitActivity() {
         viewAdapter = UserListAdapter(SpeakerActivity.UserOnClickListener(this), speakers, this)
 
         // Lookup the recyclerview in activity layout
-        recyclerView = findViewById<RecyclerView>(R.id.speaker_list).apply {
+        recyclerView = findViewById<RecyclerView>(R.id.speakerList).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter

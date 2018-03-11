@@ -3,7 +3,6 @@ package org.mixitconf
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_talks.*
 import org.mixitconf.adapter.TalkListAdapter
 import org.mixitconf.model.TalkFormat
@@ -11,10 +10,6 @@ import org.mixitconf.repository.TalkReader
 
 
 class TalkActivity : AbstractMixitActivity() {
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
-    private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +22,12 @@ class TalkActivity : AbstractMixitActivity() {
                 .sortedBy { it.room }
                 .sortedBy { it.start }
 
-        viewManager = LinearLayoutManager(this)
-        viewAdapter = TalkListAdapter(talks, this)
 
         // Lookup the recyclerview in activity layout
-        recyclerView = findViewById<RecyclerView>(R.id.talk_list).apply {
+        talkList.apply {
             setHasFixedSize(true)
-            layoutManager = viewManager
-            adapter = viewAdapter
+            layoutManager = LinearLayoutManager(context)
+            adapter = TalkListAdapter(talks, context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
     }
