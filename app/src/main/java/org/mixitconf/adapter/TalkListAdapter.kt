@@ -12,15 +12,11 @@ import org.mixitconf.R
 import org.mixitconf.TalkDetailActivity
 import org.mixitconf.model.Language
 import org.mixitconf.model.Talk
+import org.mixitconf.service.Utils
 import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 
-class TalkListAdapter(val items: List<Talk>, val context: Context) :
-        RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
-
-    val DATE_FORMAT = SimpleDateFormat("EEE", Locale.getDefault())
+class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -48,7 +44,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) :
         holder.type.setText(talk.format.name)
 
         holder.time.setText(String.format(context.resources.getString(R.string.talk_time_range),
-                DATE_FORMAT.format(talk.start),
+                Utils.DATE_FORMAT.format(talk.start),
                 DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.start),
                 DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.end)
         ))

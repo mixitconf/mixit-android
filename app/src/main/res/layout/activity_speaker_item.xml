@@ -11,14 +11,14 @@
 
     <ImageView
         android:id="@+id/speaker_image"
+        android:contentDescription="@string/title_speakers"
         android:layout_width="@dimen/item_image_size"
         android:layout_height="@dimen/item_image_size"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_gravity="center_vertical"
-        android:layout_marginRight="@dimen/item_image_padding"
+        android:layout_marginEnd="@dimen/item_image_padding"
         android:paddingBottom="4dp"
-        android:paddingLeft="4dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="0dp"
         android:paddingTop="4dp"
         android:scaleType="fitCenter" />
 
@@ -46,8 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignWithParentIfMissing="true"
-            android:layout_toRightOf="@id/speaker_name"
-            android:paddingLeft="8dp"
+            android:layout_toEndOf="@id/speaker_name"
+            android:paddingStart="8dp"
+            android:paddingEnd="0dp"
             android:textColor="@color/textShadow"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold" />
@@ -60,7 +61,9 @@
             android:layout_below="@id/speaker_name"
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:ellipsize="end"
+            android:maxLines="1"/>
 
     </RelativeLayout>
 

@@ -3,22 +3,19 @@ package org.mixitconf
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.text.Html
-import com.github.rjeschke.txtmark.Processor
 import kotlinx.android.synthetic.main.activity_talk_detail.*
 import org.mixitconf.adapter.UserListAdapter
 import org.mixitconf.model.Language
 import org.mixitconf.repository.TalkReader
 import org.mixitconf.repository.UserReader
+import org.mixitconf.service.Utils
+import org.mixitconf.service.markdownToHtml
 import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class TalkDetailActivity : AbstractMixitActivity() {
 
     companion object {
         val TALK_ID = "talkId"
-        val DATE_FORMAT = SimpleDateFormat("EEE", Locale.getDefault())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +26,10 @@ class TalkDetailActivity : AbstractMixitActivity() {
         val talk = TalkReader.getInstance(this).findOne(intent.getStringExtra(TALK_ID))
 
         talkName.setText(talk.title)
-        talkSummary.setText(Html.fromHtml(Processor.process(talk.summary)))
-        talkDescrition.setText(if (talk.description != null) Html.fromHtml(Processor.process(talk.description)) else "")
+        talkSummary.setText(talk.summary.markdownToHtml())
+        talkDescrition.setText(talk.description?.markdownToHtml())
         talkTime.setText(String.format(resources.getString(R.string.talk_time_range),
-                DATE_FORMAT.format(talk.start),
+                Utils.DATE_FORMAT.format(talk.start),
                 DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.start),
                 DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.end)))
         talkRoom.setText(this.resources.getIdentifier(talk.room.name.toLowerCase(), "string", this.applicationInfo.packageName))
@@ -44,13 +41,12 @@ class TalkDetailActivity : AbstractMixitActivity() {
 
         // Adds speaker
         val speakers = UserReader.getInstance(this).findByLogins(talk.speakerIds)
-        val dataAdapter = UserListAdapter(SpeakerActivity.UserOnClickListener(this), speakers, this)
 
         // Lookup the recyclerview in activity layout
         talkSpeakerList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = dataAdapter
+            adapter = UserListAdapter(speakers, context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
 

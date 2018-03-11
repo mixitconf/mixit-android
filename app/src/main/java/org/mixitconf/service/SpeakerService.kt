@@ -5,6 +5,7 @@ import android.os.Environment
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import org.mixitconf.R
+import org.mixitconf.model.Talk
 import org.mixitconf.model.User
 import org.mixitconf.repository.TalkReader
 import org.mixitconf.repository.UserReader
@@ -38,6 +39,8 @@ class SpeakerService(val context: Context) {
             speakerImage.setImageResource(R.drawable.mxt_icon_unknown)
         }
     }
+
+    fun findSpeakerTalks(speaker: User): List<Talk>  = TalkReader.getInstance(context).findAll().filter { it.speakerIds.contains(speaker.login) }.toList()
 
     companion object : SingletonHolder<SpeakerService, Context>(::SpeakerService)
 }
