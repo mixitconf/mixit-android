@@ -5,8 +5,10 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_talks.*
 import org.mixitconf.adapter.TalkListAdapter
+import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat
 import org.mixitconf.repository.TalkReader
+import java.text.DateFormat
 
 
 class TalkActivity : AbstractMixitActivity() {
@@ -27,7 +29,7 @@ class TalkActivity : AbstractMixitActivity() {
         talkList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = TalkListAdapter(talks.sortedBy { it.room }.sortedBy { it.start }, context)
+            adapter = TalkListAdapter(talks.sortedWith(compareBy<Talk> { DateFormat.getTimeInstance(DateFormat.SHORT).format(it.start) }.thenBy { it.room }), context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
     }

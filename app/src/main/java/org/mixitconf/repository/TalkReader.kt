@@ -110,10 +110,10 @@ class TalkReader(private val context: Context) {
             createNonTalkMoment(talkFormat, title, 20, startHour, startMinute)
 
     private fun createNonTalkMoment(talkFormat: TalkFormat, title: Int?, day: Int, startHour: Int, startMinute: Int) = Talk(
-            TalkFormat.ORGA, "2018",
+            talkFormat, "2018",
             if (title == null) "" else context.getString(title),
             "", emptyList(), Language.FRENCH, Date(), "",
-            "", Room.UNKNOWN,
+            "", Room.A_NOT_APPLICABLE,
             Date().adjust(day, startHour, startMinute),
             Date().adjust(day, startHour, startMinute).addMinutes(talkFormat.duration), ""
     )
