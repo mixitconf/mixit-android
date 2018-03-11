@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.mixitconf.MainActivity">
+    tools:context="org.mixitconf.TalkDetailActivity">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
@@ -49,6 +49,7 @@
 
             <ImageView
                 android:id="@+id/talkImageLanguage"
+                android:contentDescription="@string/language_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="1dp"
@@ -85,6 +86,7 @@
 
                 <ImageView
                     android:id="@+id/talkImageTrack"
+                    android:contentDescription="@string/topic_image"
                     android:layout_width="@dimen/item_image_size"
                     android:layout_height="@dimen/item_image_size"
                     android:layout_alignParentStart="true"
@@ -114,6 +116,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="2dp"
+                android:paddingEnd="0dp"
                 android:paddingTop="8dp"
                 android:text="@string/title_speakers"
                 android:textStyle="bold" />

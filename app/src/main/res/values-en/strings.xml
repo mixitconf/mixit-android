@@ -4,9 +4,14 @@
     <string name="title_home">Home</string>
     <string name="title_talks">Talks\tSessions</string>
     <string name="title_speakers">Speakers</string>
+    <string name="title_links">Links</string>
+
     <string name="talk_no_date">No date</string>
     <string name="talk_time_range">"%1$s from %2$s to %3$s "</string>
+
     <string name="topic">"topic %1$s"</string>
+    <string name="topic_image">Topic image</string>
+    <string name="language_image">Language image</string>
 
     <string name="amphi1">Lovelace Amphitheatre</string>
     <string name="amphi2">Hamilton Amphitheatre</string>

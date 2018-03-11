@@ -16,14 +16,14 @@
 
         <ImageView
             android:id="@+id/talkItemImage"
+            android:contentDescription="@string/topic_image"
             android:layout_width="@dimen/item_list_size"
             android:layout_height="@dimen/item_image_size"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginRight="@dimen/item_image_padding"
+            android:layout_marginEnd="@dimen/item_image_padding"
             android:paddingBottom="4dp"
-            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="0dp"
             android:paddingTop="4dp"
             android:scaleType="fitCenter" />
 
@@ -32,7 +32,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/textShadow"
-
             android:textSize="@dimen/small_list_text"
             android:gravity="center"
             android:textStyle="bold"/>
@@ -69,7 +68,7 @@
                 android:id="@+id/talkItemImageLanguage"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="4dp"
+                android:layout_marginEnd="4dp"
                 android:layout_marginStart="4dp"
                 android:contentDescription="@null"
                 android:scaleType="centerInside" />
@@ -78,7 +77,7 @@
                 android:id="@+id/talkItemRoom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
+                android:layout_marginEnd="4dp"
                 android:layout_marginStart="4dp"
                 android:lines="1"
                 android:textAppearance="?android:attr/textAppearanceSmall"
