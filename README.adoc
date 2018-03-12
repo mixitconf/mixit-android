@@ -1,0 +1,7 @@
+
+[caption="Travis-ci: ",link=https://travis-ci.org/mixitconf/mixit-android]
+image::https://api.travis-ci.org/mixitconf/mixit-android.svg?branch=master[]
+
+# MiXiT Android App 
+
+This project purpose is to power the MiXiT app for Android.
