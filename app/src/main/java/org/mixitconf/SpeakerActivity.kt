@@ -11,7 +11,6 @@ class SpeakerActivity : AbstractMixitActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speakers)
-        speakersNavigation.setOnNavigationItemSelectedListener(getNavigationItemSelectedListener())
 
         val speakers = SpeakerService.getInstance(this).findSpeakers()
 

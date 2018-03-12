@@ -52,7 +52,6 @@ enum class TalkFormat(val duration: Int) {
 
 @Suppress("UNUSED_PARAMETER")
 enum class Room(val capacity: Int, val color: Int) {
-    A_NOT_APPLICABLE(0, android.R.color.black),
     AMPHI1(500, R.color.room1),
     AMPHI2(200, R.color.room2),
     ROOM1(110, R.color.room3),

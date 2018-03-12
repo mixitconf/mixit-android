@@ -2,7 +2,6 @@ package org.mixitconf
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -37,33 +36,18 @@ abstract class AbstractMixitActivity() : AppCompatActivity() {
                 dial.show(fragmentManager, resources.getString(R.string.about_title))
                 return true
             }
-            R.id.menu_map -> {
-
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    fun getNavigationItemSelectedListener() = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                return@OnNavigationItemSelectedListener true
-            }
             R.id.navigation_talks -> {
                 val intent = Intent(this, TalkActivity::class.java)
                 startActivity(intent)
-                return@OnNavigationItemSelectedListener true
+                return true
             }
             R.id.navigation_speakers -> {
                 val intent = Intent(this, SpeakerActivity::class.java)
                 startActivity(intent)
-                return@OnNavigationItemSelectedListener true
+                return true
             }
         }
-        false
+        return super.onOptionsItemSelected(item)
     }
 
     /**

@@ -78,15 +78,15 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
                 hideFields(holder, hideName = true)
             }
             RANDOM, PARTY -> {
-                paintItemView(holder, R.color.colorAccent)
+                paintItemView(holder, R.color.colorAccent, timeColor = android.R.color.white)
                 hideFields(holder, hideImage = false)
             }
             SESSION_INTRO, LUNCH, ORGA -> {
-                paintItemView(holder)
+                paintItemView(holder, R.color.unknown)
                 hideFields(holder, hideImage = false)
             }
             PAUSE_10_MIN, PAUSE_20_MIN, PAUSE_30_MIN -> {
-                paintItemView(holder, R.color.textShadow, timeColor = android.R.color.white)
+                paintItemView(holder, R.color.unknown)
                 hideFields(holder, hideImage = false)
             }
         }

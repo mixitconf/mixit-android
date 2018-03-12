@@ -21,7 +21,6 @@ class TalkDetailActivity : AbstractMixitActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_talk_detail)
-        talkNavigation.setOnNavigationItemSelectedListener(getNavigationItemSelectedListener())
 
         val talk = TalkReader.getInstance(this).findOne(intent.getStringExtra(TALK_ID))
 

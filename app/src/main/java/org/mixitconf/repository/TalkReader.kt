@@ -43,23 +43,6 @@ class TalkReader(private val context: Context) {
     fun findMarkers(): List<Talk> = listOf(
             createNonTalkMomentFirstDay(TalkFormat.DAY, 8, 0, R.string.event_day1),
 
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 8, 45),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 9, 45),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 10, 10),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 11, 0),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 11, 10),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 12, 0),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 13, 10),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 13, 50),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 14, 10),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 15, 0),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 15, 10),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 16, 0),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 16, 20),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 17, 10),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 18, 0),
-            createNonTalkMomentFirstDay(TalkFormat.TIME, 19, 30),
-
             createNonTalkMomentFirstDay(TalkFormat.ORGA, 8, 45, R.string.planning_team_word),
             createNonTalkMomentFirstDay(TalkFormat.SESSION_INTRO, 9, 45, R.string.planning_session_intro),
             createNonTalkMomentFirstDay(TalkFormat.PAUSE_20_MIN, 9, 50, R.string.planning_pause),
@@ -73,22 +56,6 @@ class TalkReader(private val context: Context) {
             createNonTalkMomentFirstDay(TalkFormat.PARTY, 19, 30, R.string.planning_pause),
 
             createNonTalkMomentSecondDay(TalkFormat.DAY, 8, 0, R.string.event_day1),
-
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 9, 0),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 9, 35),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 10, 10),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 11, 0),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 11, 10),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 12, 0),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 13, 10),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 13, 50),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 14, 10),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 15, 0),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 15, 10),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 16, 0),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 16, 20),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 17, 10),
-            createNonTalkMomentSecondDay(TalkFormat.TIME, 17, 45),
 
             createNonTalkMomentSecondDay(TalkFormat.ORGA, 9, 0, R.string.planning_team_word),
             createNonTalkMomentSecondDay(TalkFormat.SESSION_INTRO, 9, 35, R.string.planning_session_intro),
@@ -113,7 +80,7 @@ class TalkReader(private val context: Context) {
             talkFormat, "2018",
             if (title == null) "" else context.getString(title),
             "", emptyList(), Language.FRENCH, Date(), "",
-            "", Room.A_NOT_APPLICABLE,
+            "", Room.UNKNOWN,
             Date().adjust(day, startHour, startMinute),
             Date().adjust(day, startHour, startMinute).addMinutes(talkFormat.duration), ""
     )

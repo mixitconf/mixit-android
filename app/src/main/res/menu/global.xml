@@ -2,12 +2,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".HomeActivity">
 
-    <item android:id="@+id/menu_map"
-        android:title="@string/menu_map"
-        app:showAsAction="never"/>
+    <item
+        android:id="@+id/navigation_talks"
+        android:icon="@drawable/mxt_icon_talk"
+        android:title="@string/title_talks"
+        app:showAsAction="ifRoom|collapseActionView"/>
+
+    <item
+        android:id="@+id/navigation_speakers"
+        android:icon="@drawable/mxt_icon_speaker"
+        android:title="@string/title_speakers"
+        app:showAsAction="ifRoom|collapseActionView"/>
 
     <item android:id="@+id/menu_about"
         android:title="@string/menu_about"
         app:showAsAction="never"/>
+
 
 </menu>

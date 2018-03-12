@@ -8,7 +8,6 @@ import org.mixitconf.adapter.TalkListAdapter
 import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat
 import org.mixitconf.repository.TalkReader
-import java.text.DateFormat
 
 
 class TalkActivity : AbstractMixitActivity() {
@@ -16,7 +15,6 @@ class TalkActivity : AbstractMixitActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_talks)
-        talksNavigation.setOnNavigationItemSelectedListener(getNavigationItemSelectedListener())
 
         val talks = TalkReader.getInstance(baseContext)
                 .findAll()
@@ -29,7 +27,7 @@ class TalkActivity : AbstractMixitActivity() {
         talkList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = TalkListAdapter(talks.sortedWith(compareBy<Talk> { DateFormat.getTimeInstance(DateFormat.SHORT).format(it.start) }.thenBy { it.room }), context)
+            adapter = TalkListAdapter(talks.sortedWith(compareBy<Talk> { it.start }.thenBy { it.end }.thenBy { it.room }), context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
     }

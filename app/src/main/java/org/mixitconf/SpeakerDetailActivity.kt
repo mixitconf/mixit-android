@@ -25,7 +25,6 @@ class SpeakerDetailActivity : AbstractMixitActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speaker_detail)
-        speakerNavigation.setOnNavigationItemSelectedListener(getNavigationItemSelectedListener())
 
         val speaker = UserReader.getInstance(this).findOne(intent.getStringExtra(SPEAKER_LOGIN))
 
