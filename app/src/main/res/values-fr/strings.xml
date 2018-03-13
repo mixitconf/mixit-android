@@ -38,4 +38,11 @@
     <string name="planning_pause">Pause</string>
     <string name="planning_lunch">Déjeuner</string>
     <string name="planning_random">Sessions random</string>
+
+    <string name="welcome">La conférence lyonnaise avec des crêpes et du coeur</string>
+
+    <string name="twitter">Twitter</string>
+    <string name="twitter_description">Suivez nous sur Twitter</string>
+    <string name="email">Email</string>
+    <string name="email_description">Envoyez nous un email</string>
 </resources>

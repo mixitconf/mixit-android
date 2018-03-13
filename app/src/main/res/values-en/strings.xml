@@ -38,4 +38,11 @@
     <string name="planning_pause">Pause</string>
     <string name="planning_lunch">Lunch</string>
     <string name="planning_random">Random sessions</string>
+
+    <string name="welcome">The conference from Lyon with crêpes and love</string>
+
+    <string name="twitter">Twitter</string>
+    <string name="twitter_description">Follow us on Twitter</string>
+    <string name="email">Email</string>
+    <string name="email_description">Send us an email</string>
 </resources>

@@ -1,10 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical"
     tools:context="org.mixitconf.MainActivity">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:padding="5dp">
 
-</android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            android:paddingTop="10dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:id="@+id/textView"/>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:padding="@dimen/item_image_padding"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/mxt_heart"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/twitterLink"
+                android:layout_width="@dimen/item_image_menu_size"
+                android:layout_height="@dimen/item_image_menu_size"
+                android:layout_margin="@dimen/item_image_padding"
+                android:contentDescription="@string/twitter_description"
+                android:src="@drawable/mxt_icon_twitter"/>
+
+            <ImageView
+                android:id="@+id/emailLink"
+                android:layout_width="@dimen/item_image_menu_size"
+                android:layout_height="@dimen/item_image_menu_size"
+                android:layout_margin="@dimen/item_image_padding"
+                android:contentDescription="@string/email_description"
+                android:src="@drawable/mxt_icon_mail"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
