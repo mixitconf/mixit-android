@@ -23,7 +23,7 @@ class SpeakerService(val context: Context) {
     fun findSpeakerImage(speakerImage: ImageView, speaker: User) {
         // Speaker images are downloaded on the app startup
         val imageResource = context.resources.getIdentifier(
-                "mxt_speker_${speaker.lastname.toSlug()}",
+                "mxt_speker_${if(speaker.lastname.isNullOrEmpty()) speaker.firstname.toSlug() else speaker.lastname.toSlug()}",
                 "drawable",
                 context.applicationInfo.packageName)
 

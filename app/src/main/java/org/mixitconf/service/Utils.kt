@@ -15,7 +15,8 @@ class Utils {
     }
 }
 
-val SPECIAL_SLUG_CHARACTERS = mapOf<Char, Char>(Pair('é','e'), Pair('è','e'),Pair('ï','i'), Pair(' ','_'), Pair('ê','e'), Pair('à','a'), Pair('-','_'))
+val SPECIAL_SLUG_CHARACTERS = mapOf<Char, Char>(Pair('é','e'), Pair('è','e'),Pair('ï','i'), Pair(' ','_'), Pair('ê','e')
+        , Pair('\'','_'), Pair('ô','o'), Pair('à','a'), Pair('-','_'))
 
 // String extension to convert markdown to HTML
 // ============================================
