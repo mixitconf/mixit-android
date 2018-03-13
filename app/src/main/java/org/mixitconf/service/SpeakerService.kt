@@ -1,15 +1,12 @@
 package org.mixitconf.service
 
 import android.content.Context
-import android.os.Environment
 import android.widget.ImageView
-import com.squareup.picasso.Picasso
 import org.mixitconf.R
 import org.mixitconf.model.Talk
 import org.mixitconf.model.User
 import org.mixitconf.repository.TalkReader
 import org.mixitconf.repository.UserReader
-import java.io.File
 
 /**
  * Created by devmind on 06/03/18.
@@ -23,24 +20,17 @@ class SpeakerService(val context: Context) {
         return UserReader.getInstance(context).findByLogins(talks.flatMap { it.speakerIds }.toList())
     }
 
-
-    fun findSpeakerImage(speakerImage: ImageView, speaker: User){
+    fun findSpeakerImage(speakerImage: ImageView, speaker: User) {
         // Speaker images are downloaded on the app startup
-        val image = File(context.getExternalFilesDir(Environment.DIRECTORY_DCIM), "speaker_${speaker.firstname}_${speaker.lastname}")
+        val imageResource = context.resources.getIdentifier(
+                "mxt_speker_${speaker.lastname.toSlug()}",
+                "drawable",
+                context.applicationInfo.packageName)
 
-        if (image.exists()) {
-            Picasso
-                    .with(context)
-                    .load(image)
-                    .resizeDimen(R.dimen.item_image_size, R.dimen.item_image_size)
-                    .placeholder(R.drawable.mxt_icon_unknown)
-                    .into(speakerImage)
-        } else {
-            speakerImage.setImageResource(R.drawable.mxt_icon_unknown)
-        }
+        speakerImage.setImageResource(if (imageResource > 0) imageResource else R.drawable.mxt_icon_unknown)
     }
 
-    fun findSpeakerTalks(speaker: User): List<Talk>  = TalkReader.getInstance(context).findAll().filter { it.speakerIds.contains(speaker.login) }.toList()
+    fun findSpeakerTalks(speaker: User): List<Talk> = TalkReader.getInstance(context).findAll().filter { it.speakerIds.contains(speaker.login) }.toList()
 
     companion object : SingletonHolder<SpeakerService, Context>(::SpeakerService)
 }

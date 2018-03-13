@@ -25,6 +25,9 @@ class SpeakerServiceTest{
     @Test
     fun findAll() {
         // Context of the app under test.
-        Assert.assertEquals(95, service.findSpeakers().size)
+        val speakers = service.findSpeakers()
+        Assert.assertEquals(95, speakers.size)
+
+        speakers.forEach { System.out.println(it.photoUrl) }
     }
 }

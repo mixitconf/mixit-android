@@ -13,10 +13,15 @@ class Utils {
     }
 }
 
+val SPECIAL_SLUG_CHARACTERS = mapOf<Char, Char>(Pair('é','e'), Pair('è','e'),Pair('ï','i'), Pair(' ','_'), Pair('ê','e'), Pair('à','a'), Pair('-','_'))
+
 // String extension to convert markdown to HTML
-fun String.markdownToHtml() = if(isNullOrEmpty()) null else Processor.process(this).toHtml()
+fun String.markdownToHtml() = if (isNullOrEmpty()) null else Processor.process(this).toHtml()
+
 @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
-fun String.toHtml() = if(isNullOrEmpty()) null else Html.fromHtml(this)
+fun String.toHtml() = if (isNullOrEmpty()) null else Html.fromHtml(this)
+
+fun String.toSlug(): String = toLowerCase().toCharArray().map { if (SPECIAL_SLUG_CHARACTERS.get(it) == null) it else SPECIAL_SLUG_CHARACTERS.get(it) }.joinToString("")
 
 // Date extensions
 fun Date.adjust(day: Int, hour: Int, minute: Int): Date {
@@ -24,12 +29,14 @@ fun Date.adjust(day: Int, hour: Int, minute: Int): Date {
     calendar.set(2018, 3, day, hour, minute, 0)
     return calendar.time
 }
+
 fun Date.toLocale(): Date {
     val calendar = Calendar.getInstance(Locale.FRANCE)
     calendar.time = this
     calendar.add(Calendar.HOUR, -2)
     return calendar.time
 }
+
 fun Date.addMinutes(amount: Int): Date {
     val calendar = Calendar.getInstance(Locale.FRANCE)
     calendar.time = this

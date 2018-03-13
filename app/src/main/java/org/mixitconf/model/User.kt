@@ -8,6 +8,7 @@ data class User(
         val firstname: String,
         val lastname: String,
         val company: String?,
+        val photoUrl: String?,
         val description: Map<Language, String> = emptyMap(),
         val links: List<Link> = emptyList()
 )

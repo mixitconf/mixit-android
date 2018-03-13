@@ -12,7 +12,7 @@ class SpeakerActivity : AbstractMixitActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_speakers)
 
-        val speakers = SpeakerService.getInstance(this).findSpeakers()
+        val speakers = SpeakerService.getInstance(this).findSpeakers().sortedBy { it.firstname }
 
         // Lookup the recyclerview in activity layout
         speakerList.apply {
