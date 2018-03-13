@@ -13,7 +13,6 @@ import org.mixitconf.SpeakerDetailActivity
 import org.mixitconf.model.Language
 import org.mixitconf.model.User
 import org.mixitconf.service.SpeakerService
-import org.mixitconf.service.markdownToHtml
 
 class UserListAdapter(val items: List<User>, val context: Context) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
@@ -32,7 +31,7 @@ class UserListAdapter(val items: List<User>, val context: Context) : RecyclerVie
         val user = items.get(position)
 
         holder.speakerName.setText("${user.firstname} ${user.lastname}".trim())
-        holder.speakerBio.setText(user.description.get(Language.FRENCH)?.markdownToHtml())
+        holder.speakerBio.setText(user.description.get(Language.FRENCH))
         SpeakerService.getInstance(context).findSpeakerImage(holder.speakerImage, user)
 
         holder.itemView.setOnClickListener(UserListAdapter.OnSpeakerClickListener(user, context))
