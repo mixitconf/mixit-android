@@ -26,8 +26,8 @@
 
                 <ImageView
                     android:id="@+id/speakerDetailImage"
-                    android:layout_width="@dimen/item_image_size"
-                    android:layout_height="@dimen/item_image_size"
+                    android:layout_width="@dimen/item_image_size_detail"
+                    android:layout_height="@dimen/item_image_size_detail"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginEnd="@dimen/item_image_padding"

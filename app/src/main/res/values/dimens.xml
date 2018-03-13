@@ -6,6 +6,7 @@
     <dimen name="logo_width">144dp</dimen>
 
     <dimen name="item_image_size">48dp</dimen>
+    <dimen name="item_image_size_detail">72dp</dimen>
     <dimen name="item_image_menu_size">24dp</dimen>
     <dimen name="item_image_padding">10dp</dimen>
     <dimen name="item_list_size">60dp</dimen>
