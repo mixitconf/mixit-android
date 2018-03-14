@@ -63,7 +63,7 @@
             android:paddingTop="4dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:ellipsize="end"
-            android:maxLines="1"/>
+            android:maxLines="2"/>
 
     </RelativeLayout>
 
