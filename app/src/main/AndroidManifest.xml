@@ -24,6 +24,7 @@
         <activity android:name=".SpeakerActivity" />
         <activity android:name=".TalkDetailActivity" />
         <activity android:name=".SpeakerDetailActivity" />
+        <activity android:name=".FloorMapActivity" />
     </application>
 
 </manifest>

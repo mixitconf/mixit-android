@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/item_image_padding"
                     android:drawableTop="@drawable/mxt_button_map_hdv"
-                    android:text="Map floor -1" />
+                    android:text="Map floor 1" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

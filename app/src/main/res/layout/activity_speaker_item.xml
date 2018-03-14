@@ -6,7 +6,7 @@
     android:background="?selectableItemBackground"
     android:baselineAligned="false"
     android:orientation="horizontal"
-    android:padding="2dp"
+    android:padding="8dp"
     android:scrollbars="vertical">
 
     <ImageView

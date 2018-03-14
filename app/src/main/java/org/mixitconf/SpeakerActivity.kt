@@ -1,6 +1,7 @@
 package org.mixitconf
 
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_speakers.*
 import org.mixitconf.adapter.UserListAdapter
@@ -19,6 +20,7 @@ class SpeakerActivity : AbstractMixitActivity() {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = UserListAdapter(speakers, context)
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
     }
 }

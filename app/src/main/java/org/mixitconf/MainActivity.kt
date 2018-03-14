@@ -65,11 +65,17 @@ open class MainActivity : AbstractMixitActivity() {
         }
 
         private fun displaySubFloorMap(){
-
+            val intent = Intent(context, FloorMapActivity::class.java).apply {
+                putExtra(FloorMapActivity.FLOOR_ID, -1)
+            }
+            context.startActivity(intent)
         }
 
         private fun displayFloor0Map(){
-
+            val intent = Intent(context, FloorMapActivity::class.java).apply {
+                putExtra(FloorMapActivity.FLOOR_ID, 1)
+            }
+            context.startActivity(intent)
         }
     }
 
