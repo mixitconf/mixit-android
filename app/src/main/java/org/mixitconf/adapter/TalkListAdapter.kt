@@ -110,6 +110,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
         holder.name.visibility = if (hideName) View.GONE else View.VISIBLE
         holder.infoLayout.visibility = if (hideTime) View.GONE else View.VISIBLE
         holder.time.visibility = if (hideTime) View.GONE else View.VISIBLE
+        holder.itemView.setOnClickListener(null)
         if (hideImage) {
             holder.image.visibility = View.GONE
         } else {
