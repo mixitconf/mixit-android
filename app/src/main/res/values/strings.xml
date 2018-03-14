@@ -40,8 +40,11 @@
     <string name="planning_random">Random sessions</string>
 
     <string name="welcome">The conference from Lyon with crêpes and love</string>
+    <string name="dates">19 \u0026 20 April 2018</string>
     <string name="twitter">Twitter</string>
     <string name="twitter_description">Follow us on Twitter</string>
     <string name="email">Email</string>
     <string name="email_description">Send us an email</string>
+
+    <string name="calendar_permission">You have chosen to not authorize MiXiT app to write events in your calendar. If you want to use this feature change the rights attributed to the app.</string>
 </resources>

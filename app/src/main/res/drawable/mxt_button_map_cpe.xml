@@ -1,0 +1,19 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+            <size android:width="60dp" android:height="12dp"/>
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/mxt_icon_walk" android:gravity="left"
+        android:width="32dp"
+        android:height="32dp"
+        ></item>
+    <item
+        android:drawable="@drawable/mxt_logo_x_inverse"
+        android:width="32dp"
+        android:height="32dp"
+        android:gravity="right">
+    </item>
+</layer-list>

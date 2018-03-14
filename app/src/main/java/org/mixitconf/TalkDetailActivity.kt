@@ -1,16 +1,26 @@
 package org.mixitconf
 
+import android.Manifest
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.CalendarContract
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_talk_detail.*
 import org.mixitconf.adapter.UserListAdapter
 import org.mixitconf.model.Language
+import org.mixitconf.model.Talk
 import org.mixitconf.repository.TalkReader
 import org.mixitconf.repository.UserReader
 import org.mixitconf.service.Utils
 import org.mixitconf.service.markdownToHtml
 import java.text.DateFormat
+
 
 class TalkDetailActivity : AbstractMixitActivity() {
 
@@ -49,5 +59,23 @@ class TalkDetailActivity : AbstractMixitActivity() {
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
 
+    }
+
+    class OnCalendarClickListener(val talk: Talk, val context: Context) : View.OnClickListener {
+        override fun onClick(view: View?) {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_CALENDAR)!= PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(context, R.string.calendar_permission, Toast.LENGTH_SHORT).show()
+                return
+            }
+            else {
+                val intent = Intent(Intent.ACTION_EDIT)
+                        .setType("vnd.android.cursor.item/event")
+                        .putExtra(CalendarContract.Events.DTSTART, talk.start.time)
+                        .putExtra(CalendarContract.Events.DTEND, talk.end.time)
+                        .putExtra(CalendarContract.Events.ALL_DAY, false)
+                        .putExtra(CalendarContract.Events.DESCRIPTION, talk.summary)
+                context.startActivity(intent)
+            }
+        }
     }
 }

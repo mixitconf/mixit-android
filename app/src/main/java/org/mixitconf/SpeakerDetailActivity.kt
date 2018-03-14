@@ -60,6 +60,5 @@ class SpeakerDetailActivity : AbstractMixitActivity() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link.url))
             context.startActivity(intent)
         }
-
     }
 }
