@@ -10,11 +10,6 @@
     <item
         android:width="32dp"
         android:height="32dp"
-        android:drawable="@drawable/mxt_icon_walk"
-        android:gravity="left" />
-    <item
-        android:width="32dp"
-        android:height="32dp"
-        android:drawable="@drawable/mxt_logo_x_inverse"
-        android:gravity="right" />
+        android:drawable="@drawable/mxt_icon_talk"
+        android:gravity="center" />
 </layer-list>

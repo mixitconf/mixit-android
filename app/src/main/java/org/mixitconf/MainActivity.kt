@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import org.mixitconf.service.hasIntentPackage
@@ -14,70 +15,75 @@ open class MainActivity : AbstractMixitActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        twitterLink.setOnClickListener(OnLinkClickListener(this, Action.Twitter))
-        emailLink.setOnClickListener(OnLinkClickListener(this, Action.Email))
-        mapCpeFloor0Button.setOnClickListener(OnLinkClickListener(this, Action.Floor0Map))
-        mapCpeSubFloorButton.setOnClickListener(OnLinkClickListener(this, Action.SubFloorMap))
-        comeToPartyButton.setOnClickListener(OnLinkClickListener(this, Action.ComeToParty))
-        comeToMiXiTButton.setOnClickListener(OnLinkClickListener(this, Action.ComeToMixit))
+        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        mapCpeFloor0Button.setOnClickListener(onButtonFloorOneMapClickListener)
+        mapCpeSubFloorButton.setOnClickListener(onButtonSubFloorMapClickListener)
+        comeToPartyButton.setOnClickListener(onButtonComeToPartyClickListener)
+        comeToMiXiTButton.setOnClickListener(onButtonComeToMixitClickListener)
     }
 
-    class OnLinkClickListener(val context: Context, val action: Action) : View.OnClickListener {
-
-        override fun onClick(view: View?) {
-            when(action){
-                Action.Twitter -> sendTwitter()
-                Action.Email -> sendEmail()
-                Action.ComeToMixit -> comeToMixit()
-                Action.ComeToParty -> comeToParty()
-                Action.SubFloorMap -> displaySubFloorMap()
-                Action.Floor0Map -> displayFloor0Map()
+    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.navigation_twitter -> {
+                val hasTwitterApp = baseContext.hasIntentPackage("com.twitter.android")
+                val intentUri = if (hasTwitterApp) "twitter://user?screen_name=mixitconf" else "https://twitter.com/mixitconf"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(intentUri)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                baseContext.startActivity(intent)
+                return@OnNavigationItemSelectedListener true
             }
-
+            R.id.navigation_website -> {
+                baseContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://mixitconf.org")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_github -> {
+                baseContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/mixitconf")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_mail -> {
+                baseContext.startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:contact@mix-it.fr")))
+                return@OnNavigationItemSelectedListener true
+            }
         }
+        false
+    }
 
-        private fun sendTwitter() {
-            val hasTwitterApp = context.hasIntentPackage("com.twitter.android")
-            val intentUri = if (hasTwitterApp) "twitter://user?screen_name=mixitconf" else "https://twitter.com/mixitconf"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(intentUri)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            context.startActivity(intent)
-        }
-
-        private fun sendEmail() {
-            val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:contact@mix-it.fr"))
-            context.startActivity(intent)
-        }
-
-        private fun comeToMixit(){
-            val hasMapApp = context.hasIntentPackage("com.google.android.apps.maps")
-            if(hasMapApp) {
+    private val onButtonComeToMixitClickListener = View.OnClickListener { _ ->
+        run {
+            val hasMapApp = baseContext.hasIntentPackage("com.google.android.apps.maps")
+            if (hasMapApp) {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:45.78392,4.869014?z=17&q=CPE+Lyon,+43+Boulevard+du+11+novembre,+69100+Villeurbanne"))
-                context.startActivity(intent)
+                baseContext.startActivity(intent)
             }
         }
+    }
 
-        private fun comeToParty(){
-            val hasMapApp = context.hasIntentPackage("com.google.android.apps.maps")
-            if(hasMapApp) {
+    private val onButtonComeToPartyClickListener = View.OnClickListener { _ ->
+        run {
+            val hasMapApp = baseContext.hasIntentPackage("com.google.android.apps.maps")
+            if (hasMapApp) {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:45.767643,4.8328633?z=17&q=Hôtel+de+Ville+de+Lyon"))
-                context.startActivity(intent)
+                baseContext.startActivity(intent)
             }
         }
+    }
 
-        private fun displaySubFloorMap(){
-            val intent = Intent(context, FloorMapActivity::class.java).apply {
+    private val onButtonSubFloorMapClickListener = View.OnClickListener { _ ->
+        run {
+            val intent = Intent(baseContext, FloorMapActivity::class.java).apply {
                 putExtra(FloorMapActivity.FLOOR_ID, -1)
             }
-            context.startActivity(intent)
-        }
-
-        private fun displayFloor0Map(){
-            val intent = Intent(context, FloorMapActivity::class.java).apply {
-                putExtra(FloorMapActivity.FLOOR_ID, 1)
-            }
-            context.startActivity(intent)
+            baseContext.startActivity(intent)
         }
     }
 
-    enum class Action { Twitter, Email, ComeToMixit, ComeToParty, SubFloorMap, Floor0Map }
+    private val onButtonFloorOneMapClickListener = View.OnClickListener { _ ->
+        run {
+            val intent = Intent(baseContext, FloorMapActivity::class.java).apply {
+                putExtra(FloorMapActivity.FLOOR_ID, 1)
+            }
+            baseContext.startActivity(intent)
+        }
+    }
+
 }

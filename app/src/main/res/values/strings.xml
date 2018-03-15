@@ -7,6 +7,10 @@
     <string name="title_talks">Talks</string>
     <string name="title_speakers">Speakers</string>
     <string name="title_links">Links</string>
+    <string name="title_website">Web site</string>
+    <string name="title_twitter">Follow us</string>
+    <string name="title_github">Contribute</string>
+    <string name="title_mail">Contact us</string>
 
     <string name="menu_about">About</string>
     <string name="menu_map">Place map</string>
@@ -41,10 +45,12 @@
 
     <string name="welcome">The conference from Lyon with crêpes and love</string>
     <string name="dates">19 \u0026 20 April 2018</string>
-    <string name="twitter">Twitter</string>
-    <string name="twitter_description">Follow us on Twitter</string>
-    <string name="email">Email</string>
-    <string name="email_description">Send us an email</string>
 
+    <string name="come_to_mixit">Come to MiXiT</string>
+    <string name="come_to_party">Come to Party</string>
+    <string name="map_floor_0">Map floor 0</string>
+    <string name="map_floor_1">Map floor 1</string>
+    <string name="add_to_your_calendar">Add to your calendar</string>
     <string name="calendar_permission">You have chosen to not authorize MiXiT app to write events in your calendar. If you want to use this feature change the rights attributed to the app.</string>
+
 </resources>

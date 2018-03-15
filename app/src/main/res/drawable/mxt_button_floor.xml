@@ -6,14 +6,9 @@
         </shape>
     </item>
     <item
-        android:drawable="@drawable/mxt_icon_walk" android:gravity="left"
-        android:width="32dp"
-        android:height="32dp"
-        ></item>
-    <item
         android:drawable="@drawable/mxt_icon_floor"
         android:width="40dp"
         android:height="32dp"
-        android:gravity="right">
+        android:gravity="center">
     </item>
 </layer-list>

@@ -54,6 +54,14 @@
                 android:paddingTop="1dp"
                 android:scaleType="fitCenter" />
 
+            <Button
+                android:id="@+id/addToCalendar"
+                android:layout_width="@dimen/logo_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/item_image_padding"
+                android:background="@drawable/button_selector"
+                android:text="@string/add_to_your_calendar" />
+
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
