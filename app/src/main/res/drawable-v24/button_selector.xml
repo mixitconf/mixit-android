@@ -4,12 +4,23 @@
 
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/textShadow"/>
+            <solid android:color="@color/colorAccentMoins"/>
+            <stroke android:color="@color/colorAccentPlus" android:width="3dp" />
+            <corners android:radius="5dp" />
         </shape>
     </item>
     <item>
         <shape>
-            <solid android:color="@color/colorSecondary"/>
+            <solid android:color="@android:color/white"/>
+            <stroke android:color="@color/colorAccent" android:width="3dp" />
+            <corners android:radius="5dp" />
+        </shape>
+    </item>
+    <item android:state_hovered="true">
+        <shape>
+            <solid android:color="@android:color/white"/>
+            <stroke android:color="@color/colorAccentPlus" android:width="3dp" />
+            <corners android:radius="5dp" />
         </shape>
     </item>
 </selector>

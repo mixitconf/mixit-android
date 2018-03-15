@@ -6,7 +6,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.widget.TextView
+import android.widget.Button
+import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_speaker_detail.*
 import org.mixitconf.adapter.TalkListAdapter
 import org.mixitconf.model.Language
@@ -14,7 +15,6 @@ import org.mixitconf.model.Link
 import org.mixitconf.repository.UserReader
 import org.mixitconf.service.SpeakerService
 import org.mixitconf.service.markdownToHtml
-import org.mixitconf.service.toHtml
 
 class SpeakerDetailActivity : AbstractMixitActivity() {
 
@@ -36,10 +36,14 @@ class SpeakerDetailActivity : AbstractMixitActivity() {
         // Adds links
         speakerDetailLinkList.apply {
             speaker.links.forEach {
-                val textView = TextView(context)
-                textView.setText(String.format("<a href=\"%s\">%s</a>", it.url, it.name).toHtml())
-                textView.setOnClickListener(OnLinkClickListener(it, context))
-                addView(textView)
+                val button = Button(context)
+                button.setText(it.name)
+                button.setOnClickListener(OnLinkClickListener(it, context))
+                button.setBackgroundResource(R.drawable.button_selector)
+                val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                params.setMargins(0, 0, 15, 0)
+                button.layoutParams = params
+                addView(button)
             }
         }
 
