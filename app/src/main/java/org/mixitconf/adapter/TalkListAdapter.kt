@@ -123,6 +123,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
         holder.room.visibility = View.VISIBLE
         holder.langageImage.visibility = View.VISIBLE
         holder.image.visibility = View.VISIBLE
+        holder.type.visibility = View.VISIBLE
         holder.name.visibility = View.VISIBLE
         holder.time.visibility = View.VISIBLE
         holder.infoLayout.visibility = View.VISIBLE
