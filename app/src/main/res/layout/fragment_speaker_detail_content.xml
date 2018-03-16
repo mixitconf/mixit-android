@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:id="@+id/speakerDetailMAyout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/speakerDetailImage"
+                android:layout_width="@dimen/item_image_size_detail"
+                android:layout_height="@dimen/item_image_size_detail"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/item_image_padding"
+                android:contentDescription="@string/title_speakers"
+                android:paddingBottom="4dp"
+                android:paddingEnd="0dp"
+                android:paddingStart="4dp"
+                android:paddingTop="4dp"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/speakerDetailName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_toEndOf="@id/speakerDetailImage"
+                android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/speakerDetailCompany"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_below="@id/speakerDetailName"
+                android:layout_toEndOf="@id/speakerDetailImage"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/speakerDetailDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_below="@id/speakerDetailCompany"
+                android:paddingTop="8dp"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/talkTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="0dp"
+            android:paddingStart="2dp"
+            android:paddingTop="8dp"
+            android:text="@string/title_talks"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/speakerDetailTalkList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+
+    </LinearLayout>
+</ScrollView>

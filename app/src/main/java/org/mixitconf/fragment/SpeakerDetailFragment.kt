@@ -8,12 +8,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.fragment_speaker_detail.*
+import kotlinx.android.synthetic.main.fragment_speaker_detail_content.*
 import org.mixitconf.R
 import org.mixitconf.adapter.TalkListAdapter
 import org.mixitconf.model.Language
+import org.mixitconf.model.Social
 import org.mixitconf.repository.UserReader
 import org.mixitconf.service.SpeakerService
 import org.mixitconf.service.Utils
@@ -30,7 +30,7 @@ class SpeakerDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if(arguments==null){
+        if (arguments == null) {
             throw IllegalStateException("SpeakerDetailFragment must be initialized with speaker id")
         }
 
@@ -41,18 +41,16 @@ class SpeakerDetailFragment : Fragment() {
         speakerDetailDescription.setText(speaker.description.get(Language.FRENCH)?.markdownToHtml())
         speakerDetailImage.setSpeakerImage(speaker)
 
-        // Adds links
-        speakerDetailLinkList.apply {
-            speaker.links.forEach {
-                val button = Button(context)
-                button.setText(it.name)
-                button.setOnClickListener({ _ -> context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.url))) })
-                button.setBackgroundResource(R.drawable.button_selector)
-                val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                params.setMargins(0, 0, 15, 0)
-                button.layoutParams = params
-                addView(button)
-            }
+
+        val mainSocial = Social.values().firstOrNull { social -> speaker.links.any { it.url.contains(social.pattern) }}
+        val mainLink = if(mainSocial == null) speaker.links.firstOrNull() else speaker.links.first { it.url.contains(mainSocial.pattern) }
+
+        if(mainLink ==null){
+            navigation_speaker_link.visibility = View.GONE
+        }
+        else {
+            navigation_speaker_link.setImageResource(if (mainSocial == null) R.drawable.mxt_icon_web else mainSocial.resourceId)
+            navigation_speaker_link.setOnClickListener({ _ -> context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mainLink.url))) })
         }
 
         // Adds talks
@@ -64,5 +62,6 @@ class SpeakerDetailFragment : Fragment() {
             adapter = TalkListAdapter(talks, context)
         }
     }
+
 
 }
