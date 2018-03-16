@@ -1,6 +1,5 @@
 package org.mixitconf
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,7 +7,6 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import org.mixitconf.fragment.*
 import org.mixitconf.service.hasIntentPackage
@@ -82,7 +80,10 @@ open class MainActivity : AppCompatActivity(),
                 return true
             }
             R.id.navigation_twitter -> {
-                baseContext.startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:contact@mix-it.fr")))
+                val hasTwitterApp = baseContext.hasIntentPackage("com.twitter.android")
+                val intentUri = if (hasTwitterApp) "twitter://user?screen_name=mixitconf" else "https://twitter.com/mixitconf"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(intentUri)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                baseContext.startActivity(intent)
                 return true
             }
             R.id.comeToPartyButton -> {
@@ -103,13 +104,6 @@ open class MainActivity : AppCompatActivity(),
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    class OnGmapButtonClickListener(val context: Context, val uri: String) : View.OnClickListener {
-        override fun onClick(v: View?) {
-
-        }
-
     }
 
     /**
@@ -141,7 +135,7 @@ open class MainActivity : AppCompatActivity(),
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_website -> {
-                baseContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://mixitconf.org")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                baseContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://mixitconf.org/schedule")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                 return@OnNavigationItemSelectedListener true
             }
         }
