@@ -25,7 +25,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val image = view.findViewById<ImageView>(R.id.talkItemImage)
-        val langageImage = view.findViewById<ImageView>(R.id.talkItemImageLanguage)
+        val talkLanguage = view.findViewById<TextView>(R.id.talkItemLanguage)
         val name = view.findViewById<TextView>(R.id.talkItemName)
         val description = view.findViewById<TextView>(R.id.talkItemDescription)
         val time = view.findViewById<TextView>(R.id.talkItemTime)
@@ -46,17 +46,12 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
         holder.name.setText(talk.title)
         holder.time.setText(talk.getTimeLabel(context))
 
-        if (talk.language == Language.ENGLISH) {
-            holder.langageImage.setImageResource(R.drawable.mxt_flag_en)
-        } else {
-            holder.langageImage.setImageResource(R.drawable.mxt_flag_fr)
-        }
-
         when (talk.format) {
             TALK, WORKSHOP, KEYNOTE -> {
                 paintItemView(holder)
                 displayFields(holder)
 
+                holder.talkLanguage.visibility = if (talk.language == Language.ENGLISH) View.VISIBLE else View.GONE
                 holder.image.setImageResource(talk.getTopicDrawableRessource())
                 holder.type.setText(talk.format.name)
                 holder.description.setText(talk.summary)
@@ -86,6 +81,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
                 hideFields(holder, hideImage = false)
             }
         }
+
     }
 
     private fun paintItemView(holder: ViewHolder,
@@ -102,7 +98,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
         holder.type.visibility = View.GONE
         holder.description.visibility = View.GONE
         holder.room.visibility = View.GONE
-        holder.langageImage.visibility = View.GONE
+        holder.talkLanguage.visibility = View.GONE
         holder.name.visibility = if (hideName) View.GONE else View.VISIBLE
         holder.infoLayout.visibility = if (hideTime) View.GONE else View.VISIBLE
         holder.time.visibility = if (hideTime) View.GONE else View.VISIBLE
@@ -118,7 +114,6 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
     private fun displayFields(holder: ViewHolder) {
         holder.description.visibility = View.VISIBLE
         holder.room.visibility = View.VISIBLE
-        holder.langageImage.visibility = View.VISIBLE
         holder.image.visibility = View.VISIBLE
         holder.type.visibility = View.VISIBLE
         holder.name.visibility = View.VISIBLE

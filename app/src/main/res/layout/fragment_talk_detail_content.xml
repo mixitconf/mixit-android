@@ -39,13 +39,17 @@
             android:textColor="@color/textShadow"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/talkImageLanguage"
+        <TextView
+            android:id="@+id/talkLanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/language_image"
-            android:paddingTop="1dp"
-            android:scaleType="fitCenter" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:background="@color/colorAccent"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:text="@string/en"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:id="@+id/talkView"

@@ -43,10 +43,10 @@ class TalkDetailFragment : Fragment() {
         talkSummary.setText(talk.summary.markdownToHtml())
         talkDescrition.setText(talk.description?.markdownToHtml())
         talkTime.setText(talk.getTimeLabel(context))
+        talkRoom.setText(talk.getRoomLabel(context))
         talkTopic.setText(talk.topic)
-
         talkImageTrack.setImageResource(talk.getTopicDrawableRessource())
-        talkImageLanguage.setImageResource(if (talk.language == Language.ENGLISH) R.drawable.mxt_flag_en else R.drawable.mxt_flag_fr)
+        talkLanguage.visibility = if (talk.language == Language.ENGLISH) View.VISIBLE else View.GONE
 
         // Adds speaker
         val speakers = UserReader.getInstance(context).findByLogins(talk.speakerIds)

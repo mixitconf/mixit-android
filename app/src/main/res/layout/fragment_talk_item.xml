@@ -64,14 +64,17 @@
                 android:textColor="@color/textShadow"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/talkItemImageLanguage"
+            <TextView
+                android:id="@+id/talkItemLanguage"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="4dp"
-                android:layout_marginStart="4dp"
-                android:contentDescription="@null"
-                android:scaleType="centerInside" />
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:background="@color/colorAccent"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="@string/en"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/talkItemRoom"
