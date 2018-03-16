@@ -42,18 +42,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/speaker_flag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignWithParentIfMissing="true"
-            android:layout_toEndOf="@id/speaker_name"
-            android:paddingStart="8dp"
-            android:paddingEnd="0dp"
-            android:textColor="@color/textShadow"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/speaker_bio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,9 +49,8 @@
             android:layout_below="@id/speaker_name"
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:ellipsize="end"
-            android:maxLines="2"/>
+            android:maxLines="3"/>
 
     </RelativeLayout>
 

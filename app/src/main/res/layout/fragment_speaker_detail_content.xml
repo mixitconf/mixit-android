@@ -52,19 +52,17 @@
                 android:layout_below="@id/speakerDetailName"
                 android:layout_toEndOf="@id/speakerDetailImage"
                 android:paddingBottom="4dp"
-                android:paddingTop="4dp"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/speakerDetailDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignWithParentIfMissing="true"
-                android:layout_below="@id/speakerDetailCompany"
-                android:paddingTop="8dp"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:paddingTop="4dp" />
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/speakerDetailDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_below="@id/speakerDetailImage"
+            android:paddingTop="8dp"/>
 
         <TextView
             android:id="@+id/talkTitle"
