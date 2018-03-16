@@ -14,6 +14,14 @@
         android:title="@string/title_github"
         app:showAsAction="ifRoom|collapseActionView"/>
 
+    <item android:id="@+id/comeToMiXiTButton"
+        android:title="@string/come_to_mixit"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/comeToPartyButton"
+        android:title="@string/come_to_party"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/navigation_about"
         android:title="@string/menu_about"
         app:showAsAction="never"/>

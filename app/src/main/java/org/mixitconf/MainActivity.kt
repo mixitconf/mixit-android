@@ -1,5 +1,6 @@
 package org.mixitconf
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -7,13 +8,13 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import org.mixitconf.fragment.*
 import org.mixitconf.service.hasIntentPackage
 import org.mixitconf.service.withIdInBundle
 
 open class MainActivity : AppCompatActivity(),
-        HomeFragment.OnFloorSelectedListener,
         TalkFragment.OnTalkSelectedListener,
         SpeakerFragment.OnSpeakerSelectedListener{
 
@@ -45,13 +46,6 @@ open class MainActivity : AppCompatActivity(),
     override fun onTitleChanged(title: CharSequence, color: Int) {
         super.onTitleChanged(title, color)
         delegate.setTitle("")
-    }
-
-    override fun onFloorSelected(id: String) {
-        supportFragmentManager.beginTransaction().apply {
-            val fragment = FloorMapFragment().withIdInBundle(id)
-            replace(R.id.container, fragment).commit()
-        }
     }
 
     override fun onTalkSelected(id: String) {
@@ -91,8 +85,31 @@ open class MainActivity : AppCompatActivity(),
                 baseContext.startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:contact@mix-it.fr")))
                 return true
             }
+            R.id.comeToPartyButton -> {
+                val hasMapApp = baseContext.hasIntentPackage("com.google.android.apps.maps")
+                if (hasMapApp) {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:45.767643,4.8328633?z=17&q=Hôtel+de+Ville+de+Lyon"))
+                    baseContext.startActivity(intent)
+                }
+                return true
+            }
+            R.id.comeToMiXiTButton -> {
+                val hasMapApp = baseContext.hasIntentPackage("com.google.android.apps.maps")
+                if (hasMapApp) {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:45.78392,4.869014?z=17&q=CPE+Lyon,+43+Boulevard+du+11+novembre,+69100+Villeurbanne"))
+                    baseContext.startActivity(intent)
+                }
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    class OnGmapButtonClickListener(val context: Context, val uri: String) : View.OnClickListener {
+        override fun onClick(v: View?) {
+
+        }
+
     }
 
     /**

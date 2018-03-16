@@ -47,65 +47,9 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/mxt_background"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/comeToMiXiTButton"
-                android:layout_width="@dimen/logo_width"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_image_padding"
-                android:background="@drawable/button_selector"
-                android:drawableTop="@drawable/mxt_button_map_cpe"
-                android:paddingBottom="@dimen/item_image_padding"
-                android:paddingTop="@dimen/item_image_padding"
-                android:text="@string/come_to_mixit" />
-
-            <Button
-                android:id="@+id/comeToPartyButton"
-                android:layout_width="@dimen/logo_width"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_image_padding"
-                android:background="@drawable/button_selector"
-                android:drawableTop="@drawable/mxt_button_map_hdv"
-                android:paddingBottom="@dimen/item_image_padding"
-                android:paddingTop="@dimen/item_image_padding"
-                android:text="@string/come_to_party" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/mapCpeSubFloorButton"
-                android:layout_width="@dimen/logo_width"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_image_padding"
-                android:background="@drawable/button_selector"
-                android:drawableTop="@drawable/mxt_button_floor"
-                android:paddingBottom="@dimen/item_image_padding"
-                android:paddingTop="@dimen/item_image_padding"
-                android:text="@string/map_floor_0" />
-
-            <Button
-                android:id="@+id/mapCpeFloor0Button"
-                android:layout_width="@dimen/logo_width"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_image_padding"
-                android:background="@drawable/button_selector"
-                android:drawableTop="@drawable/mxt_button_floor"
-                android:paddingBottom="@dimen/item_image_padding"
-                android:paddingTop="@dimen/item_image_padding"
-                android:text="@string/map_floor_1" />
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
