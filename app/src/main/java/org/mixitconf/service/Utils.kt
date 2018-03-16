@@ -6,10 +6,12 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.text.Html
 import android.widget.ImageView
 import com.github.rjeschke.txtmark.Processor
 import org.mixitconf.R
+import org.mixitconf.model.Talk
 import org.mixitconf.model.User
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,6 +38,8 @@ fun ImageView.setSpeakerImage(speaker: User) {
 
     setImageResource(if (imageResource > 0) imageResource else R.drawable.mxt_icon_unknown)
 }
+
+fun Talk.getRoomLabel(context: Context): Int = context.resources.getIdentifier(room.name.toLowerCase(), "string", context.applicationInfo.packageName)
 
 // String extension to convert markdown to HTML
 // ============================================
@@ -71,16 +75,17 @@ fun Date.addMinutes(amount: Int): Date {
 // Context extension
 // ============================================
 fun Context.hasIntentPackage(type: String): Boolean {
-    try{
+    try {
         packageManager.getPackageInfo(type, 0)
         return true
-    }
-    catch (e:PackageManager.NameNotFoundException){
+    } catch (e: PackageManager.NameNotFoundException) {
         return false
     }
 }
+fun Context.hasPermission(permission: String):Boolean = ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
 
 // Fragment extensions
+// =============================================
 fun Fragment.withIdInBundle(id: String): Fragment {
     val args = Bundle()
     args.putString(Utils.OBJECT_ID, id)

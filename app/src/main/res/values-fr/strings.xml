@@ -52,5 +52,6 @@
     <string name="map_floor_1">Plan étage 1</string>
     <string name="add_to_your_calendar">Ajouter à votre calendrier</string>
     <string name="calendar_permission">Vous avez choisi de ne pas autoriser l\'application MiXiT à écrire des événements dans votre calendrier. Si vous souhaitez utiliser cette fonctionnalité, modifiez les droits attribués à l'application</string>
+    <string name="appPermission">L\'application MiXiT peut s\'interfacer si tu le souhaites avec ton agenda pour ajouter les talks que tu veux voir. Bien évidemment ce n\'est pas obligatoire. Les données de ton agenda ne sont pas analysées. Nous vérifions simplement qu\'il n\'y ait pas d\'événement concurrent quand tu demandes l\'ajout d\'un talk pour éviter de polluer ton agenda.</string>
 
 </resources>

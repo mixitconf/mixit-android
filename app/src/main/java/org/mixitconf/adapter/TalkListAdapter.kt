@@ -16,6 +16,7 @@ import org.mixitconf.model.Language
 import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat.*
 import org.mixitconf.service.Utils
+import org.mixitconf.service.getRoomLabel
 import java.text.DateFormat
 
 
@@ -63,7 +64,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
                 holder.image.setImageResource(talk.getTopicDrawableRessource())
                 holder.type.setText(talk.format.name)
                 holder.description.setText(talk.summary)
-                holder.room.setText(context.resources.getIdentifier(talk.room.name.toLowerCase(), "string", context.applicationInfo.packageName))
+                holder.room.setText(talk.getRoomLabel(context))
                 holder.itemView.setOnClickListener({ _ -> (context as TalkFragment.OnTalkSelectedListener).onTalkSelected(talk.id) })
             }
             DAY -> {

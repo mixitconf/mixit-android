@@ -52,5 +52,6 @@
     <string name="map_floor_1">Map floor 1</string>
     <string name="add_to_your_calendar">Add to your calendar</string>
     <string name="calendar_permission">You have chosen to not authorize MiXiT app to write events in your calendar. If you want to use this feature change the rights attributed to the app.</string>
+    <string name="appPermission">MiXiT app can add talks you want to see on your calendar. Of course it\'s not mandatory. Your calendar data are not read. We just check that you have no overlapped events to prevent your calendar pollution.</string>
 
 </resources>

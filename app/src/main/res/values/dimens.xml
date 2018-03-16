@@ -13,4 +13,5 @@
 
     <dimen name="small_list_text">8dp</dimen>
     <dimen name="room_button_text_size">22sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
