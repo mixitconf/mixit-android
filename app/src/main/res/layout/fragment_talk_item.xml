@@ -17,8 +17,8 @@
         <ImageView
             android:id="@+id/talkItemImage"
             android:contentDescription="@string/topic_image"
-            android:layout_width="@dimen/item_list_size"
-            android:layout_height="@dimen/item_image_size"
+            android:layout_width="@dimen/item_image_menu_size"
+            android:layout_height="@dimen/item_image_menu_size"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/item_image_padding"
             android:paddingBottom="4dp"
