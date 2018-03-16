@@ -1,114 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="org.mixitconf.SpeakerDetailActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="50dp"
+    android:background="@android:color/white"
+    android:scrollbars="vertical">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:id="@+id/speakerDetailMAyout"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="2dp"
-        android:scrollbars="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
 
-        <LinearLayout
-            android:id="@+id/speakerDetailMAyout"
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:layout_marginTop="2dp">
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp">
-
-                <ImageView
-                    android:id="@+id/speakerDetailImage"
-                    android:layout_width="@dimen/item_image_size_detail"
-                    android:layout_height="@dimen/item_image_size_detail"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="@dimen/item_image_padding"
-                    android:contentDescription="@string/title_speakers"
-                    android:paddingBottom="4dp"
-                    android:paddingEnd="0dp"
-                    android:paddingStart="4dp"
-                    android:paddingTop="4dp"
-                    android:scaleType="fitCenter" />
-
-                <TextView
-                    android:id="@+id/speakerDetailName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignWithParentIfMissing="true"
-                    android:layout_toEndOf="@id/speakerDetailImage"
-                    android:maxLines="1"
-                    android:paddingBottom="4dp"
-                    android:paddingTop="4dp"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/speakerDetailCompany"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignWithParentIfMissing="true"
-                    android:layout_below="@id/speakerDetailName"
-                    android:layout_toEndOf="@id/speakerDetailImage"
-                    android:paddingBottom="4dp"
-                    android:paddingTop="4dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/speakerDetailDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignWithParentIfMissing="true"
-                    android:layout_below="@id/speakerDetailCompany"
-                    android:paddingTop="8dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/linkTitle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="2dp"
-                android:paddingEnd="2dp"
-                android:text="@string/title_links"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:id="@+id/speakerDetailLinkList"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:padding="5dp"/>
-
-            <TextView
-                android:id="@+id/talkTitle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/speakerDetailImage"
+                android:layout_width="@dimen/item_image_size_detail"
+                android:layout_height="@dimen/item_image_size_detail"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/item_image_padding"
+                android:contentDescription="@string/title_speakers"
+                android:paddingBottom="4dp"
                 android:paddingEnd="0dp"
-                android:paddingTop="8dp"
-                android:paddingStart="2dp"
-                android:text="@string/title_talks"
+                android:paddingStart="4dp"
+                android:paddingTop="4dp"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/speakerDetailName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_toEndOf="@id/speakerDetailImage"
+                android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/speakerDetailTalkList"
-                android:scrollbars="vertical"
+            <TextView
+                android:id="@+id/speakerDetailCompany"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_below="@id/speakerDetailName"
+                android:layout_toEndOf="@id/speakerDetailImage"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/speakerDetailDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_below="@id/speakerDetailCompany"
+                android:paddingTop="8dp"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </RelativeLayout>
 
 
-        </LinearLayout>
-    </ScrollView>
+        <TextView
+            android:id="@+id/linkTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="2dp"
+            android:paddingStart="2dp"
+            android:text="@string/title_links"
+            android:textStyle="bold" />
 
-</android.support.constraint.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/speakerDetailLinkList"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/talkTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="0dp"
+            android:paddingStart="2dp"
+            android:paddingTop="8dp"
+            android:text="@string/title_talks"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/speakerDetailTalkList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+
+    </LinearLayout>
+</ScrollView>
