@@ -6,6 +6,7 @@
     <color name="colorAccent">#FF8D4E</color>
     <color name="colorAccentPlus">#e0621c</color>
     <color name="colorSecondary">#aecbd6</color>
+    <color name="colorShadow">#F5F5F5</color>
     <color name="textPrimary">#2C233D</color>
     <color name="textShadow">#888888</color>
 
@@ -18,5 +19,7 @@
     <color name="room7">#E1F40E</color>
     <color name="room8">#3D9E94</color>
     <color name="room9">#E8A814</color>
+
+
     <color name="unknown">#cccccc</color>
 </resources>

@@ -44,8 +44,7 @@ enum class TalkFormat(val duration: Int) {
     PARTY(210),
     LUNCH(70),
     ORGA(10),
-    DAY(0),
-    TIME(0);
+    DAY(0);
 
     fun isConference() = this == TALK || this == WORKSHOP || this == KEYNOTE
 }

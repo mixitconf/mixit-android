@@ -15,9 +15,9 @@ import org.mixitconf.fragment.TalkFragment
 import org.mixitconf.model.Language
 import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat.*
+import org.mixitconf.service.getBgColorDependingOnTime
 import org.mixitconf.service.getRoomLabel
 import org.mixitconf.service.getTimeLabel
-import java.text.DateFormat
 
 
 class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
@@ -48,7 +48,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
 
         when (talk.format) {
             TALK, WORKSHOP, KEYNOTE -> {
-                paintItemView(holder)
+                paintItemView(holder, talk.getBgColorDependingOnTime(android.R.color.white))
                 displayFields(holder)
 
                 holder.talkLanguage.visibility = if (talk.language == Language.ENGLISH) View.VISIBLE else View.GONE
@@ -59,25 +59,20 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
                 holder.itemView.setOnClickListener({ _ -> (context as TalkFragment.OnTalkSelectedListener).onTalkSelected(talk.id) })
             }
             DAY -> {
-                paintItemView(holder, R.color.colorPrimary, nameColor = android.R.color.white)
+                paintItemView(holder, talk.getBgColorDependingOnTime(R.color.colorPrimary), nameColor = android.R.color.white)
                 holder.name.textAlignment = View.TEXT_ALIGNMENT_CENTER
                 hideFields(holder, hideTime = true)
             }
-            TIME -> {
-                paintItemView(holder, R.color.textShadow, timeColor = android.R.color.white)
-                holder.time.setText(DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.start))
-                hideFields(holder, hideName = true)
-            }
             RANDOM, PARTY -> {
-                paintItemView(holder, R.color.colorAccent, timeColor = android.R.color.white)
+                paintItemView(holder, talk.getBgColorDependingOnTime(R.color.colorAccent), timeColor = android.R.color.white)
                 hideFields(holder, hideImage = false)
             }
             SESSION_INTRO, LUNCH, ORGA -> {
-                paintItemView(holder, R.color.unknown)
+                paintItemView(holder, talk.getBgColorDependingOnTime(R.color.colorShadow))
                 hideFields(holder, hideImage = false)
             }
             PAUSE_10_MIN, PAUSE_20_MIN, PAUSE_30_MIN -> {
-                paintItemView(holder, R.color.unknown)
+                paintItemView(holder, talk.getBgColorDependingOnTime(R.color.colorShadow))
                 hideFields(holder, hideImage = false)
             }
         }
@@ -85,7 +80,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
     }
 
     private fun paintItemView(holder: ViewHolder,
-                              background: Int = android.R.color.white,
+                              background: Int,
                               nameColor: Int = android.R.color.black,
                               timeColor: Int = R.color.textShadow) {
         holder.itemView.setBackgroundColor(context.resources.getColor(background));

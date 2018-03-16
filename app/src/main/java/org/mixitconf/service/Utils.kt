@@ -46,6 +46,7 @@ fun Talk.getTimeLabel(context: Context): String = String.format(
         Utils.DATE_FORMAT.format(start),
         DateFormat.getTimeInstance(DateFormat.SHORT).format(start),
         DateFormat.getTimeInstance(DateFormat.SHORT).format(end))
+fun Talk.getBgColorDependingOnTime(color: Int):Int = if(Date().time > end.time) R.color.unknown else color
 
 // String extension to convert markdown to HTML
 // ============================================
