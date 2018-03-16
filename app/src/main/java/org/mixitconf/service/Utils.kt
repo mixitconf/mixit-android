@@ -13,6 +13,7 @@ import com.github.rjeschke.txtmark.Processor
 import org.mixitconf.R
 import org.mixitconf.model.Talk
 import org.mixitconf.model.User
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,6 +41,11 @@ fun ImageView.setSpeakerImage(speaker: User) {
 }
 
 fun Talk.getRoomLabel(context: Context): Int = context.resources.getIdentifier(room.name.toLowerCase(), "string", context.applicationInfo.packageName)
+fun Talk.getTimeLabel(context: Context): String = String.format(
+        context.resources.getString(R.string.talk_time_range),
+        Utils.DATE_FORMAT.format(start),
+        DateFormat.getTimeInstance(DateFormat.SHORT).format(start),
+        DateFormat.getTimeInstance(DateFormat.SHORT).format(end))
 
 // String extension to convert markdown to HTML
 // ============================================

@@ -15,8 +15,8 @@ import org.mixitconf.fragment.TalkFragment
 import org.mixitconf.model.Language
 import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat.*
-import org.mixitconf.service.Utils
 import org.mixitconf.service.getRoomLabel
+import org.mixitconf.service.getTimeLabel
 import java.text.DateFormat
 
 
@@ -44,11 +44,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
         val talk = items.get(position)
 
         holder.name.setText(talk.title)
-        holder.time.setText(String.format(context.resources.getString(R.string.talk_time_range),
-                Utils.DATE_FORMAT.format(talk.start),
-                DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.start),
-                DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.end)
-        ))
+        holder.time.setText(talk.getTimeLabel(context))
 
         if (talk.language == Language.ENGLISH) {
             holder.langageImage.setImageResource(R.drawable.mxt_flag_en)

@@ -21,7 +21,6 @@ import org.mixitconf.model.Talk
 import org.mixitconf.repository.TalkReader
 import org.mixitconf.repository.UserReader
 import org.mixitconf.service.*
-import java.text.DateFormat
 
 
 class TalkDetailFragment : Fragment() {
@@ -43,11 +42,7 @@ class TalkDetailFragment : Fragment() {
         talkName.setText(talk.title)
         talkSummary.setText(talk.summary.markdownToHtml())
         talkDescrition.setText(talk.description?.markdownToHtml())
-        talkTime.setText(String.format(resources.getString(R.string.talk_time_range),
-                Utils.DATE_FORMAT.format(talk.start),
-                DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.start),
-                DateFormat.getTimeInstance(DateFormat.SHORT).format(talk.end)))
-        talkRoom.setText(talk.getRoomLabel(context))
+        talkTime.setText(talk.getTimeLabel(context))
         talkTopic.setText(talk.topic)
 
         talkImageTrack.setImageResource(talk.getTopicDrawableRessource())
