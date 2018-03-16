@@ -39,12 +39,12 @@ class TalkDetailFragment : Fragment() {
         val talk = TalkReader.getInstance(context).findOne(arguments.getString(Utils.OBJECT_ID))
         val calendarLoader = CalendarLoader(context, talk)
 
-        talkName.setText(talk.title)
-        talkSummary.setText(talk.summary.markdownToHtml())
-        talkDescrition.setText(talk.description?.markdownToHtml())
-        talkTime.setText(talk.getTimeLabel(context))
+        talkName.text = talk.title
+        talkSummary.text = talk.summary.markdownToHtml()
+        talkDescrition.text = talk.description?.markdownToHtml()
+        talkTime.text = talk.getTimeLabel(context)
         talkRoom.setText(talk.getRoomLabel(context))
-        talkTopic.setText(talk.topic)
+        talkTopic.text = talk.topic
         talkImageTrack.setImageResource(talk.getTopicDrawableRessource())
         talkLanguage.visibility = if (talk.language == Language.ENGLISH) View.VISIBLE else View.GONE
 
@@ -78,7 +78,7 @@ class TalkDetailFragment : Fragment() {
 
         })
 
-        getLoaderManager().initLoader(0, null, calendarLoader);
+        loaderManager.initLoader(0, null, calendarLoader)
     }
 
     fun insertEventInCalendar(talk:Talk) = context.startActivity(Intent(Intent.ACTION_INSERT)

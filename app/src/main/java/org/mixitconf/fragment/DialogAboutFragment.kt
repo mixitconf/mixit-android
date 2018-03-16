@@ -22,8 +22,8 @@ class DialogAboutFragment : DialogFragment() {
         // Get the view
         return builder
                 .setView(inflater.inflate(R.layout.fragment_about, null).apply {
-                    aboutDescription.setText(activity.resources.getText(R.string.about_description).toString().toHtml())
-                    aboutDescription.setMovementMethod(LinkMovementMethod.getInstance())
+                    aboutDescription.text = activity.resources.getText(R.string.about_description).toString().toHtml()
+                    aboutDescription.movementMethod = LinkMovementMethod.getInstance()
                 })
                 .create()
     }

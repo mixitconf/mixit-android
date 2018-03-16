@@ -11,6 +11,7 @@ import org.mixitconf.R
 import org.mixitconf.fragment.SpeakerFragment
 import org.mixitconf.model.Language
 import org.mixitconf.model.User
+import org.mixitconf.service.fullname
 import org.mixitconf.service.setSpeakerImage
 
 class UserListAdapter(val items: List<User>, val context: Context) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
@@ -29,8 +30,8 @@ class UserListAdapter(val items: List<User>, val context: Context) : RecyclerVie
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = items.get(position)
 
-        holder.speakerName.setText("${user.firstname} ${user.lastname}".trim())
-        holder.speakerBio.setText(user.description.get(Language.FRENCH))
+        holder.speakerName.text = user.fullname()
+        holder.speakerBio.text = user.description.get(Language.FRENCH)
         holder.speakerImage.setSpeakerImage(user)
 
         holder.itemView.setOnClickListener({ _ -> (context as SpeakerFragment.OnSpeakerSelectedListener).onSpeakerSelected(user.login) })

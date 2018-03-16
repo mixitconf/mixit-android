@@ -15,10 +15,7 @@ import org.mixitconf.adapter.TalkListAdapter
 import org.mixitconf.model.Language
 import org.mixitconf.model.Social
 import org.mixitconf.repository.UserReader
-import org.mixitconf.service.SpeakerService
-import org.mixitconf.service.Utils
-import org.mixitconf.service.markdownToHtml
-import org.mixitconf.service.setSpeakerImage
+import org.mixitconf.service.*
 
 
 class SpeakerDetailFragment : Fragment() {
@@ -36,13 +33,13 @@ class SpeakerDetailFragment : Fragment() {
 
         val speaker = UserReader.getInstance(context).findOne(arguments.getString(Utils.OBJECT_ID))
 
-        speakerDetailName.setText("${speaker.firstname} ${speaker.lastname}".trim())
-        speakerDetailCompany.setText(speaker.company)
-        speakerDetailDescription.setText(speaker.description.get(Language.FRENCH)?.markdownToHtml())
+        speakerDetailName.text = speaker.fullname()
+        speakerDetailCompany.text = speaker.company
+        speakerDetailDescription.text = speaker.description.get(Language.FRENCH)?.markdownToHtml()
         speakerDetailImage.setSpeakerImage(speaker)
 
 
-        val mainSocial = Social.values().firstOrNull { social -> speaker.links.any { it.url.contains(social.pattern) }}
+        val mainSocial:Social? = Social.values().firstOrNull { social -> speaker.links.any { it.url.contains(social.pattern) }}
         val mainLink = if(mainSocial == null) speaker.links.firstOrNull() else speaker.links.first { it.url.contains(mainSocial.pattern) }
 
         if(mainLink ==null){

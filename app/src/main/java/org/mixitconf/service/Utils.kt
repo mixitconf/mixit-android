@@ -48,6 +48,8 @@ fun Talk.getTimeLabel(context: Context): String = String.format(
         DateFormat.getTimeInstance(DateFormat.SHORT).format(end))
 fun Talk.getBgColorDependingOnTime(color: Int):Int = if(Date().time > end.time) R.color.unknown else color
 
+fun User.fullname(): String = "$firstname $lastname".trim()
+
 // String extension to convert markdown to HTML
 // ============================================
 fun String.markdownToHtml() = if (isNullOrEmpty()) null else Processor.process(this).toHtml()
@@ -96,6 +98,6 @@ fun Context.hasPermission(permission: String):Boolean = ContextCompat.checkSelfP
 fun Fragment.withIdInBundle(id: String): Fragment {
     val args = Bundle()
     args.putString(Utils.OBJECT_ID, id)
-    setArguments(args)
+    arguments = args
     return this
 }

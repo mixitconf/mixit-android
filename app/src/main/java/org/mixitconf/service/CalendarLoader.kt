@@ -38,7 +38,7 @@ class CalendarLoader(val context: Context, val talk: Talk) : LoaderManager.Loade
 
     override fun onLoadFinished(loader: Loader<Cursor>?, data: Cursor?) {
         // No data are read in calendar events. We just see if data are found
-        hasConcurrentEventInCalendar = if (data != null && data.moveToNext()) true else false
+        hasConcurrentEventInCalendar = data != null && data.moveToNext()
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>?) {

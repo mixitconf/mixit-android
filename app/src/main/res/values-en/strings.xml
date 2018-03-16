@@ -34,7 +34,7 @@
     <string name="unknown">Unknown room</string>
     <string name="menu_map">Place map</string>
 
-    <string name="about_title" translatable="false">MiXiT 2018 Client</string>
+    <string name="about_title">MiXiT 2018 Client</string>
     <string name="about_description">This app was created by MiXiT team to help you to follow the conference. If you want to increase this app you can. The project is Open Source and available on <a href="https://github.com/mixitconf/mixit-android">Github</a>. For more informations you can go on our <a href="https://mixitconf.org">website</a> </string>
     <string name="planning_team_word">Team introduction</string>
     <string name="planning_team_outro">Team conclusion</string>
@@ -51,11 +51,11 @@
     <string name="map_floor_0">Map floor 0</string>
     <string name="map_floor_1">Map floor 1</string>
     <string name="add_to_your_calendar">Add to your calendar</string>
-    <string name="calendar_permission">You have chosen to not authorize MiXiT app to write events in your calendar. If you want to use this feature change the rights attributed to the app.</string>
     <string name="calendar_add">Calendar event</string>
     <string name="calendar_question1">Do you want to add this session to your Calendar ?</string>
     <string name="calendar_question2">You have already an event in your calendar on the same time range. Do you want still to add this session to your Calendar ?</string>
     <string name="appPermission">MiXiT app can add talks you want to see on your calendar. Of course it\'s not mandatory. Your calendar data are not read. We just check that you have no overlapped events to prevent your calendar pollution.</string>
+    <string name="en">EN</string>
 
 
 </resources>

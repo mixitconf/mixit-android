@@ -23,6 +23,31 @@ android {
     lintOptions {
         abortOnError false
     }
+
+//    signingConfigs {
+//        release {
+//            storeFile file(storeFileProp)
+//            storePassword storePasswordProp
+//            keyAlias keyAliasProp
+//            keyPassword keyPasswordProp
+//        }
+//        debug {
+//            storeFile file('../debug.keystore')
+//        }
+//    }
+//
+//    buildTypes {
+//        release {
+//            signingConfig signingConfigs.release
+//            resValue "string", "app_name", "MiXiT 2018"
+//        }
+//
+//        debug {
+//            signingConfig signingConfigs.debug
+//            applicationIdSuffix '.debug'
+//            resValue "string", "app_name", "Debug IT"
+//        }
+//    }
 }
 
 dependencies {

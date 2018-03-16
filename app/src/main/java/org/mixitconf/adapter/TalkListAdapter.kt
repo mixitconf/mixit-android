@@ -24,14 +24,14 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val image = view.findViewById<ImageView>(R.id.talkItemImage)
-        val talkLanguage = view.findViewById<TextView>(R.id.talkItemLanguage)
-        val name = view.findViewById<TextView>(R.id.talkItemName)
-        val description = view.findViewById<TextView>(R.id.talkItemDescription)
-        val time = view.findViewById<TextView>(R.id.talkItemTime)
-        val room = view.findViewById<TextView>(R.id.talkItemRoom)
-        val type = view.findViewById<TextView>(R.id.talkItemType)
-        val infoLayout = view.findViewById<LinearLayout>(R.id.talkItemTimeContainer)
+        val image:ImageView = view.findViewById(R.id.talkItemImage)
+        val talkLanguage:TextView = view.findViewById(R.id.talkItemLanguage)
+        val name:TextView = view.findViewById(R.id.talkItemName)
+        val description:TextView = view.findViewById(R.id.talkItemDescription)
+        val time:TextView = view.findViewById(R.id.talkItemTime)
+        val room:TextView = view.findViewById(R.id.talkItemRoom)
+        val type:TextView = view.findViewById(R.id.talkItemType)
+        val infoLayout:LinearLayout = view.findViewById(R.id.talkItemTimeContainer)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TalkListAdapter.ViewHolder {
@@ -43,8 +43,8 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val talk = items.get(position)
 
-        holder.name.setText(talk.title)
-        holder.time.setText(talk.getTimeLabel(context))
+        holder.name.text = talk.title
+        holder.time.text = talk.getTimeLabel(context)
 
         when (talk.format) {
             TALK, WORKSHOP, KEYNOTE -> {
@@ -53,8 +53,8 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
 
                 holder.talkLanguage.visibility = if (talk.language == Language.ENGLISH) View.VISIBLE else View.GONE
                 holder.image.setImageResource(talk.getTopicDrawableRessource())
-                holder.type.setText(talk.format.name)
-                holder.description.setText(talk.summary)
+                holder.type.text = talk.format.name
+                holder.description.text = talk.summary
                 holder.room.setText(talk.getRoomLabel(context))
                 holder.itemView.setOnClickListener({ _ -> (context as TalkFragment.OnTalkSelectedListener).onTalkSelected(talk.id) })
             }
@@ -83,7 +83,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
                               background: Int,
                               nameColor: Int = android.R.color.black,
                               timeColor: Int = R.color.textShadow) {
-        holder.itemView.setBackgroundColor(context.resources.getColor(background));
+        holder.itemView.setBackgroundColor(context.resources.getColor(background))
         holder.name.setTextColor(context.resources.getColor(nameColor))
         holder.time.setTextColor(context.resources.getColor(timeColor))
         holder.name.textAlignment = View.TEXT_ALIGNMENT_INHERIT

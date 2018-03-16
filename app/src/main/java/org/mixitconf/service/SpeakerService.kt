@@ -8,10 +8,6 @@ import org.mixitconf.model.User
 import org.mixitconf.repository.TalkReader
 import org.mixitconf.repository.UserReader
 
-/**
- * Created by devmind on 06/03/18.
- */
-
 class SpeakerService(val context: Context) {
 
 

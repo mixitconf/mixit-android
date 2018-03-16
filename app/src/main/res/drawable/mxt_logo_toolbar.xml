@@ -1,6 +1,0 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/mxt_logo"
-        android:height="@dimen/logo_height"
-        android:width="@dimen/logo_width">
-    </item>
-</layer-list>

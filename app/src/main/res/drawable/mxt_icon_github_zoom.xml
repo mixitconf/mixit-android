@@ -5,6 +5,6 @@
             <size android:width="24dp" android:height="24dp"/>
         </shape>
     </item>
-    <item android:drawable="@drawable/mxt_icon_github" android:width="24dp" android:height="24dp">
+    <item android:drawable="@drawable/mxt_icon_github">
     </item>
 </layer-list>
