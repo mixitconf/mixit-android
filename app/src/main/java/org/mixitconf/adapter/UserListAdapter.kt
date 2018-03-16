@@ -1,7 +1,6 @@
 package org.mixitconf.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import org.mixitconf.R
-import org.mixitconf.SpeakerDetailActivity
+import org.mixitconf.fragment.SpeakerFragment
 import org.mixitconf.model.Language
 import org.mixitconf.model.User
-import org.mixitconf.service.SpeakerService
+import org.mixitconf.service.setSpeakerImage
 
 class UserListAdapter(val items: List<User>, val context: Context) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
@@ -23,7 +22,7 @@ class UserListAdapter(val items: List<User>, val context: Context) : RecyclerVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_speaker_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_speaker_item, parent, false)
         return UserViewHolder(view)
     }
 
@@ -32,9 +31,9 @@ class UserListAdapter(val items: List<User>, val context: Context) : RecyclerVie
 
         holder.speakerName.setText("${user.firstname} ${user.lastname}".trim())
         holder.speakerBio.setText(user.description.get(Language.FRENCH))
-        SpeakerService.getInstance(context).findSpeakerImage(holder.speakerImage, user)
+        holder.speakerImage.setSpeakerImage(user)
 
-        holder.itemView.setOnClickListener(UserListAdapter.OnSpeakerClickListener(user, context))
+        holder.itemView.setOnClickListener({ _ -> (context as SpeakerFragment.OnSpeakerSelectedListener).onSpeakerSelected(user.login) })
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
@@ -46,13 +45,4 @@ class UserListAdapter(val items: List<User>, val context: Context) : RecyclerVie
         return items.size
     }
 
-    class OnSpeakerClickListener(val user: User, val context: Context) : View.OnClickListener {
-        override fun onClick(view: View?) {
-            val intent = Intent(context, SpeakerDetailActivity::class.java).apply {
-                putExtra(SpeakerDetailActivity.SPEAKER_LOGIN, user.login)
-            }
-            context.startActivity(intent)
-        }
-
-    }
 }

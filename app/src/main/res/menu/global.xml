@@ -2,7 +2,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".HomeActivity">
 
-    <item android:id="@+id/menu_about"
+    <item
+        android:id="@+id/navigation_twitter"
+        android:icon="@drawable/mxt_icon_twitter_zoom"
+        android:title="@string/title_twitter"
+        app:showAsAction="ifRoom|collapseActionView"/>
+
+    <item
+        android:id="@+id/navigation_github"
+        android:icon="@drawable/mxt_icon_github_zoom"
+        android:title="@string/title_github"
+        app:showAsAction="ifRoom|collapseActionView"/>
+
+    <item android:id="@+id/navigation_about"
         android:title="@string/menu_about"
         app:showAsAction="never"/>
 

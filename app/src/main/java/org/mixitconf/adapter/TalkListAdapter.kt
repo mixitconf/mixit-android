@@ -2,7 +2,6 @@ package org.mixitconf.adapter
 
 import android.annotation.TargetApi
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,7 +11,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import org.mixitconf.R
-import org.mixitconf.TalkDetailActivity
+import org.mixitconf.fragment.TalkFragment
 import org.mixitconf.model.Language
 import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat.*
@@ -35,7 +34,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TalkListAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_talk_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_talk_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -65,7 +64,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
                 holder.type.setText(talk.format.name)
                 holder.description.setText(talk.summary)
                 holder.room.setText(context.resources.getIdentifier(talk.room.name.toLowerCase(), "string", context.applicationInfo.packageName))
-                holder.itemView.setOnClickListener(OnTalkClickListener(talk, context))
+                holder.itemView.setOnClickListener({ _ -> (context as TalkFragment.OnTalkSelectedListener).onTalkSelected(talk.id) })
             }
             DAY -> {
                 paintItemView(holder, R.color.colorPrimary, nameColor = android.R.color.white)
@@ -136,15 +135,5 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
 
     override fun getItemCount(): Int {
         return items.size
-    }
-
-    class OnTalkClickListener(val talk: Talk, val context: Context) : View.OnClickListener {
-        override fun onClick(view: View?) {
-            val intent = Intent(context, TalkDetailActivity::class.java).apply {
-                putExtra(TalkDetailActivity.TALK_ID, talk.id)
-            }
-            context.startActivity(intent)
-        }
-
     }
 }

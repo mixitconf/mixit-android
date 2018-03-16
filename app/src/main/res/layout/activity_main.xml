@@ -2,159 +2,23 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.mixitconf.Main2Activity">
+    tools:context="org.mixitconf.MainActivity">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context="org.mixitconf.MainActivity">
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <fragment
+            android:id="@+id/home"
+            android:name="org.mixitconf.fragment.HomeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
-                android:paddingTop="@dimen/item_image_padding"
-                android:text="@string/welcome"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/dates"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
-                android:paddingTop="@dimen/item_image_padding"
-                android:text="@string/dates"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                android:textColor="@color/colorSecondary" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="0dp"
-                android:contentDescription="@string/app_name"
-                android:padding="@dimen/item_image_padding"
-                android:src="@drawable/mxt_heart" />
-        </LinearLayout>
-
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:scrollbars="vertical">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/goTalks"
-                        android:layout_width="@dimen/logo_width"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/item_image_padding"
-                        android:background="@drawable/button_selector"
-                        android:drawableTop="@drawable/mxt_button_map_talk"
-                        android:paddingBottom="@dimen/item_image_padding"
-                        android:paddingTop="@dimen/item_image_padding"
-                        android:text="@string/title_talks" />
-
-                    <Button
-                        android:id="@+id/goSpeakers"
-                        android:layout_width="@dimen/logo_width"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/item_image_padding"
-                        android:background="@drawable/button_selector"
-                        android:drawableTop="@drawable/mxt_button_map_speaker"
-                        android:paddingBottom="@dimen/item_image_padding"
-                        android:paddingTop="@dimen/item_image_padding"
-                        android:text="@string/title_speakers" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/comeToMiXiTButton"
-                        android:layout_width="@dimen/logo_width"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/item_image_padding"
-                        android:background="@drawable/button_selector"
-                        android:drawableTop="@drawable/mxt_button_map_cpe"
-                        android:paddingBottom="@dimen/item_image_padding"
-                        android:paddingTop="@dimen/item_image_padding"
-                        android:text="@string/come_to_mixit" />
-
-                    <Button
-                        android:id="@+id/comeToPartyButton"
-                        android:layout_width="@dimen/logo_width"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/item_image_padding"
-                        android:background="@drawable/button_selector"
-                        android:drawableTop="@drawable/mxt_button_map_hdv"
-                        android:paddingBottom="@dimen/item_image_padding"
-                        android:paddingTop="@dimen/item_image_padding"
-                        android:text="@string/come_to_party" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/mapCpeSubFloorButton"
-                        android:layout_width="@dimen/logo_width"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/item_image_padding"
-                        android:background="@drawable/button_selector"
-                        android:drawableTop="@drawable/mxt_button_floor"
-                        android:paddingBottom="@dimen/item_image_padding"
-                        android:paddingTop="@dimen/item_image_padding"
-                        android:text="@string/map_floor_0" />
-
-                    <Button
-                        android:id="@+id/mapCpeFloor0Button"
-                        android:layout_width="@dimen/logo_width"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/item_image_padding"
-                        android:background="@drawable/button_selector"
-                        android:drawableTop="@drawable/mxt_button_floor"
-                        android:paddingBottom="@dimen/item_image_padding"
-                        android:paddingTop="@dimen/item_image_padding"
-                        android:text="@string/map_floor_1" />
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-
-    </LinearLayout>
+    </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
