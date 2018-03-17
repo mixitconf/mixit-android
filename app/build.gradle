@@ -5,6 +5,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias keyAliasProp
+            keyPassword keyPasswordProp
+            storeFile file(storeFileProp)
+            storePassword storePasswordProp
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "org.mixitconf"
@@ -18,52 +26,29 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     lintOptions {
         abortOnError false
     }
 
-//    signingConfigs {
-//        release {
-//            storeFile file(storeFileProp)
-//            storePassword storePasswordProp
-//            keyAlias keyAliasProp
-//            keyPassword keyPasswordProp
-//        }
-//        debug {
-//            storeFile file('../debug.keystore')
-//        }
-//    }
-//
-//    buildTypes {
-//        release {
-//            signingConfig signingConfigs.release
-//            resValue "string", "app_name", "MiXiT 2018"
-//        }
-//
-//        debug {
-//            signingConfig signingConfigs.debug
-//            applicationIdSuffix '.debug'
-//            resValue "string", "app_name", "Debug IT"
-//        }
-//    }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:recyclerview-v7:27.1.0'
-    implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.android.support:design:27.1.0'
+    implementation "com.android.support:recyclerview-v7:$android_version"
+    implementation "com.android.support:appcompat-v7:$android_version"
+    implementation "com.android.support:design:$android_version"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.9.4'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.4'
-    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.4'
-    implementation 'com.github.rjeschke:txtmark:0.13'
-
-    implementation 'com.android.support:support-v4:27.1.0'
+    implementation "com.fasterxml.jackson.core:jackson-core:$jackson_version"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_version"
+    implementation "com.github.rjeschke:txtmark:$txtmark_version"
+    implementation "com.android.support:support-v4:$android_version"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
