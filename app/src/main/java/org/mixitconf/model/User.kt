@@ -12,9 +12,3 @@ data class User(
         val description: Map<Language, String> = emptyMap(),
         val links: List<Link> = emptyList()
 )
-
-enum class Role {
-    STAFF,
-    STAFF_IN_PAUSE,
-    USER
-}

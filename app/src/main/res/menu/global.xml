@@ -23,7 +23,7 @@
         app:showAsAction="never"/>
 
     <item android:id="@+id/navigation_about"
-        android:title="@string/menu_about"
+        android:title="@string/title_about"
         app:showAsAction="never"/>
 
 

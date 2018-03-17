@@ -19,7 +19,7 @@ class SpeakerFragment : Fragment() {
      * Interface implemented by parent activity to display a speaker when user clicks on a speaker in the list
      */
     interface OnSpeakerSelectedListener {
-        fun onSpeakerSelected(id: String)
+        fun onSpeakerSelected(id: String):Int
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,7 +29,7 @@ class SpeakerFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        val speakers = SpeakerService.getInstance(context).findSpeakers().sortedBy { it.firstname }
+        val speakers = SpeakerService.getInstance(context!!).findSpeakers().sortedBy { it.firstname }
 
         // Lookup the recyclerview in activity layout
         dataList.apply {

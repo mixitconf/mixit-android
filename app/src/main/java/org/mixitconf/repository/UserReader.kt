@@ -13,7 +13,7 @@ import org.mixitconf.service.SingletonHolder
  */
 class UserReader(private val context: Context) {
 
-    val objectMapper: ObjectMapper = jacksonObjectMapper()
+    private val objectMapper: ObjectMapper = jacksonObjectMapper()
 
     private fun readFile(): List<User>{
         val jsonInputStream = context.resources.openRawResource(R.raw.users)
@@ -26,7 +26,7 @@ class UserReader(private val context: Context) {
 
     fun findAll(): List<User> = readFile()
 
-    fun findOne(login: String): User = readFile().filter { it.login == login }.first()
+    fun findOne(login: String): User = readFile().first { it.login == login }
 
     fun findByLogins(logins: List<String>): List<User> = readFile().filter { logins.contains(it.login) }
 

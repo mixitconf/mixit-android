@@ -1,37 +1,28 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MiXiT 2018</string>
     <string name="event_day1">Thursday 19th April</string>
     <string name="event_day2">Friday 20th April</string>
 
-    <string name="title_home">Home</string>
     <string name="title_talks">Talks</string>
     <string name="title_speakers">Speakers</string>
-    <string name="title_links">Links</string>
     <string name="title_website">Web site</string>
     <string name="title_twitter">Follow us</string>
     <string name="title_github">Contribute</string>
-    <string name="title_mail">Contact us</string>
+    <string name="title_about">About</string>
 
-    <string name="menu_about">About</string>
-    <string name="menu_map">Place map</string>
-
-    <string name="talk_no_date">No date</string>
     <string name="talk_time_range">"%1$s from %2$s to %3$s "</string>
-
-    <string name="topic">"topic %1$s"</string>
     <string name="topic_image">Topic image</string>
-    <string name="language_image">Language image</string>
 
-    <string name="amphi1">Lovelace Amphitheatre</string>
-    <string name="amphi2">Hamilton Amphitheatre</string>
-    <string name="room1">Room Gosling</string>
-    <string name="room2">Room Eich</string>
-    <string name="room3">Room Nonaka</string>
-    <string name="room4">Room Dijkstra</string>
-    <string name="room5">Room Turing</string>
-    <string name="room6">Room Lovelace</string>
-    <string name="room7">Mezzanine</string>
-    <string name="unknown">Unknown room</string>
+    <string name="amphi1" tools:keep="@string/amphi1">Lovelace Amphitheatre</string>
+    <string name="amphi2" tools:keep="@string/amphi2">Hamilton Amphitheatre</string>
+    <string name="room1" tools:keep="@string/room1">Room Gosling</string>
+    <string name="room2" tools:keep="@string/room2">Room Eich</string>
+    <string name="room3" tools:keep="@string/room3">Room Nonaka</string>
+    <string name="room4" tools:keep="@string/room4">Room Dijkstra</string>
+    <string name="room5" tools:keep="@string/room5">Room Turing</string>
+    <string name="room6" tools:keep="@string/room6">Room Lovelace</string>
+    <string name="room7" tools:keep="@string/room7">Mezzanine</string>
+    <string name="unknown" tools:keep="@string/room7">Unknown room</string>
 
     <string name="about_title">MiXiT 2018 Client</string>
     <string name="about_description">This app was created by MiXiT team to help you to follow the conference. If you want to increase this app you can. The project is Open Source and available on <a href="https://github.com/mixitconf/mixit-android">Github</a>. For more informations you can go on our <a href="https://mixitconf.org">website</a> </string>
@@ -48,9 +39,6 @@
 
     <string name="come_to_mixit">Come to MiXiT</string>
     <string name="come_to_party">Come to Party</string>
-    <string name="map_floor_0">Map floor 0</string>
-    <string name="map_floor_1">Map floor 1</string>
-    <string name="add_to_your_calendar">Add to your calendar</string>
     <string name="appPermission">MiXiT app can add talks you want to see on your calendar. Of course it\'s not mandatory. Your calendar data are not read. We just check that you have no overlapped events to prevent your calendar pollution.</string>
     <string name="en">EN</string>
     <string name="calendar_add">Calendar event</string>

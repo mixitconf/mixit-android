@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v4.content.ContextCompat
 import android.text.Html
 import android.widget.ImageView
@@ -20,11 +21,11 @@ import java.util.*
 class Utils {
     companion object {
         val DATE_FORMAT = SimpleDateFormat("EEE", Locale.getDefault())
-        val OBJECT_ID = "id"
+        const val OBJECT_ID = "id"
     }
 }
 
-val SPECIAL_SLUG_CHARACTERS = mapOf<Char, Char>(Pair('é','e'), Pair('è','e'),Pair('ï','i'), Pair(' ','_'), Pair('ê','e')
+val SPECIAL_SLUG_CHARACTERS = mapOf(Pair('é','e'), Pair('è','e'),Pair('ï','i'), Pair(' ','_'), Pair('ê','e')
         , Pair('\'','_'), Pair('ô','o'), Pair('à','a'), Pair('-','_'))
 
 
@@ -33,7 +34,7 @@ val SPECIAL_SLUG_CHARACTERS = mapOf<Char, Char>(Pair('é','e'), Pair('è','e'),P
 fun ImageView.setSpeakerImage(speaker: User) {
     // Speaker images are downloaded on the app startup
     val imageResource = context.resources.getIdentifier(
-            "mxt_speker_${if(speaker.lastname.isNullOrEmpty()) speaker.firstname.toSlug() else speaker.lastname.toSlug()}",
+            "mxt_speker_${if(speaker.lastname.isEmpty()) speaker.firstname.toSlug() else speaker.lastname.toSlug()}",
             "drawable",
             context.applicationInfo.packageName)
 
@@ -57,11 +58,11 @@ fun String.markdownToHtml() = if (isNullOrEmpty()) null else Processor.process(t
 @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
 fun String.toHtml() = if (isNullOrEmpty()) null else Html.fromHtml(this)
 
-fun String.toSlug(): String = toLowerCase().toCharArray().map { if (SPECIAL_SLUG_CHARACTERS.get(it) == null) it else SPECIAL_SLUG_CHARACTERS.get(it) }.joinToString("")
+fun String.toSlug(): String = toLowerCase().toCharArray().map { if (SPECIAL_SLUG_CHARACTERS[it] == null) it else SPECIAL_SLUG_CHARACTERS[it] }.joinToString("")
 
 // Date extensions
 // ============================================
-fun Date.adjust(day: Int, hour: Int, minute: Int): Date {
+fun createDate(day: Int, hour: Int, minute: Int): Date {
     val calendar = Calendar.getInstance(Locale.FRANCE)
     calendar.set(2018, 3, day, hour, minute, 0)
     return calendar.time
@@ -86,12 +87,13 @@ fun Date.addMinutes(amount: Int): Date {
 fun Context.hasIntentPackage(type: String): Boolean {
     try {
         packageManager.getPackageInfo(type, 0)
-        return true
     } catch (e: PackageManager.NameNotFoundException) {
         return false
     }
+    return true
 }
 fun Context.hasPermission(permission: String):Boolean = ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+fun Context.getColorLegacy(color:Int) = resources.getColor(color)
 
 // Fragment extensions
 // =============================================
@@ -101,3 +103,12 @@ fun Fragment.withIdInBundle(id: String): Fragment {
     arguments = args
     return this
 }
+fun FragmentManager.openFragmentDetail(id: String, fragment: Fragment):Int = beginTransaction().apply {
+    fragment.withIdInBundle(id)
+    addToBackStack(fragment.tag)
+    replace(R.id.container, fragment)
+}.commit()
+fun FragmentManager.openFragment(fragment: Fragment):Int = beginTransaction().apply {
+    addToBackStack(fragment.tag)
+    replace(R.id.container, fragment)
+}.commit()

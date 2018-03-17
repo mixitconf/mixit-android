@@ -6,7 +6,7 @@
     android:scrollbars="vertical">
 
     <LinearLayout
-        android:id="@+id/speakerDetailMAyout"
+        android:id="@+id/speakerDetailLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -60,8 +60,6 @@
             android:id="@+id/speakerDetailDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignWithParentIfMissing="true"
-            android:layout_below="@id/speakerDetailImage"
             android:paddingTop="8dp"/>
 
         <TextView

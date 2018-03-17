@@ -16,11 +16,12 @@ import org.mixitconf.model.Language
 import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat.*
 import org.mixitconf.service.getBgColorDependingOnTime
+import org.mixitconf.service.getColorLegacy
 import org.mixitconf.service.getRoomLabel
 import org.mixitconf.service.getTimeLabel
 
 
-class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
+class TalkListAdapter(private val items: List<Talk>, val context: Context) : RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -41,7 +42,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
 
     @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val talk = items.get(position)
+        val talk = items[position]
 
         holder.name.text = talk.title
         holder.time.text = talk.getTimeLabel(context)
@@ -52,7 +53,7 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
                 displayFields(holder)
 
                 holder.talkLanguage.visibility = if (talk.language == Language.ENGLISH) View.VISIBLE else View.GONE
-                holder.image.setImageResource(talk.getTopicDrawableRessource())
+                holder.image.setImageResource(talk.getTopicDrawableResource())
                 holder.type.text = talk.format.name
                 holder.description.text = talk.summary
                 holder.room.setText(talk.getRoomLabel(context))
@@ -83,9 +84,9 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
                               background: Int,
                               nameColor: Int = android.R.color.black,
                               timeColor: Int = R.color.textShadow) {
-        holder.itemView.setBackgroundColor(context.resources.getColor(background))
-        holder.name.setTextColor(context.resources.getColor(nameColor))
-        holder.time.setTextColor(context.resources.getColor(timeColor))
+        holder.itemView.setBackgroundColor(context.getColorLegacy(background))
+        holder.name.setTextColor(context.getColorLegacy(nameColor))
+        holder.time.setTextColor(context.getColorLegacy(timeColor))
         holder.name.textAlignment = View.TEXT_ALIGNMENT_INHERIT
     }
 
@@ -116,9 +117,9 @@ class TalkListAdapter(val items: List<Talk>, val context: Context) : RecyclerVie
         holder.infoLayout.visibility = View.VISIBLE
     }
 
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
-        recyclerView?.setOnClickListener(null)
+        recyclerView.setOnClickListener(null)
     }
 
     override fun getItemCount(): Int {

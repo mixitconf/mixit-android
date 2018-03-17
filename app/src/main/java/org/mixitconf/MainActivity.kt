@@ -10,7 +10,8 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.mixitconf.fragment.*
 import org.mixitconf.service.hasIntentPackage
-import org.mixitconf.service.withIdInBundle
+import org.mixitconf.service.openFragment
+import org.mixitconf.service.openFragmentDetail
 
 open class MainActivity : AppCompatActivity(),
         TalkFragment.OnTalkSelectedListener,
@@ -46,21 +47,10 @@ open class MainActivity : AppCompatActivity(),
         delegate.setTitle("")
     }
 
-    override fun onTalkSelected(id: String) {
-        supportFragmentManager.beginTransaction().apply {
-            val fragment = TalkDetailFragment().withIdInBundle(id)
-            addToBackStack(fragment.tag)
-            replace(R.id.container, fragment).commit()
-        }
-    }
 
-    override fun onSpeakerSelected(id: String) {
-        supportFragmentManager.beginTransaction().apply {
-            val fragment = SpeakerDetailFragment().withIdInBundle(id)
-            addToBackStack(fragment.tag)
-            replace(R.id.container, fragment).commit()
-        }
-    }
+    override fun onTalkSelected(id: String)  = supportFragmentManager.openFragmentDetail(id, TalkDetailFragment())
+
+    override fun onSpeakerSelected(id: String) = supportFragmentManager.openFragmentDetail(id, SpeakerDetailFragment())
 
     /**
      * Listener used on top action bar when a user clicks on an action
@@ -112,26 +102,11 @@ open class MainActivity : AppCompatActivity(),
     val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_talk -> {
-                supportFragmentManager.beginTransaction().apply {
-                    val fragment = TalkFragment()
-                    addToBackStack(fragment.tag)
-                    replace(R.id.container, fragment).commit()
-                }
+                supportFragmentManager.openFragment(TalkFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_speaker -> {
-                supportFragmentManager.beginTransaction().apply {
-                    val fragment = SpeakerFragment()
-                    addToBackStack(fragment.tag)
-                    replace(R.id.container, fragment).commit()
-                }
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_twitter -> {
-                val hasTwitterApp = baseContext.hasIntentPackage("com.twitter.android")
-                val intentUri = if (hasTwitterApp) "twitter://user?screen_name=mixitconf" else "https://twitter.com/mixitconf"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(intentUri)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                baseContext.startActivity(intent)
+                supportFragmentManager.openFragment(SpeakerFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_website -> {

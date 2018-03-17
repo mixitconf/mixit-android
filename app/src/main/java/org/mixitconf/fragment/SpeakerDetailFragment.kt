@@ -27,31 +27,31 @@ class SpeakerDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (arguments == null) {
+        if (arguments == null || context == null) {
             throw IllegalStateException("SpeakerDetailFragment must be initialized with speaker id")
         }
 
-        val speaker = UserReader.getInstance(context).findOne(arguments.getString(Utils.OBJECT_ID))
+        val speaker = UserReader.getInstance(context!!).findOne(arguments!!.getString(Utils.OBJECT_ID))
 
         speakerDetailName.text = speaker.fullname()
         speakerDetailCompany.text = speaker.company
-        speakerDetailDescription.text = speaker.description.get(Language.FRENCH)?.markdownToHtml()
+        speakerDetailDescription.text = speaker.description[Language.FRENCH]?.markdownToHtml()
         speakerDetailImage.setSpeakerImage(speaker)
 
 
-        val mainSocial:Social? = Social.values().firstOrNull { social -> speaker.links.any { it.url.contains(social.pattern) }}
-        val mainLink = if(mainSocial == null) speaker.links.firstOrNull() else speaker.links.first { it.url.contains(mainSocial.pattern) }
+        val mainSocial: Social? = Social.values().firstOrNull { social -> speaker.links.any { it.url.contains(social.pattern) } }
+        val mainLink = if (mainSocial == null) speaker.links.firstOrNull() else speaker.links.first { it.url.contains(mainSocial.pattern) }
+        val mainResource = mainSocial?.resourceId ?: R.drawable.mxt_icon_web
 
-        if(mainLink ==null){
+        if (mainLink == null) {
             navigation_speaker_link.visibility = View.GONE
-        }
-        else {
-            navigation_speaker_link.setImageResource(if (mainSocial == null) R.drawable.mxt_icon_web else mainSocial.resourceId)
-            navigation_speaker_link.setOnClickListener({ _ -> context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mainLink.url))) })
+        } else {
+            navigation_speaker_link.setImageResource(mainResource)
+            navigation_speaker_link.setOnClickListener({ _ -> context!!.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(mainLink.url))) })
         }
 
         // Adds talks
-        val talks = SpeakerService.getInstance(context).findSpeakerTalks(speaker)
+        val talks = SpeakerService.getInstance(context!!).findSpeakerTalks(speaker)
         // Lookup the recyclerview in activity layout
         speakerDetailTalkList.apply {
             setHasFixedSize(true)
@@ -59,6 +59,6 @@ class SpeakerDetailFragment : Fragment() {
             adapter = TalkListAdapter(talks, context)
         }
     }
-
-
 }
+
+

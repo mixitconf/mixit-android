@@ -14,12 +14,12 @@ import org.mixitconf.model.User
 import org.mixitconf.service.fullname
 import org.mixitconf.service.setSpeakerImage
 
-class UserListAdapter(val items: List<User>, val context: Context) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
+class UserListAdapter(private val items: List<User>, val context: Context) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val speakerName = view.findViewById<TextView>(R.id.speaker_name)
-        val speakerBio = view.findViewById<TextView>(R.id.speaker_bio)
-        val speakerImage = view.findViewById<ImageView>(R.id.speaker_image)
+        val speakerName:TextView = view.findViewById(R.id.speaker_name)
+        val speakerBio:TextView = view.findViewById(R.id.speaker_bio)
+        val speakerImage:ImageView = view.findViewById(R.id.speaker_image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -28,18 +28,18 @@ class UserListAdapter(val items: List<User>, val context: Context) : RecyclerVie
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val user = items.get(position)
+        val user = items[position]
 
         holder.speakerName.text = user.fullname()
-        holder.speakerBio.text = user.description.get(Language.FRENCH)
+        holder.speakerBio.text = user.description[Language.FRENCH]
         holder.speakerImage.setSpeakerImage(user)
 
         holder.itemView.setOnClickListener({ _ -> (context as SpeakerFragment.OnSpeakerSelectedListener).onSpeakerSelected(user.login) })
     }
 
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
-        recyclerView?.setOnClickListener(null)
+        recyclerView.setOnClickListener(null)
     }
 
     override fun getItemCount(): Int {

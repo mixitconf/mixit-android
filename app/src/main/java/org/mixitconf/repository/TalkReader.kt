@@ -11,7 +11,7 @@ import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat
 import org.mixitconf.service.SingletonHolder
 import org.mixitconf.service.addMinutes
-import org.mixitconf.service.adjust
+import org.mixitconf.service.createDate
 import org.mixitconf.service.toLocale
 import java.util.*
 
@@ -38,7 +38,7 @@ class TalkReader(private val context: Context) {
 
     fun findAll(): List<Talk> = readFile()
 
-    fun findOne(id: String): Talk = readFile().filter { it.id == id }.first()
+    fun findOne(id: String): Talk = readFile().first { it.id == id }
 
     fun findMarkers(): List<Talk> = listOf(
             createNonTalkMomentFirstDay(TalkFormat.DAY, 8, 0, R.string.event_day1),
@@ -55,7 +55,7 @@ class TalkReader(private val context: Context) {
             createNonTalkMomentFirstDay(TalkFormat.PAUSE_20_MIN, 16, 0, R.string.planning_pause),
             createNonTalkMomentFirstDay(TalkFormat.PARTY, 19, 30, R.string.planning_pause),
 
-            createNonTalkMomentSecondDay(TalkFormat.DAY, 8, 0, R.string.event_day1),
+            createNonTalkMomentSecondDay(TalkFormat.DAY, 8, 0, R.string.event_day2),
 
             createNonTalkMomentSecondDay(TalkFormat.ORGA, 9, 0, R.string.planning_team_word),
             createNonTalkMomentSecondDay(TalkFormat.SESSION_INTRO, 9, 35, R.string.planning_session_intro),
@@ -81,8 +81,8 @@ class TalkReader(private val context: Context) {
             if (title == null) "" else context.getString(title),
             "", emptyList(), Language.FRENCH, Date(), "",
             "", Room.UNKNOWN,
-            Date().adjust(day, startHour, startMinute),
-            Date().adjust(day, startHour, startMinute).addMinutes(talkFormat.duration), ""
+            createDate(day, startHour, startMinute),
+            createDate(day, startHour, startMinute).addMinutes(talkFormat.duration), ""
     )
 
     private fun transformDate(talk: Talk) = Talk(talk.format, talk.event, talk.title, talk.summary, talk.speakerIds,

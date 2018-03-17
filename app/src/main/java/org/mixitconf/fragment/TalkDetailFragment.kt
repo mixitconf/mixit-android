@@ -32,24 +32,24 @@ class TalkDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (arguments == null) {
+        if (arguments == null || context == null) {
             throw IllegalStateException("TalkDetailFragment must be initialized with talk id")
         }
 
-        val talk = TalkReader.getInstance(context).findOne(arguments.getString(Utils.OBJECT_ID))
-        val calendarLoader = CalendarLoader(context, talk)
+        val talk = TalkReader.getInstance(context!!).findOne(arguments!!.getString(Utils.OBJECT_ID))
+        val calendarLoader = CalendarLoader(context!!, talk)
 
         talkName.text = talk.title
         talkSummary.text = talk.summary.markdownToHtml()
-        talkDescrition.text = talk.description?.markdownToHtml()
-        talkTime.text = talk.getTimeLabel(context)
-        talkRoom.setText(talk.getRoomLabel(context))
+        talkDescription.text = talk.description?.markdownToHtml()
+        talkTime.text = talk.getTimeLabel(context!!)
+        talkRoom.setText(talk.getRoomLabel(context!!))
         talkTopic.text = talk.topic
-        talkImageTrack.setImageResource(talk.getTopicDrawableRessource())
+        talkImageTrack.setImageResource(talk.getTopicDrawableResource())
         talkLanguage.visibility = if (talk.language == Language.ENGLISH) View.VISIBLE else View.GONE
 
         // Adds speaker
-        val speakers = UserReader.getInstance(context).findByLogins(talk.speakerIds)
+        val speakers = UserReader.getInstance(context!!).findByLogins(talk.speakerIds)
 
         // Lookup the recyclerview in activity layout
         talkSpeakerList.apply {
@@ -60,8 +60,8 @@ class TalkDetailFragment : Fragment() {
         }
 
         navigation_calendar_add.setOnClickListener({ _ ->
-            if (!context.hasPermission(Manifest.permission.WRITE_CALENDAR)) {
-                ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR), 0)
+            if (!context!!.hasPermission(Manifest.permission.WRITE_CALENDAR)) {
+                ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR), 0)
             }
             else{
                 val hasConcurrentEvent = calendarLoader.hasConcurrentEventInCalendar != null && calendarLoader.hasConcurrentEventInCalendar!!
@@ -78,17 +78,19 @@ class TalkDetailFragment : Fragment() {
 
         })
 
-        loaderManager.initLoader(0, null, calendarLoader)
+        if (context!!.hasPermission(Manifest.permission.READ_CALENDAR)) {
+            loaderManager.initLoader(0, null, calendarLoader)
+        }
     }
 
-    fun insertEventInCalendar(talk:Talk) = context.startActivity(Intent(Intent.ACTION_INSERT)
+    private fun insertEventInCalendar(talk:Talk) = context!!.startActivity(Intent(Intent.ACTION_INSERT)
             .setType("vnd.android.cursor.item/event")
             .setData(CalendarContract.Events.CONTENT_URI)
             .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, talk.start.time)
             .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, talk.end.time)
             .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false)
             .putExtra(CalendarContract.Events.TITLE, "[mixit18] : ${talk.title}")
-            .putExtra(CalendarContract.Events.EVENT_LOCATION, context.getString(talk.getRoomLabel(context)))
+            .putExtra(CalendarContract.Events.EVENT_LOCATION, context!!.getString(talk.getRoomLabel(context!!)))
             .putExtra(CalendarContract.Events.ALLOWED_REMINDERS, CalendarContract.Reminders.METHOD_ALARM)
             .putExtra(CalendarContract.Events.DESCRIPTION, talk.summary))
 }

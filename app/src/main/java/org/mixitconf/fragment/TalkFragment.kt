@@ -21,7 +21,7 @@ class TalkFragment : Fragment() {
      * Interface implemented by parent activity to display a talk when user clicks on a talk in the list
      */
     interface OnTalkSelectedListener {
-        fun onTalkSelected(id: String)
+        fun onTalkSelected(id: String):Int
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,12 +30,12 @@ class TalkFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val talks = TalkReader.getInstance(context)
+        val talks = TalkReader.getInstance(context!!)
                 .findAll()
                 .filter { it.format != TalkFormat.RANDOM }
                 .toMutableList()
 
-        talks.addAll(TalkReader.getInstance(context).findMarkers())
+        talks.addAll(TalkReader.getInstance(context!!).findMarkers())
 
         // Lookup the recyclerview in activity layout
         dataList.apply {
