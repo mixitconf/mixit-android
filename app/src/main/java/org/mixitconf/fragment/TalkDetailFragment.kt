@@ -51,7 +51,7 @@ class TalkDetailFragment : Fragment() {
         // Adds speaker
         val speakers = UserReader.getInstance(context!!).findByLogins(talk.speakerIds)
 
-        // Lookup the recyclerview in activity layout
+        // Lookup the recycler view in activity layout
         talkSpeakerList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)

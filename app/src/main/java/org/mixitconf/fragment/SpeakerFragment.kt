@@ -31,7 +31,7 @@ class SpeakerFragment : Fragment() {
 
         val speakers = SpeakerService.getInstance(context!!).findSpeakers().sortedBy { it.firstname }
 
-        // Lookup the recyclerview in activity layout
+        // Lookup the recycler view in activity layout
         dataList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)

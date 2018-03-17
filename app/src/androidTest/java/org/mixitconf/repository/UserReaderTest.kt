@@ -13,8 +13,8 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class UserReaderTest {
-    lateinit var reader: UserReader
-    lateinit var appContext: Context
+    private lateinit var reader: UserReader
+    private lateinit var appContext: Context
 
     @Before
     fun init() {
@@ -40,7 +40,7 @@ class UserReaderTest {
     fun findByLogins() {
         // Context of the app under test.
         val users = reader.findByLogins(listOf("romainguy@curious-creature.com", "graphicsgeek1@gmail.com"))
-        Assert.assertEquals("Guy", users.get(0).lastname)
-        Assert.assertEquals("Haase", users.get(1).lastname)
+        Assert.assertEquals("Guy", users[0].lastname)
+        Assert.assertEquals("Haase", users[1].lastname)
     }
 }

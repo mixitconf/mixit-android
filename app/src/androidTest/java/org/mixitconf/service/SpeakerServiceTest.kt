@@ -13,8 +13,8 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class SpeakerServiceTest{
-    lateinit var service: SpeakerService
-    lateinit var appContext: Context
+    private lateinit var service: SpeakerService
+    private lateinit var appContext: Context
 
     @Before
     fun init() {

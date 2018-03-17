@@ -22,7 +22,7 @@ open class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Initialize the top ction bar to display Home button
+        // Initialize the top action bar to display Home button
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
@@ -99,7 +99,7 @@ open class MainActivity : AppCompatActivity(),
     /**
      * Listener used on bottom action bar when a user clicks on an action
      */
-    val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_talk -> {
                 supportFragmentManager.openFragment(TalkFragment())

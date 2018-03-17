@@ -14,8 +14,8 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class EventReaderTest {
-    lateinit var reader: EventReader
-    lateinit var appContext: Context
+    private lateinit var reader: EventReader
+    private lateinit var appContext: Context
 
     @Before
     fun init() {

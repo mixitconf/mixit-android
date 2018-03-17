@@ -20,7 +20,7 @@ import java.util.*
  */
 class TalkReader(private val context: Context) {
 
-    val objectMapper: ObjectMapper = jacksonObjectMapper()
+    private val objectMapper: ObjectMapper = jacksonObjectMapper()
 
     companion object : SingletonHolder<TalkReader, Context>(::TalkReader) {
         private val talks: MutableList<Talk> = mutableListOf()

@@ -37,7 +37,7 @@ class TalkFragment : Fragment() {
 
         talks.addAll(TalkReader.getInstance(context!!).findMarkers())
 
-        // Lookup the recyclerview in activity layout
+        // Lookup the recycler view in activity layout
         dataList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)

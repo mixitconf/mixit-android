@@ -15,8 +15,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class TalkReaderTest {
 
-    lateinit var reader: TalkReader
-    lateinit var appContext: Context
+    private lateinit var reader: TalkReader
+    private lateinit var appContext: Context
 
     @Before
     fun init() {

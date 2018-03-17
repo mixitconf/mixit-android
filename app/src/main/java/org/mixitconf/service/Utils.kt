@@ -93,6 +93,7 @@ fun Context.hasIntentPackage(type: String): Boolean {
     return true
 }
 fun Context.hasPermission(permission: String):Boolean = ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+@TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
 fun Context.getColorLegacy(color:Int) = resources.getColor(color)
 
 // Fragment extensions
