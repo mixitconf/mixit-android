@@ -28,7 +28,7 @@
     <string name="unknown" tools:keep="@string/unknown">Salle inconnue</string>
 
     <string name="about_title">MiXiT 2018 Client</string>
-    <string name="about_description">This app was created by MiXiT team to help you to follow the conference. If you want to increase this app you can. The project is Open Source and available on <a href="https://github.com/mixitconf/mixit-android">Github</a>. For more informations you can go on our <a href="https://mixitconf.org">website</a> </string>
+    <string name="about_description">Cette application a été créée par la team MiXiT pour vous aider à suivre la conférence. Le projet est Open Source et vous pouvez nous aider à améliorer l\'application. Le projet est disponible sous <a href="https://github.com/mixitconf/mixit-android">Github</a>. Pour plus d\'informations vous pouvez consulter notre <a href="https://mixitconf.org">site</a> </string>.
     <string name="planning_team_word">Le mot de la team</string>
     <string name="planning_team_outro">Le mot de la fin de la team</string>
     <string name="planning_session_intro">Présentation des sessions</string>
