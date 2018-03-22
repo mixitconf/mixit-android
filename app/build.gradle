@@ -6,6 +6,9 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     signingConfigs {
+        debug {
+            storeFile file('../debug.keystore')
+        }
         release {
             keyAlias keyAliasProp
             keyPassword keyPasswordProp
