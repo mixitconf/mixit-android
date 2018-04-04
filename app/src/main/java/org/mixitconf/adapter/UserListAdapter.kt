@@ -37,13 +37,23 @@ class UserListAdapter(private val items: List<User>, val context: Context) : Rec
         holder.itemView.setOnClickListener({ _ -> (context as SpeakerFragment.OnSpeakerSelectedListener).onSpeakerSelected(user.login) })
     }
 
+    override fun onViewRecycled(holder: UserViewHolder?) {
+        super.onViewRecycled(holder)
+        holder?.apply {
+            itemView.setOnClickListener(null)
+            speakerImage.setImageDrawable(null)
+        }
+
+    }
+
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
-        recyclerView.setOnClickListener(null)
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
+
+
 
 }
