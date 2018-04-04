@@ -117,10 +117,15 @@ class TalkListAdapter(private val items: List<Talk>, val context: Context) : Rec
         holder.infoLayout.visibility = View.VISIBLE
     }
 
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
-        super.onDetachedFromRecyclerView(recyclerView)
-        recyclerView.setOnClickListener(null)
+    override fun onViewRecycled(holder: TalkListAdapter.ViewHolder?) {
+        super.onViewRecycled(holder)
+        holder?.apply {
+            itemView.setOnClickListener(null)
+            image.setImageDrawable(null)
+        }
+
     }
+
 
     override fun getItemCount(): Int {
         return items.size

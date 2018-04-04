@@ -46,10 +46,6 @@ class UserListAdapter(private val items: List<User>, val context: Context) : Rec
 
     }
 
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
-        super.onDetachedFromRecyclerView(recyclerView)
-    }
-
     override fun getItemCount(): Int {
         return items.size
     }

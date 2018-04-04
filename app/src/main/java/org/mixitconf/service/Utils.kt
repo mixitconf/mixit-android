@@ -105,11 +105,12 @@ fun Fragment.withIdInBundle(id: String): Fragment {
     return this
 }
 fun FragmentManager.openFragmentDetail(id: String, fragment: Fragment):Int = beginTransaction().apply {
+
     fragment.withIdInBundle(id)
-    addToBackStack(fragment.tag)
     replace(R.id.container, fragment)
+    addToBackStack(fragment.tag)
 }.commit()
 fun FragmentManager.openFragment(fragment: Fragment):Int = beginTransaction().apply {
-    addToBackStack(fragment.tag)
     replace(R.id.container, fragment)
+    addToBackStack(fragment.tag)
 }.commit()
