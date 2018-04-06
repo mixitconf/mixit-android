@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat
 import android.text.Html
 import android.widget.ImageView
 import com.github.rjeschke.txtmark.Processor
+import com.squareup.picasso.Picasso
 import org.mixitconf.R
 import org.mixitconf.model.Talk
 import org.mixitconf.model.User
@@ -38,7 +39,9 @@ fun ImageView.setSpeakerImage(speaker: User) {
             "drawable",
             context.applicationInfo.packageName)
 
-    setImageResource(if (imageResource > 0) imageResource else R.drawable.mxt_icon_unknown)
+    Picasso.get()
+            .load(if (imageResource > 0) imageResource else R.drawable.mxt_icon_unknown)
+            .into(this)
 }
 
 fun Talk.getRoomLabel(context: Context): Int = context.resources.getIdentifier(room.name.toLowerCase(), "string", context.applicationInfo.packageName)
