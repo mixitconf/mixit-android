@@ -32,9 +32,8 @@ class TalkDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (arguments == null || context == null) {
-            throw IllegalStateException("TalkDetailFragment must be initialized with talk id")
-        }
+        check(arguments != null && context != null)
+            { "TalkDetailFragment must be initialized with talk id" }
 
         val talk = TalkReader.getInstance(context!!).findOne(arguments!!.getString(Utils.OBJECT_ID))
         val calendarLoader = CalendarLoader(context!!, talk)
@@ -62,16 +61,15 @@ class TalkDetailFragment : Fragment() {
         navigation_calendar_add.setOnClickListener({ _ ->
             if (!context!!.hasPermission(Manifest.permission.WRITE_CALENDAR)) {
                 ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR), 0)
-            }
-            else{
+            } else {
                 val hasConcurrentEvent = calendarLoader.hasConcurrentEventInCalendar != null && calendarLoader.hasConcurrentEventInCalendar!!
 
                 // If we have an existing event in user calendar, we have to ask him if he wants to insert or not a new one
                 AlertDialog.Builder(context)
                         .setTitle(R.string.calendar_add)
-                        .setMessage(if(hasConcurrentEvent) R.string.calendar_question2 else R.string.calendar_question1)
+                        .setMessage(if (hasConcurrentEvent) R.string.calendar_question2 else R.string.calendar_question1)
                         .setPositiveButton(android.R.string.yes) { _, _ -> insertEventInCalendar(talk) }
-                        .setNegativeButton(android.R.string.no) { _, _ ->  }
+                        .setNegativeButton(android.R.string.no) { _, _ -> }
                         .show()
 
             }
@@ -83,7 +81,7 @@ class TalkDetailFragment : Fragment() {
         }
     }
 
-    private fun insertEventInCalendar(talk:Talk) = context!!.startActivity(Intent(Intent.ACTION_INSERT)
+    private fun insertEventInCalendar(talk: Talk) = context!!.startActivity(Intent(Intent.ACTION_INSERT)
             .setType("vnd.android.cursor.item/event")
             .setData(CalendarContract.Events.CONTENT_URI)
             .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, talk.start.time)
