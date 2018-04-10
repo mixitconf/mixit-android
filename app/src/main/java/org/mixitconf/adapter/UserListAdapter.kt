@@ -22,19 +22,21 @@ class UserListAdapter(private val items: List<User>, val context: Context) : Rec
         val speakerImage:ImageView = view.findViewById(R.id.speaker_image)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_speaker_item, parent, false)
-        return UserViewHolder(view)
-    }
+    override fun getItemCount(): Int = items.size
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder =
+            UserViewHolder(LayoutInflater
+                    .from(parent.context)
+                    .inflate(R.layout.fragment_speaker_item, parent, false))
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = items[position]
-
-        holder.speakerName.text = user.fullname()
-        holder.speakerBio.text = user.description[Language.FRENCH]
-        holder.speakerImage.setSpeakerImage(user)
-
-        holder.itemView.setOnClickListener({ _ -> (context as SpeakerFragment.OnSpeakerSelectedListener).onSpeakerSelected(user.login) })
+        holder.apply {
+            speakerName.text = user.fullname()
+            speakerBio.text = user.description[Language.FRENCH]
+            speakerImage.setSpeakerImage(user)
+            itemView.setOnClickListener { _ -> (context as SpeakerFragment.OnSpeakerSelectedListener).onSpeakerSelected(user.login) }
+        }
     }
 
     override fun onViewRecycled(holder: UserViewHolder?) {
@@ -45,11 +47,6 @@ class UserListAdapter(private val items: List<User>, val context: Context) : Rec
         }
 
     }
-
-    override fun getItemCount(): Int {
-        return items.size
-    }
-
 
 
 }
