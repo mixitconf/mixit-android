@@ -11,10 +11,12 @@ class SpeakerService(val context: Context) {
 
     fun findSpeakers(): List<User> {
         val talks = TalkReader.getInstance(context).findAll()
-        return UserReader.getInstance(context).findByLogins(talks.flatMap { it.speakerIds }.toList())
+        return UserReader.getInstance(context).findByLogins(talks.flatMap { it.speakerIds })
     }
 
-    fun findSpeakerTalks(speaker: User): List<Talk> = TalkReader.getInstance(context).findAll().filter { it.speakerIds.contains(speaker.login) }.toList()
+    fun findSpeakerTalks(speaker: User): List<Talk> = TalkReader.getInstance(context)
+            .findAll()
+            .filter { it.speakerIds.contains(speaker.login) }
 
     companion object : SingletonHolder<SpeakerService, Context>(::SpeakerService)
 }
