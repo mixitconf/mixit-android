@@ -1,13 +1,13 @@
 language: android
 android:
   components:
-    - build-tools-26.1.0
+    - build-tools-27.0.3
     - extra-google-android-support
     - android-22
-    - android-26
+    - android-27
     - extra
     - sys-img-armeabi-v7a-android-22
-    - sys-img-armeabi-v7a-android-26
+    - sys-img-armeabi-v7a-android-27
 jdk: oraclejdk8
 os:
   - linux    
