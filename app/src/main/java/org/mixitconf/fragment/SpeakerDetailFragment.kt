@@ -27,9 +27,8 @@ class SpeakerDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (arguments == null || context == null) {
-            throw IllegalStateException("SpeakerDetailFragment must be initialized with speaker id")
-        }
+        check(arguments != null && context != null)
+            { "SpeakerDetailFragment must be initialized with speaker id" }
 
         val speaker = UserReader.getInstance(context!!).findOne(arguments!!.getString(Utils.OBJECT_ID))
 
