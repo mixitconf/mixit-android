@@ -41,6 +41,7 @@ fun ImageView.setSpeakerImage(speaker: User) {
 
     Picasso.get()
             .load(if (imageResource > 0) imageResource else R.drawable.mxt_icon_unknown)
+            .resize(160, 160)
             .into(this)
 }
 
