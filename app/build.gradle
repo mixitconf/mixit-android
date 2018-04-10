@@ -5,24 +5,29 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+
+
     signingConfigs {
         debug {
             storeFile file('../debug.keystore')
         }
-        release {
-            keyAlias keyAliasProp
-            keyPassword keyPasswordProp
-            storeFile file(storeFileProp)
-            storePassword storePasswordProp
+        if (project.hasProperty('keyAliasProp')){
+            release {
+                keyAlias keyAliasProp
+                keyPassword keyPasswordProp
+                storeFile file(storeFileProp)
+                storePassword storePasswordProp
+            }
         }
+
     }
     compileSdkVersion 26
     defaultConfig {
         applicationId "org.mixitconf"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 8
-        versionName "1.7"
+        versionCode 9
+        versionName "1.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
