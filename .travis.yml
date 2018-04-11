@@ -13,6 +13,8 @@ os:
   - linux    
 licenses:
     - 'android-sdk-license-.+'
+before_install:
+  - yes | sdkmanager "platforms;android-27"
 before_script:
   - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
   - emulator -avd test -no-audio -no-window &
