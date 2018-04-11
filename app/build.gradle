@@ -19,11 +19,11 @@ android {
         }
 
     }
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "org.mixitconf"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 9
         versionName "1.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
