@@ -20,7 +20,7 @@ class EventReaderTest {
     @Before
     fun init() {
         appContext = InstrumentationRegistry.getTargetContext()
-        reader = EventReader(appContext)
+        reader = EventReader.getInstance(appContext)
     }
 
     @Test
