@@ -2,6 +2,7 @@
 
 buildscript {
     ext.kotlin_version = '1.2.30'
+    ext.coroutines_version = '0.22.5'
     ext.android_version = '27.0.2'
     ext.jackson_version = '2.9.4'
     ext.txtmark_version = '0.13'
