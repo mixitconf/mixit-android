@@ -11,26 +11,17 @@ import org.mixitconf.service.SingletonHolder
 /**
  * Speakers are read from Json file
  */
-class UserReader(private val context: Context) {
+class UserReader(val users: List<User>) {
 
-    private val objectMapper: ObjectMapper = jacksonObjectMapper()
+    fun findAll(): List<User> = users
 
-    private fun readFile(): List<User>{
-        val jsonInputStream = context.resources.openRawResource(R.raw.users)
-        if(UserReader.users.isEmpty()){
-            val users: List<User> = objectMapper.readValue(jsonInputStream)
-            users.forEach { UserReader.users.add(it) }
-        }
-        return UserReader.users
-    }
+    fun findOne(login: String): User = users.first { it.login == login }
 
-    fun findAll(): List<User> = readFile()
+    fun findByLogins(logins: List<String>): List<User> = users.filter { logins.contains(it.login) }
 
-    fun findOne(login: String): User = readFile().first { it.login == login }
-
-    fun findByLogins(logins: List<String>): List<User> = readFile().filter { logins.contains(it.login) }
-
-    companion object : SingletonHolder<UserReader, Context>(::UserReader){
-        private val users:MutableList<User> = mutableListOf()
-    }
+    companion object : SingletonHolder<UserReader, Context>({
+        val json = it.resources.openRawResource(R.raw.users)
+        val users : List<User> = jacksonObjectMapper().readValue(json)
+        UserReader(users)
+    })
 }
