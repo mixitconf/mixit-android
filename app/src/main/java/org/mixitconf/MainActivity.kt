@@ -5,10 +5,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.experimental.launch
 import org.mixitconf.fragment.*
+import org.mixitconf.repository.TalkReader
+import org.mixitconf.repository.UserReader
 import org.mixitconf.service.hasIntentPackage
 import org.mixitconf.service.openFragment
 import org.mixitconf.service.openFragmentDetail
@@ -20,6 +24,7 @@ open class MainActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i("MainActivity","onCreate start")
         setContentView(R.layout.activity_main)
 
         // Initialize the top action bar to display Home button
@@ -29,6 +34,11 @@ open class MainActivity : AppCompatActivity(),
         }
 
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        launch {
+            TalkReader.getInstance(baseContext)
+            UserReader.getInstance(baseContext)
+        }
     }
 
     /**
