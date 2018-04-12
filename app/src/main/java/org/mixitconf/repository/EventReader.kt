@@ -11,18 +11,14 @@ import org.mixitconf.service.SingletonHolder
 /**
  * Events are read from Json file
  */
-class EventReader(val context: Context) {
+class EventReader(val events: List<Event>) {
 
-    private val objectMapper: ObjectMapper = jacksonObjectMapper()
+    fun findAll(): List<Event> = events
+    fun findOne(id: String): Event = events.first { it.id == id }
 
-    private fun readFile(): List<Event>{
-        val jsonInputStream = context.resources.openRawResource(R.raw.events)
-        return objectMapper.readValue(jsonInputStream)
-    }
-
-    fun findAll(): List<Event> = readFile()
-
-    fun findOne(id: String): Event = readFile().first { it.id == id }
-
-    companion object : SingletonHolder<EventReader, Context>(::EventReader)
+    companion object : SingletonHolder<EventReader, Context>({
+            val jsonInputStream = it.resources.openRawResource(R.raw.events)
+            val events:List<Event> =  jacksonObjectMapper().readValue(jsonInputStream)
+            EventReader(events)
+    })
 }

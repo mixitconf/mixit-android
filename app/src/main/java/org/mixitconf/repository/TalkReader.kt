@@ -18,27 +18,17 @@ import java.util.*
 /**
  * Talk are read adjust Json file
  */
-class TalkReader(private val context: Context) {
+class TalkReader(val talks: List<Talk>, private val context: Context) {
 
-    private val objectMapper: ObjectMapper = jacksonObjectMapper()
+    companion object : SingletonHolder<TalkReader, Context>({
+        val jsonInputStream = it.resources.openRawResource(R.raw.talks_2018)
+        val talks:List<Talk> = jacksonObjectMapper().readValue(jsonInputStream)
+        TalkReader(talks, it)
+    })
 
-    companion object : SingletonHolder<TalkReader, Context>(::TalkReader) {
-        private val talks: MutableList<Talk> = mutableListOf()
-    }
+    fun findAll(): List<Talk> = talks
 
-    private fun readFile(): List<Talk> {
-        val jsonInputStream = context.resources.openRawResource(R.raw.talks_2018)
-        if (TalkReader.talks.isEmpty()) {
-            val talks: List<Talk> = objectMapper.readValue(jsonInputStream)
-            talks.forEach { TalkReader.talks.add(transformDate(it)) }
-        }
-        return TalkReader.talks
-
-    }
-
-    fun findAll(): List<Talk> = readFile()
-
-    fun findOne(id: String): Talk = readFile().first { it.id == id }
+    fun findOne(id: String): Talk = talks.first { it.id == id }
 
     fun findMarkers(): List<Talk> = listOf(
             createNonTalkMomentFirstDay(TalkFormat.DAY, 8, 0, R.string.event_day1),
