@@ -19,7 +19,7 @@ class UserReaderTest {
     @Before
     fun init() {
         appContext = InstrumentationRegistry.getTargetContext()
-        reader = UserReader(appContext)
+        reader = UserReader.getInstance(appContext)
     }
 
     @Test

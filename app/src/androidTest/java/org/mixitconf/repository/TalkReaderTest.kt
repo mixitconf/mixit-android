@@ -21,7 +21,7 @@ class TalkReaderTest {
     @Before
     fun init() {
         appContext = InstrumentationRegistry.getTargetContext()
-        reader = TalkReader(appContext)
+        reader = TalkReader.getInstance(appContext)
     }
 
     @Test
