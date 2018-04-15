@@ -31,7 +31,7 @@ class UserReaderTest {
     @Test
     fun findOne() {
         // Context of the app under test.
-        val user = reader.findOne("romainguy@curious-creature.com")
+        val user = reader.findOne("romainguy")
         Assert.assertEquals("Guy", user.lastname)
         Assert.assertEquals("Romain", user.firstname)
     }
@@ -39,7 +39,7 @@ class UserReaderTest {
     @Test
     fun findByLogins() {
         // Context of the app under test.
-        val users = reader.findByLogins(listOf("romainguy@curious-creature.com", "graphicsgeek1@gmail.com"))
+        val users = reader.findByLogins(listOf("romainguy", "graphicsgeek1"))
         Assert.assertEquals("Guy", users[0].lastname)
         Assert.assertEquals("Haase", users[1].lastname)
     }
