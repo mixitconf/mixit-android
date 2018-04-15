@@ -1,6 +1,7 @@
 package org.mixitconf.fragment
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -17,6 +18,8 @@ import org.mixitconf.repository.TalkReader
 
 class TalkFragment : Fragment() {
 
+    private var listState: Parcelable? = null
+
     /**
      * Interface implemented by parent activity to display a talk when user clicks on a talk in the list
      */
@@ -26,6 +29,11 @@ class TalkFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_datalist, container, false)
+
+    override fun onPause() {
+        super.onPause()
+        listState = (dataList.layoutManager as LinearLayoutManager).onSaveInstanceState()
+    }
 
     override fun onResume() {
         super.onResume()
@@ -42,6 +50,7 @@ class TalkFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = TalkListAdapter(talks.sortedWith(compareBy<Talk> { it.start }.thenBy { it.end }.thenBy { it.room }), context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            layoutManager.onRestoreInstanceState(listState)
         }
     }
 }
