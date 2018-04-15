@@ -1,6 +1,7 @@
 package org.mixitconf.fragment
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -15,6 +16,8 @@ import org.mixitconf.service.SpeakerService
 
 class SpeakerFragment : Fragment() {
 
+    private var listState:Parcelable? = null
+
     /**
      * Interface implemented by parent activity to display a speaker when user clicks on a speaker in the list
      */
@@ -24,6 +27,11 @@ class SpeakerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_datalist, container, false)
+
+    override fun onPause() {
+        super.onPause()
+        listState = (dataList.layoutManager as LinearLayoutManager).onSaveInstanceState()
+    }
 
     override fun onResume() {
         super.onResume()
@@ -36,6 +44,7 @@ class SpeakerFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = UserListAdapter(speakers, context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            layoutManager.onRestoreInstanceState(listState)
         }
     }
 }
