@@ -47,7 +47,9 @@ class TalkDetailFragment : Fragment() {
         talkLanguage.visibility = if (talk.language == Language.ENGLISH) View.VISIBLE else View.GONE
 
         // Adds speaker
-        val speakers = UserReader.getInstance(context!!).findByLogins(talk.speakerIds)
+        val speakers = UserReader.getInstance(context!!)
+                .findByLogins(talk.speakerIds)
+                .sortedBy { it.firstname }
 
         // Lookup the recycler view in activity layout
         talkSpeakerList.apply {
