@@ -35,7 +35,7 @@ val SPECIAL_SLUG_CHARACTERS = mapOf(Pair('é','e'), Pair('è','e'),Pair('ï','i'
 fun ImageView.setSpeakerImage(speaker: User) {
     // Speaker images are downloaded on the app startup
     val imageResource = context.resources.getIdentifier(
-            "mxt_speker_${if(speaker.lastname.isEmpty()) speaker.firstname.toSlug() else speaker.lastname.toSlug()}",
+            "mxt_speker_${if(speaker.lastname.trim().isEmpty()) speaker.firstname.toSlug() else speaker.lastname.toSlug()}",
             "drawable",
             context.applicationInfo.packageName)
 
