@@ -37,8 +37,7 @@ class UserReaderTest {
     @Test
     fun findByLogins() {
         val users = reader.findByLogins(listOf("romainguy", "graphicsgeek1"))
-        Assert.assertTrue( users.any { it.lastname == "Guy" })
-        Assert.assertTrue( users.any { it.lastname == "Haase" })
         Assert.assertEquals(2, users.size)
+        users.forEach { Assert.assertTrue(it.lastname == "Guy" || it.lastname == "Haase") }
     }
 }
