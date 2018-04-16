@@ -40,7 +40,6 @@ class UserReaderTest {
     fun findByLogins() {
         // Context of the app under test.
         val users = reader.findByLogins(listOf("romainguy", "graphicsgeek1"))
-        Assert.assertEquals("Guy", users[0].lastname)
-        Assert.assertEquals("Haase", users[1].lastname)
+        Assert.assertThat(users).extracting("lastname").contains("Guy", "Haase")
     }
 }
