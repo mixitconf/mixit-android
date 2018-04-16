@@ -14,6 +14,8 @@ import org.mixitconf.adapter.TalkListAdapter
 import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat
 import org.mixitconf.repository.TalkReader
+import org.mixitconf.service.endLocale
+import org.mixitconf.service.startLocale
 
 
 class TalkFragment : Fragment() {
@@ -48,7 +50,7 @@ class TalkFragment : Fragment() {
         dataList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = TalkListAdapter(talks.sortedWith(compareBy<Talk> { it.start }.thenBy { it.end }.thenBy { it.room }), context)
+            adapter = TalkListAdapter(talks.sortedWith(compareBy<Talk> { it.startLocale() }.thenBy { it.endLocale() }.thenBy { it.room }), context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             layoutManager.onRestoreInstanceState(listState)
         }

@@ -14,6 +14,7 @@ import com.github.rjeschke.txtmark.Processor
 import com.squareup.picasso.Picasso
 import org.mixitconf.R
 import org.mixitconf.model.Talk
+import org.mixitconf.model.TalkFormat
 import org.mixitconf.model.User
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -26,8 +27,8 @@ class Utils {
     }
 }
 
-val SPECIAL_SLUG_CHARACTERS = mapOf(Pair('é','e'), Pair('è','e'),Pair('ï','i'), Pair(' ','_'), Pair('ê','e')
-        , Pair('\'','_'), Pair('ô','o'), Pair('à','a'), Pair('-','_'))
+val SPECIAL_SLUG_CHARACTERS = mapOf(Pair('é', 'e'), Pair('è', 'e'), Pair('ï', 'i'), Pair(' ', '_'), Pair('ê', 'e')
+        , Pair('\'', '_'), Pair('ô', 'o'), Pair('à', 'a'), Pair('-', '_'))
 
 
 // User extension
@@ -35,7 +36,7 @@ val SPECIAL_SLUG_CHARACTERS = mapOf(Pair('é','e'), Pair('è','e'),Pair('ï','i'
 fun ImageView.setSpeakerImage(speaker: User) {
     // Speaker images are downloaded on the app startup
     val imageResource = context.resources.getIdentifier(
-            "mxt_speker_${if(speaker.lastname.trim().isEmpty()) speaker.firstname.toSlug() else speaker.lastname.toSlug()}",
+            "mxt_speker_${if (speaker.lastname.trim().isEmpty()) speaker.firstname.toSlug() else speaker.lastname.toSlug()}",
             "drawable",
             context.applicationInfo.packageName)
 
@@ -45,13 +46,20 @@ fun ImageView.setSpeakerImage(speaker: User) {
             .into(this)
 }
 
+
 fun Talk.getRoomLabel(context: Context): Int = context.resources.getIdentifier(room.name.toLowerCase(), "string", context.applicationInfo.packageName)
 fun Talk.getTimeLabel(context: Context): String = String.format(
         context.resources.getString(R.string.talk_time_range),
         Utils.DATE_FORMAT.format(start),
-        DateFormat.getTimeInstance(DateFormat.SHORT).format(start),
-        DateFormat.getTimeInstance(DateFormat.SHORT).format(end))
-fun Talk.getBgColorDependingOnTime(color: Int):Int = if(Date().time > end.time) R.color.unknown else color
+        DateFormat.getTimeInstance(DateFormat.SHORT).format(startLocale()),
+        DateFormat.getTimeInstance(DateFormat.SHORT).format(endLocale()))
+fun Talk.startLocale(): Date = if (format.isTalk()) start.toLocale() else start
+fun Talk.endLocale(): Date = if (format.isTalk()) end.toLocale() else end
+
+fun Talk.getBgColorDependingOnTime(color: Int): Int = if (Date().time > end.time) R.color.unknown else color
+
+fun TalkFormat.isTalk(): Boolean =
+        this == TalkFormat.TALK || this == TalkFormat.WORKSHOP || this == TalkFormat.RANDOM || this == TalkFormat.KEYNOTE
 
 fun User.fullname(): String = "$firstname $lastname".trim()
 
@@ -96,9 +104,10 @@ fun Context.hasIntentPackage(type: String): Boolean {
     }
     return true
 }
-fun Context.hasPermission(permission: String):Boolean = ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+
+fun Context.hasPermission(permission: String): Boolean = ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
 @TargetApi(Build.VERSION_CODES.KITKAT_WATCH)
-fun Context.getColorLegacy(color:Int) = resources.getColor(color)
+fun Context.getColorLegacy(color: Int) = resources.getColor(color)
 
 // Fragment extensions
 // =============================================
@@ -108,13 +117,15 @@ fun Fragment.withIdInBundle(id: String): Fragment {
     arguments = args
     return this
 }
-fun FragmentManager.openFragmentDetail(id: String, fragment: Fragment):Int = beginTransaction().apply {
+
+fun FragmentManager.openFragmentDetail(id: String, fragment: Fragment): Int = beginTransaction().apply {
 
     fragment.withIdInBundle(id)
     replace(R.id.container, fragment)
     addToBackStack(fragment.tag)
 }.commit()
-fun FragmentManager.openFragment(fragment: Fragment):Int = beginTransaction().apply {
+
+fun FragmentManager.openFragment(fragment: Fragment): Int = beginTransaction().apply {
     replace(R.id.container, fragment)
     addToBackStack(fragment.tag)
 }.commit()
