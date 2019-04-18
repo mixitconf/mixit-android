@@ -1,18 +1,19 @@
 package org.mixitconf.repository
 
 import android.content.Context
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mixitconf.MiXiTApplication
 
 /**
  * Test {@link TalkReader}
  */
-@RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
 class TalkReaderTest {
 
     private lateinit var reader: TalkReader
@@ -20,8 +21,8 @@ class TalkReaderTest {
 
     @Before
     fun init() {
-        appContext = InstrumentationRegistry.getTargetContext()
-        reader = TalkReader.getInstance(appContext)
+        val mixitApp = InstrumentationRegistry.getInstrumentation().context.applicationContext as MiXiTApplication
+        reader = mixitApp.talkReader
     }
 
     @Test

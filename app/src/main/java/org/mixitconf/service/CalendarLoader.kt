@@ -5,9 +5,10 @@ import android.database.Cursor
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.provider.CalendarContract.Events.CONTENT_URI
-import android.support.v4.app.LoaderManager
-import android.support.v4.content.CursorLoader
-import android.support.v4.content.Loader
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
+import androidx.loader.content.Loader
+import org.mixitconf.MiXiTApplication
 import org.mixitconf.model.Talk
 
 /**
@@ -15,7 +16,7 @@ import org.mixitconf.model.Talk
  * his calendar to the app. When we read the calendar we only search if one event overlaps the current talk.
  * This aim is to not insert more than once the talk in the user calendar
  */
-class CalendarLoader(val context: Context, val talk: Talk) : LoaderManager.LoaderCallbacks<Cursor> {
+class CalendarLoader(val app: MiXiTApplication, val talk: Talk) : LoaderManager.LoaderCallbacks<Cursor> {
 
     var hasConcurrentEventInCalendar: Boolean? = null
 
@@ -23,7 +24,7 @@ class CalendarLoader(val context: Context, val talk: Talk) : LoaderManager.Loade
         val request = "(${CalendarContract.Events.DTSTART} <= ?) AND  (${CalendarContract.Events.DTEND} >= ?)"
         val requestArgs = arrayOf("${talk.start.time}", "${talk.end.time}")
 
-        return CursorLoader(context, CONTENT_URI, arrayOf("_id"), request, requestArgs, null)
+        return CursorLoader(app.applicationContext, CONTENT_URI, arrayOf("_id"), request, requestArgs, null)
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {

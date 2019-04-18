@@ -1,7 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MiXiT 2018</string>
-    <string name="event_day1">Thursday 19th April</string>
-    <string name="event_day2">Friday 20th April</string>
+    <string name="app_name">MiXiT 2019</string>
+    <string name="event_day1">Thursday 23th May</string>
+    <string name="event_day2">Friday 24th May</string>
+    <string name="event_day3">Saturday 25th May</string>
 
     <string name="title_talks">Talks</string>
     <string name="title_speakers">Speakers</string>
@@ -15,14 +16,24 @@
 
     <string name="amphi1" tools:keep="@string/amphi1">Lovelace Amphitheatre</string>
     <string name="amphi2" tools:keep="@string/amphi2">Hamilton Amphitheatre</string>
-    <string name="room1" tools:keep="@string/room1">Room Gosling</string>
-    <string name="room2" tools:keep="@string/room2">Room Eich</string>
-    <string name="room3" tools:keep="@string/room3">Room Nonaka</string>
-    <string name="room4" tools:keep="@string/room4">Room Dijkstra</string>
-    <string name="room5" tools:keep="@string/room5">Room Turing</string>
-    <string name="room6" tools:keep="@string/room6">Room Lovelace</string>
+    <string name="amphic">C Amphitheatre</string>
+    <string name="amphid">D Amphitheatre</string>
+    <string name="amphik">K Amphitheatre</string>
+    <string name="speaker">Salle du conseil</string>
+    <string name="room1" tools:keep="@string/room1">Gosling Room</string>
+    <string name="room2" tools:keep="@string/room2">Eich Room</string>
+    <string name="room3" tools:keep="@string/room3">Nonaka Room</string>
+    <string name="room4" tools:keep="@string/room4">Dijkstra Room</string>
+    <string name="room5" tools:keep="@string/room5">Turing Room</string>
+    <string name="room6" tools:keep="@string/room6">Lovelace Room</string>
     <string name="room7" tools:keep="@string/room7">Mezzanine</string>
     <string name="unknown" tools:keep="@string/room7">Unknown room</string>
+    <string name="mummy">Milky Way room</string>
+
+    <string name="hearing_risp">This room will be equipped with a web-based RISP system for people who are deaf or hard of hearing</string>
+    <string name="hearing_scrivo">This room will be equipped with a semi automatic transcription system (Scrivobox) for people who are deaf or hard of hearing</string>
+    <string name="video">This session will be filmed and the video will be posted on our website after the conference</string>
+
 
     <string name="about_title">MiXiT 2018 Client</string>
     <string name="about_description">This app was created by MiXiT team to help you to follow the conference. If you want to increase this app you can. The project is Open Source and available on <a href="https://github.com/mixitconf/mixit-android">Github</a>. For more informations you can go on our <a href="https://mixitconf.org">website</a> </string>
@@ -35,7 +46,7 @@
     <string name="planning_random">Random sessions</string>
 
     <string name="welcome">The conference from Lyon with crêpes and love</string>
-    <string name="dates">19 \u0026 20 April 2018</string>
+    <string name="dates">23 \u0026 25 May 2019</string>
 
     <string name="come_to_mixit">Come to MiXiT</string>
     <string name="come_to_party">Come to Party</string>
@@ -44,5 +55,6 @@
     <string name="calendar_add">Calendar event</string>
     <string name="calendar_question2">You have already an event in your calendar on the same time range. Do you want still to add this session to your Calendar ?</string>
     <string name="calendar_question1">Do you want to add this session to your Calendar ?</string>
+
 
 </resources>

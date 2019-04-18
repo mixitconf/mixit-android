@@ -2,32 +2,27 @@ package org.mixitconf.fragment
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.v4.app.Fragment
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_datalist.*
+import org.mixitconf.OnTalkSelectedListener
 import org.mixitconf.R
 import org.mixitconf.adapter.TalkListAdapter
 import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat
 import org.mixitconf.repository.TalkReader
 import org.mixitconf.service.endLocale
+import org.mixitconf.service.mixitApp
 import org.mixitconf.service.startLocale
 
 
 class TalkFragment : Fragment() {
 
     private var listState: Parcelable? = null
-
-    /**
-     * Interface implemented by parent activity to display a talk when user clicks on a talk in the list
-     */
-    interface OnTalkSelectedListener {
-        fun onTalkSelected(id: String):Int
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_datalist, container, false)
@@ -39,20 +34,24 @@ class TalkFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val talks = TalkReader.getInstance(context!!)
+        val talks = mixitApp.talkReader
                 .findAll()
                 .filter { it.format != TalkFormat.RANDOM }
                 .toMutableList()
 
-        talks.addAll(TalkReader.getInstance(context!!).findMarkers())
+        talks.addAll(mixitApp.talkReader.findMarkers())
 
         // Lookup the recycler view in activity layout
         dataList.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context)
-            adapter = TalkListAdapter(talks.sortedWith(compareBy<Talk> { it.startLocale() }.thenBy { it.endLocale() }.thenBy { it.room }), context)
+            layoutManager = LinearLayoutManager(context).also {
+                it.onRestoreInstanceState(listState)
+            }
+            adapter = TalkListAdapter(activity as OnTalkSelectedListener, resources).also {
+                it.update(talks.sortedWith(compareBy<Talk> { it.startLocale() }.thenBy { it.endLocale() }.thenBy { it.room }))
+            }
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-            layoutManager.onRestoreInstanceState(listState)
+
         }
     }
 }

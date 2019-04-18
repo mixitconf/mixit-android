@@ -1,25 +1,26 @@
 package org.mixitconf.service
 
 import android.content.Context
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mixitconf.MiXiTApplication
 
 /**
  * Test {@link UserReader}
  */
-@RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
 class SpeakerServiceTest{
     private lateinit var service: SpeakerService
     private lateinit var appContext: Context
 
     @Before
     fun init() {
-        appContext = InstrumentationRegistry.getTargetContext()
-        service = SpeakerService(appContext)
+        val mixitApp = InstrumentationRegistry.getInstrumentation().context.applicationContext as MiXiTApplication
+        service = mixitApp.speakerService
     }
 
     @Test

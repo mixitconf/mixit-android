@@ -2,16 +2,16 @@ package org.mixitconf.fragment
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.v4.app.Fragment
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_datalist.*
 import org.mixitconf.R
 import org.mixitconf.adapter.UserListAdapter
-import org.mixitconf.service.SpeakerService
+import org.mixitconf.service.mixitApp
 
 
 class SpeakerFragment : Fragment() {
@@ -36,15 +36,20 @@ class SpeakerFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        val speakers = SpeakerService.getInstance(context!!).findSpeakers().sortedBy { it.firstname }
+        val speakers = mixitApp.speakerService.findSpeakers().sortedBy { it.firstname }
 
         // Lookup the recycler view in activity layout
         dataList.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context)
-            adapter = UserListAdapter(speakers, context)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-            layoutManager.onRestoreInstanceState(listState)
+            layoutManager = LinearLayoutManager(context).also {
+                it.onRestoreInstanceState(listState)
+            }
+            adapter = UserListAdapter(activity as OnSpeakerSelectedListener).also {
+                it.update(speakers)
+            }
+
+
         }
     }
 }

@@ -3,28 +3,28 @@ package org.mixitconf
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.experimental.launch
 import org.mixitconf.fragment.*
-import org.mixitconf.repository.TalkReader
-import org.mixitconf.repository.UserReader
 import org.mixitconf.service.hasIntentPackage
 import org.mixitconf.service.openFragment
 import org.mixitconf.service.openFragmentDetail
 
-open class MainActivity : AppCompatActivity(),
-        TalkFragment.OnTalkSelectedListener,
-        SpeakerFragment.OnSpeakerSelectedListener{
+/**
+ * Interface implemented by parent activity to display a talk when user clicks on a talk in the list
+ */
+interface OnTalkSelectedListener {
+    fun onTalkSelected(id: String):Int
+}
+
+open class MainActivity : AppCompatActivity(), OnTalkSelectedListener, SpeakerFragment.OnSpeakerSelectedListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("MainActivity","onCreate start")
         setContentView(R.layout.activity_main)
 
         // Initialize the top action bar to display Home button
@@ -34,11 +34,6 @@ open class MainActivity : AppCompatActivity(),
         }
 
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-
-        launch {
-            TalkReader.getInstance(baseContext)
-            UserReader.getInstance(baseContext)
-        }
     }
 
     /**
@@ -57,50 +52,41 @@ open class MainActivity : AppCompatActivity(),
         delegate.setTitle("")
     }
 
+    override fun onTalkSelected(id: String) = openFragmentDetail(id, TalkDetailFragment())
 
-    override fun onTalkSelected(id: String)  = supportFragmentManager.openFragmentDetail(id, TalkDetailFragment())
-
-    override fun onSpeakerSelected(id: String) = supportFragmentManager.openFragmentDetail(id, SpeakerDetailFragment())
+    override fun onSpeakerSelected(id: String) = openFragmentDetail(id, SpeakerDetailFragment())
 
     /**
      * Listener used on top action bar when a user clicks on an action
      */
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             android.R.id.home -> {
                 startActivity(Intent(this, MainActivity::class.java))
-                return true
             }
             R.id.navigation_about -> {
                 DialogAboutFragment().show(fragmentManager, resources.getString(R.string.about_title))
-                return true
             }
             R.id.navigation_github -> {
-                baseContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/mixitconf")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-                return true
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/mixitconf")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             }
             R.id.navigation_twitter -> {
-                val hasTwitterApp = baseContext.hasIntentPackage("com.twitter.android")
+                val hasTwitterApp = applicationContext.hasIntentPackage("com.twitter.android")
                 val intentUri = if (hasTwitterApp) "twitter://user?screen_name=mixitconf" else "https://twitter.com/mixitconf"
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(intentUri)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                baseContext.startActivity(intent)
-                return true
+                startActivity(intent)
             }
             R.id.comeToPartyButton -> {
-                val hasMapApp = baseContext.hasIntentPackage("com.google.android.apps.maps")
-                if (hasMapApp) {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:45.767643,4.8328633?z=17&q=Hôtel+de+Ville+de+Lyon"))
-                    baseContext.startActivity(intent)
+                if(applicationContext.hasIntentPackage("com.google.android.apps.maps")){
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:5.7366857,4.8128151?z=18&q=Le+Sucre,+50+Quai+Rambaud,+69002+Lyon"))
+                    startActivity(intent)
                 }
-                return true
             }
             R.id.comeToMiXiTButton -> {
-                val hasMapApp = baseContext.hasIntentPackage("com.google.android.apps.maps")
-                if (hasMapApp) {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:45.78392,4.869014?z=17&q=CPE+Lyon,+43+Boulevard+du+11+novembre,+69100+Villeurbanne"))
-                    baseContext.startActivity(intent)
+                if(applicationContext.hasIntentPackage("com.google.android.apps.maps")){
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:45.7481118,4.8591068?z=18&q=Manufacture+des+Tabacs,6+rue+professeur+Rollet,+69008+Lyon"))
+                    startActivity(intent)
                 }
-                return true
             }
         }
         return super.onOptionsItemSelected(item)
@@ -112,11 +98,11 @@ open class MainActivity : AppCompatActivity(),
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_talk -> {
-                supportFragmentManager.openFragment(TalkFragment())
+                openFragment(TalkFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_speaker -> {
-                supportFragmentManager.openFragment(SpeakerFragment())
+                openFragment(SpeakerFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_website -> {

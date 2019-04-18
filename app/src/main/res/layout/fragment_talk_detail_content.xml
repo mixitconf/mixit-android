@@ -1,105 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@android:color/white"
     android:scrollbars="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/head_list"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="5dp">
 
         <TextView
             android:id="@+id/talkName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:maxLines="2"
-            android:paddingBottom="8dp"
             android:paddingTop="4dp"
+            android:paddingBottom="8dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/talkRoom"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="@dimen/room_button_text_size"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:gravity="top"
             android:textColor="@color/textShadow"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/talkName" />
 
         <TextView
             android:id="@+id/talkTime"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:textColor="@color/textShadow"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/talkRoom" />
 
         <TextView
-            android:id="@+id/talkLanguage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:paddingEnd="2dp"
-            android:paddingStart="2dp"
-            android:text="@string/en"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
+                android:id="@+id/talkLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@color/colorAccent"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="@string/en"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/talkTime" android:layout_marginTop="8dp"/>
 
         <TextView
-            android:id="@+id/talkSummary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp" />
+                android:id="@+id/talkSummary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:paddingTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.555" app:layout_constraintTop_toBottomOf="@+id/talkLanguage"
+                android:layout_marginTop="24dp"/>
 
         <TextView
-            android:id="@+id/talkDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
+                android:id="@+id/talkDescHearing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/talkHearing" android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="@+id/talkHearing"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+        <TextView
+                android:id="@+id/talkDescVideo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/talkVideo"
+                app:layout_constraintTop_toBottomOf="@+id/talkDescHearing" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:layout_marginStart="8dp" android:text="@string/video"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" android:layout_marginTop="8dp"/>
+        <TextView
+                android:id="@+id/talkDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/talkSummary"/>
 
 
         <TextView
-            android:id="@+id/speakersTitle"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingEnd="0dp"
-            android:paddingStart="2dp"
-            android:paddingTop="0dp"
-            android:text="@string/title_speakers"
-            android:textStyle="bold" />
+                android:id="@+id/speakersTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:paddingStart="2dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="0dp"
+                android:text="@string/title_speakers"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/talkTopic" android:layout_marginTop="24dp"/>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/talkSpeakerList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/speakersTitle" />
 
         <ImageView
-            android:id="@+id/talkImageTrack"
-            android:layout_width="@dimen/item_image_menu_size"
-            android:layout_height="@dimen/item_image_menu_size"
-            android:layout_gravity="center_vertical"
-            android:contentDescription="@string/topic_image"
-            android:paddingBottom="4dp"
-            android:paddingEnd="2dp"
-            android:paddingStart="4dp"
-            android:paddingTop="8dp"
-            android:scaleType="fitCenter" />
+                android:id="@+id/talkImageTrack"
+                android:layout_width="@dimen/item_image_menu_size"
+                android:layout_height="@dimen/item_image_menu_size"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/topic_image"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/talkDescription"/>
 
         <TextView
-            android:id="@+id/talkTopic"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingBottom="4dp"
-            android:paddingEnd="2dp"
-            android:paddingStart="2dp"
-            android:paddingTop="4dp"
-            android:text="@string/title_speakers"
-            android:textStyle="bold" />
-    </LinearLayout>
+                android:id="@+id/talkTopic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:paddingStart="2dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="2dp"
+                android:paddingBottom="4dp"
+                android:text="@string/title_speakers"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintTop_toBottomOf="@+id/talkImageTrack"/>
+
+        <ImageView
+                android:id="@+id/talkHearing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/topic_image"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_hearing"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/talkSpeakerList" android:layout_marginTop="24dp"/>
+        <ImageView
+                android:id="@+id/talkVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/topic_image"
+                android:scaleType="fitStart"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent" app:srcCompat="@drawable/ic_videocam_black_24dp"
+                app:layout_constraintTop_toTopOf="@+id/talkDescVideo" android:layout_marginTop="8dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,26 +1,26 @@
 package org.mixitconf.repository
 
 import android.content.Context
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mixitconf.MiXiTApplication
 
 /**
  * Test {@link EventReader}
  */
-@RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
 class EventReaderTest {
     private lateinit var reader: EventReader
-    private lateinit var appContext: Context
 
     @Before
     fun init() {
-        appContext = InstrumentationRegistry.getTargetContext()
-        reader = EventReader.getInstance(appContext)
+        val mixitApp = InstrumentationRegistry.getInstrumentation().context.applicationContext as MiXiTApplication
+        reader = mixitApp.eventReader
     }
 
     @Test
@@ -33,6 +33,6 @@ class EventReaderTest {
     fun findOne() {
         // Context of the app under test.
         val event = reader.findOne("mixit18")
-        assertEquals(2018, event.year)
+        assertEquals(2019, event.year)
     }
 }

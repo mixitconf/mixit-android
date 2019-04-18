@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MiXiT 2018</string>
-    <string name="event_day1">Jeudi 19 avril</string>
-    <string name="event_day2">Vendredi 20 avril</string>
+    <string name="app_name">MiXiT 2019</string>
+    <string name="event_day1">Jeudi 19 mai</string>
+    <string name="event_day2">Vendredi 20 mai</string>
+    <string name="event_day3">Samedi 35 mai</string>
 
     <string name="title_talks">Talks</string>
     <string name="title_speakers">Speakers</string>
@@ -18,6 +19,10 @@
 
     <string name="amphi1" tools:keep="@string/amphi1">Amphithéâtre Lovelace</string>
     <string name="amphi2" tools:keep="@string/amphi2">Amphithéâtre Hamilton</string>
+    <string name="amphic">Amphithéâtre C</string>
+    <string name="amphid">Amphithéâtre D</string>
+    <string name="amphik">Amphithéâtre K</string>
+    <string name="speaker">Salle du conseil</string>
     <string name="room1" tools:keep="@string/room1">Salle Gosling</string>
     <string name="room2" tools:keep="@string/room2">Salle Eich</string>
     <string name="room3" tools:keep="@string/room3">Salle Nonaka</string>
@@ -26,6 +31,11 @@
     <string name="room6" tools:keep="@string/room6">Salle Lovelace</string>
     <string name="room7" tools:keep="@string/room7">Mezzanine</string>
     <string name="unknown" tools:keep="@string/unknown">Salle inconnue</string>
+    <string name="mummy">Salle Milky Way</string>
+
+    <string name="hearing_risp">Cette salle sera équipée en vélotypie avec un système RISP pour les personnes sourdes ou malentendantes</string>
+    <string name="hearing_scrivo">Cette salle sera équipée avec un système de transcription semi automatique (Scrivobox) pour les personnes sourdes ou malentendantes</string>
+    <string name="video">Cette session sera filmée, et la vidéo sera postée sur notre site après la conférence</string>
 
     <string name="about_title">MiXiT 2018 Client</string>
     <string name="about_description">Cette application a été créée par la team MiXiT pour vous aider à suivre la conférence. Le projet est Open Source et vous pouvez nous aider à améliorer l\'application. Le projet est disponible sous <a href="https://github.com/mixitconf/mixit-android">Github</a>. Pour plus d\'informations vous pouvez consulter notre <a href="https://mixitconf.org">site</a> </string>.
@@ -37,7 +47,7 @@
     <string name="planning_random">Sessions random</string>
 
     <string name="welcome">La conférence lyonnaise avec des crêpes et du coeur</string>
-    <string name="dates">19 \u0026 20 avril 2018</string>
+    <string name="dates">23 \u0026 25 mai 2019</string>
 
     <string name="come_to_mixit">Venir à MiXiT</string>
     <string name="come_to_party">Venir à la soirée</string>

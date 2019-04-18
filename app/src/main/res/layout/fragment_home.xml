@@ -1,55 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/homeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
-
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:paddingLeft="3dp"
+        android:paddingTop="@dimen/item_image_padding"
+        android:paddingRight="3dp"
+        android:text="@string/welcome"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:paddingTop="@dimen/item_image_padding"
-            android:text="@string/welcome"
-            android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/dates"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:paddingTop="@dimen/item_image_padding"
-            android:text="@string/dates"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-            android:textColor="@color/colorSecondary" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/item_image_padding"
+        android:src="@drawable/mxt_heart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:contentDescription="@string/app_name"
-            android:padding="@dimen/item_image_padding"
-            android:src="@drawable/mxt_heart" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/dates"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:paddingLeft="3dp"
+        android:paddingTop="@dimen/item_image_padding"
+        android:paddingRight="3dp"
+        android:text="@string/dates"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textColor="@color/colorSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@drawable/mxt_background"
-        android:orientation="vertical">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dates"
+        app:srcCompat="@drawable/mxt_background_img" />
 
-    </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
