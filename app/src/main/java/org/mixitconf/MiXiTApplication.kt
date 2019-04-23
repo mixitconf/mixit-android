@@ -1,46 +1,63 @@
 package org.mixitconf
 
-import android.Manifest
 import android.app.Application
 import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import org.mixitconf.model.Event
-import org.mixitconf.model.Talk
-import org.mixitconf.model.User
-import org.mixitconf.repository.EventReader
-import org.mixitconf.repository.TalkReader
-import org.mixitconf.repository.UserReader
-import org.mixitconf.service.SpeakerService
-
-class MiXiTApplication : Application() {
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.AndroidViewModel
+import androidx.room.Room
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import org.mixitconf.repository.dao.MiXiTDatabase
+import org.mixitconf.repository.readers.DataInitializer
+import kotlin.coroutines.CoroutineContext
 
 
-    val speakerService by lazy {
-        SpeakerService(talkReader, userReader)
-    }
+class MiXiTApplication : Application(), CoroutineScope {
 
-    val eventReader by lazy {
-        val jsonInputStream = applicationContext.resources.openRawResource(R.raw.events)
-        val events: List<Event> = jacksonObjectMapper().readValue(jsonInputStream)
-        EventReader(events)
-    }
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Default
 
-    val talkReader by lazy {
-        val jsonInputStream = applicationContext.resources.openRawResource(R.raw.talks_2019)
-        val talks: List<Talk> = jacksonObjectMapper().readValue(jsonInputStream)
-        TalkReader(talks, applicationContext)
-    }
+    val DATABASE_NAME = "mixitconf"
 
-    val userReader by lazy {
-        val json = applicationContext.resources.openRawResource(R.raw.users)
-        val users: List<User> = jacksonObjectMapper().readValue(json)
-        UserReader(users)
-    }
-
+    /**
+     * Used to check user permission
+     */
     fun hasPermission(permission: String) = ContextCompat.checkSelfPermission(applicationContext, permission) == PackageManager.PERMISSION_GRANTED
 
+    private val database: MiXiTDatabase by lazy {
+        Room.databaseBuilder(applicationContext, MiXiTDatabase::class.java, DATABASE_NAME)
+            .build()
+    }
+
+    val speakerDao
+        get() = database.speakerDao()
+
+    val talkDao
+        get() = database.talkDao()
+
+    val eventDao
+        get() = database.eventDao()
+
+    val dataInitializer by lazy {
+        DataInitializer(applicationContext, database)
+    }
+
+    /**
+     * When app is created we check that current event data are in the database
+     */
+    override fun onCreate() {
+        super.onCreate()
+        // TODO to delete
+        deleteDatabase(DATABASE_NAME)
+        dataInitializer.initialize()
+    }
 }
 
+// Extensions to expose app in object
+
+val AndroidViewModel.mixitApp
+    get() = this.getApplication<MiXiTApplication>()
+
+val Fragment.mixitApp
+    get() = this.activity?.application as MiXiTApplication

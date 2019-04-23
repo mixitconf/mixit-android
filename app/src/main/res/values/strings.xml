@@ -14,47 +14,60 @@
     <string name="talk_time_range">"%1$s from %2$s to %3$s "</string>
     <string name="topic_image">Topic image</string>
 
+    <string name="roomandcapa">%s (cap. %s)</string>
     <string name="amphi1" tools:keep="@string/amphi1">Lovelace Amphitheatre</string>
     <string name="amphi2" tools:keep="@string/amphi2">Hamilton Amphitheatre</string>
     <string name="amphic">C Amphitheatre</string>
     <string name="amphid">D Amphitheatre</string>
     <string name="amphik">K Amphitheatre</string>
     <string name="speaker">Salle du conseil</string>
-    <string name="room1" tools:keep="@string/room1">Gosling Room</string>
-    <string name="room2" tools:keep="@string/room2">Eich Room</string>
-    <string name="room3" tools:keep="@string/room3">Nonaka Room</string>
-    <string name="room4" tools:keep="@string/room4">Dijkstra Room</string>
-    <string name="room5" tools:keep="@string/room5">Turing Room</string>
-    <string name="room6" tools:keep="@string/room6">Lovelace Room</string>
+    <string name="room1" tools:keep="@string/room1">Gosling Room (S03)</string>
+    <string name="room2" tools:keep="@string/room2">Eich Room (S02)</string>
+    <string name="room3" tools:keep="@string/room3">Nonaka Room (S120)</string>
+    <string name="room4" tools:keep="@string/room4">Dijkstra Room (S121)</string>
+    <string name="room5" tools:keep="@string/room5">Turing Room (S122)</string>
+    <string name="room6" tools:keep="@string/room6">Lovelace Room (S123)</string>
     <string name="room7" tools:keep="@string/room7">Mezzanine</string>
     <string name="unknown" tools:keep="@string/room7">Unknown room</string>
-    <string name="mummy">Milky Way room</string>
+    <string name="mummy">Milky Way room (S117)</string>
+
 
     <string name="hearing_risp">This room will be equipped with a web-based RISP system for people who are deaf or hard of hearing</string>
     <string name="hearing_scrivo">This room will be equipped with a semi automatic transcription system (Scrivobox) for people who are deaf or hard of hearing</string>
     <string name="video">This session will be filmed and the video will be posted on our website after the conference</string>
 
 
-    <string name="about_title">MiXiT 2018 Client</string>
-    <string name="about_description">This app was created by MiXiT team to help you to follow the conference. If you want to increase this app you can. The project is Open Source and available on <a href="https://github.com/mixitconf/mixit-android">Github</a>. For more informations you can go on our <a href="https://mixitconf.org">website</a> </string>
+    <string name="about_title">MiXiT 2019 Client</string>
+    <string name="about_description">This app was created by MiXiT team to help you to follow the conference. If you want to increase this app you can. The project is Open Source and available on <a href="https://github.com/mixitconf/mixit-android">Github</a>. For more informations you can go on our <a href="https://mixitconf.org">website</a></string>
 
+    <string name="TALK">TALK</string>
+    <string name="WORKSHOP">WORKSHOP</string>
+    <string name="RANDOM">RANDOM</string>
+    <string name="KEYNOTE">KEYNOTE</string>
+    <string name="KEYNOTE_SURPRISE">OPENING SESSION</string>
     <string name="planning_team_word">Team introduction</string>
     <string name="planning_session_intro">Session introduction by speakers</string>
     <string name="planning_team_outro">Team conclusion</string>
-    <string name="planning_pause">Pause</string>
+    <string name="planning_pause_10">Pause (10 min)</string>
+    <string name="planning_pause_25">Pause (25 min)</string>
+    <string name="planning_pause_30">Pause (30 min)</string>
     <string name="planning_lunch">Lunch</string>
     <string name="planning_random">Random sessions</string>
+    <string name="planning_reception">Reception (coffee)</string>
 
     <string name="welcome">The conference from Lyon with crêpes and love</string>
     <string name="dates">23 \u0026 25 May 2019</string>
 
     <string name="come_to_mixit">Come to MiXiT</string>
     <string name="come_to_party">Come to Party</string>
-    <string name="appPermission">MiXiT app can add talks you want to see on your calendar. Of course it\'s not mandatory. Your calendar data are not read. We just check that you have no overlapped events to prevent your calendar pollution.</string>
+    <string name="appPermission">MiXiT app can add talks you want to see on your calendar. Of course it\'s not mandatory. Your calendar data are not read. We just check that you have no overlapped events to prevent your calendar pollution.
+    </string>
     <string name="en">EN</string>
     <string name="calendar_add">Calendar event</string>
-    <string name="calendar_question2">You have already an event in your calendar on the same time range. Do you want still to add this session to your Calendar ?</string>
+    <string name="calendar_question2">You have already an event in your calendar on the same time range. Do you want still to add this session to your Calendar ?
+    </string>
     <string name="calendar_question1">Do you want to add this session to your Calendar ?</string>
+    <string name="party">Party</string>
 
 
 </resources>

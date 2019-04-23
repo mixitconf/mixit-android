@@ -6,18 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_datalist.*
 import org.mixitconf.OnTalkSelectedListener
 import org.mixitconf.R
 import org.mixitconf.adapter.TalkListAdapter
-import org.mixitconf.model.Talk
-import org.mixitconf.model.TalkFormat
-import org.mixitconf.repository.TalkReader
-import org.mixitconf.service.endLocale
-import org.mixitconf.service.mixitApp
-import org.mixitconf.service.startLocale
+import org.mixitconf.service.default
+import org.mixitconf.vm.TalkListViewModel
 
 
 class TalkFragment : Fragment() {
@@ -25,33 +22,26 @@ class TalkFragment : Fragment() {
     private var listState: Parcelable? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_datalist, container, false)
+        inflater.inflate(R.layout.fragment_datalist, container, false)
 
     override fun onPause() {
         super.onPause()
         listState = (dataList.layoutManager as LinearLayoutManager).onSaveInstanceState()
     }
 
-    override fun onResume() {
-        super.onResume()
-        val talks = mixitApp.talkReader
-                .findAll()
-                .filter { it.format != TalkFormat.RANDOM }
-                .toMutableList()
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
-        talks.addAll(mixitApp.talkReader.findMarkers())
+        dataList
+            .default { TalkListAdapter(activity as OnTalkSelectedListener, resources) }
+            .apply { layoutManager?.onRestoreInstanceState(listState) }
 
-        // Lookup the recycler view in activity layout
-        dataList.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context).also {
-                it.onRestoreInstanceState(listState)
-            }
-            adapter = TalkListAdapter(activity as OnTalkSelectedListener, resources).also {
-                it.update(talks.sortedWith(compareBy<Talk> { it.startLocale() }.thenBy { it.endLocale() }.thenBy { it.room }))
-            }
-            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-
-        }
+        ViewModelProviders
+            .of(this)
+            .get(TalkListViewModel::class.java)
+            .liveData
+            .observe(this, Observer {
+                (dataList.adapter as TalkListAdapter).update(it)
+            })
     }
 }

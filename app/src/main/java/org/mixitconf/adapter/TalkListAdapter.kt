@@ -10,15 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import org.mixitconf.OnTalkSelectedListener
 import org.mixitconf.R
 import org.mixitconf.model.Language
-import org.mixitconf.model.Talk
 import org.mixitconf.model.TalkFormat.*
-import org.mixitconf.service.getBgColorDependingOnTime
+import org.mixitconf.model.entity.Talk
+import org.mixitconf.model.entity.getBgColorDependingOnTime
+import org.mixitconf.model.entity.getTimeLabel
+import org.mixitconf.model.entity.topicDrawableResource
 import org.mixitconf.service.getLegacyColor
-import org.mixitconf.service.getTimeLabel
+import org.mixitconf.service.visibility
 
 
-class TalkListAdapter(val onTalkListener: OnTalkSelectedListener,
-                      val ressources: Resources) : RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
+class TalkListAdapter(
+    val onTalkListener: OnTalkSelectedListener,
+    val ressources: Resources
+) : RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
 
     private val items = mutableListOf<Talk>()
 
@@ -41,9 +45,11 @@ class TalkListAdapter(val onTalkListener: OnTalkSelectedListener,
     override fun getItemCount(): Int = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TalkListAdapter.ViewHolder =
-            ViewHolder(LayoutInflater
-                    .from(parent.context)
-                    .inflate(R.layout.fragment_talk_item, parent, false))
+        ViewHolder(
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.fragment_talk_item, parent, false)
+        )
 
 
     override fun onViewRecycled(holder: ViewHolder) {
@@ -71,18 +77,21 @@ class TalkListAdapter(val onTalkListener: OnTalkSelectedListener,
                     displayFields(nameOnCenter = true, showTime = false)
                 }
                 RANDOM -> {
-                    paintItemView(talk.getBgColorDependingOnTime(R.color.colorAccent), timeColor = android.R.color.white)
+                    paintItemView(talk.getBgColorDependingOnTime(R.color.colorSecondary))
                     displayFields(talk)
                 }
                 PARTY -> {
-                    paintItemView(talk.getBgColorDependingOnTime(R.color.colorAccent), timeColor = android.R.color.white)
+                    paintItemView(
+                        talk.getBgColorDependingOnTime(R.color.colorAccent),
+                        timeColor = android.R.color.white
+                    )
                     displayFields()
                 }
-                SESSION_INTRO, LUNCH, ORGA -> {
+                SESSION_INTRO, LUNCH, ORGA, WELCOME -> {
                     paintItemView(talk.getBgColorDependingOnTime(R.color.colorShadow))
                     displayFields()
                 }
-                PAUSE_10_MIN, PAUSE_20_MIN, PAUSE_30_MIN -> {
+                PAUSE_10_MIN, PAUSE_25_MIN, PAUSE_30_MIN -> {
                     paintItemView(talk.getBgColorDependingOnTime(R.color.colorShadow))
                     displayFields()
                 }
@@ -92,20 +101,20 @@ class TalkListAdapter(val onTalkListener: OnTalkSelectedListener,
     }
 
     private fun ViewHolder.paintItemView(
-            background: Int,
-            nameColor: Int = android.R.color.black,
-            timeColor: Int = R.color.textShadow) {
+        background: Int,
+        nameColor: Int = android.R.color.black,
+        timeColor: Int = R.color.textShadow
+    ) {
         itemView.setBackgroundColor(ressources.getLegacyColor(background))
         name.setTextColor(ressources.getLegacyColor(nameColor))
         time.setTextColor(ressources.getLegacyColor(timeColor))
-        name.textAlignment = View.TEXT_ALIGNMENT_INHERIT
     }
 
     private fun ViewHolder.displayFields(
-            talk: Talk? = null,
-            nameOnCenter: Boolean = false,
-            showTime: Boolean = true) {
-
+        talk: Talk? = null,
+        nameOnCenter: Boolean = false,
+        showTime: Boolean = true
+    ) {
 
         name.textAlignment = if (nameOnCenter) View.TEXT_ALIGNMENT_CENTER else View.TEXT_ALIGNMENT_TEXT_START
 
@@ -118,18 +127,13 @@ class TalkListAdapter(val onTalkListener: OnTalkSelectedListener,
         } else {
             itemView.setOnClickListener { onTalkListener.onTalkSelected(talk.id) }
             generalFields.forEach { it.visibility = View.VISIBLE }
-            if (talk.language == Language.FRENCH){
-                talkLanguage.visibility = View.GONE
-            }
-            image.setImageResource(talk.getTopicDrawableResource())
-            type.text = talk.format.name
+            talkLanguage.visibility = (talk.language == Language.FRENCH).visibility
+            image.setImageResource(talk.topicDrawableResource)
+            type.setText(talk.format.label)
             description.text = talk.summary
             room.setText(ressources.getText(talk.room.i18nId))
         }
-
-        if(showTime == false){
-            time.visibility = View.GONE
-        }
+        time.visibility = showTime.visibility
     }
 
 }

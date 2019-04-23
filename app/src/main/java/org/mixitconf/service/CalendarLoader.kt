@@ -1,6 +1,5 @@
 package org.mixitconf.service
 
-import android.content.Context
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.CalendarContract
@@ -9,7 +8,8 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import org.mixitconf.MiXiTApplication
-import org.mixitconf.model.Talk
+import org.mixitconf.model.dto.TalkDto
+import org.mixitconf.model.entity.Talk
 
 /**
  * Loader used to find MiXiT talks in the user Calendar. This loader is only launched if user accepts to open
