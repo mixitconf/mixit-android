@@ -1,0 +1,24 @@
+package org.mixitconf.model.enums
+
+import org.mixitconf.R
+
+enum class Room(val i18nId: Int, val capacity: Int, val filmed: Boolean=false, val risp:Boolean=false, val scribo:Boolean=false) {
+    AMPHI1(R.string.amphi1, 500, filmed=true, risp = true),
+    AMPHI2(R.string.amphi2, 200, filmed=true, risp = true),
+    AMPHIC(R.string.amphic, 445, filmed=true, risp = true),
+    AMPHID(R.string.amphid, 445, filmed=true, scribo = true),
+    AMPHIK(R.string.amphik, 300, filmed=true, risp = true),
+    SPEAKER(R.string.speaker, 16),
+    ROOM1(R.string.room1, 198, filmed=true, scribo = true),
+    ROOM2(R.string.room2, 108),
+    ROOM3(R.string.room3, 30),
+    ROOM4(R.string.room4, 30),
+    ROOM5(R.string.room5, 30),
+    ROOM6(R.string.room6, 30),
+    ROOM7(R.string.room7, 30),
+    MUMMY(R.string.mummy, 2),
+    UNKNOWN(R.string.unknown, 0)
+}
+
+val Room.hardOfHearingSytem
+    get() = this.risp || this.scribo

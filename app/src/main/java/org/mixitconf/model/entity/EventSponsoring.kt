@@ -1,7 +1,7 @@
 package org.mixitconf.model.entity
 
 import androidx.room.*
-import org.mixitconf.model.SponsorshipLevel
+import org.mixitconf.model.enums.SponsorshipLevel
 
 @Entity(primaryKeys = arrayOf("sponsorId","level"))
 data class EventSponsoring(

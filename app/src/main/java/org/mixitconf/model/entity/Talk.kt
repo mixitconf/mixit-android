@@ -5,13 +5,13 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.github.rjeschke.txtmark.Processor
+import org.mixitconf.MiXiTApplication
 import org.mixitconf.R
-import org.mixitconf.model.Language
-import org.mixitconf.model.Room
-import org.mixitconf.model.TalkFormat
-import org.mixitconf.model.isTalk
-import org.mixitconf.service.Constant
-import org.mixitconf.service.toHtml
+import org.mixitconf.model.enums.Language
+import org.mixitconf.model.enums.Room
+import org.mixitconf.model.enums.TalkFormat
+import org.mixitconf.model.enums.isTalk
+import org.mixitconf.toHtml
 import java.text.DateFormat
 import java.util.*
 
@@ -85,7 +85,7 @@ private val Date.timeInFrenchLocale
 
 fun Talk.getTimeLabel(resources: Resources): String = String.format(
     resources.getString(R.string.talk_time_range),
-    Constant.DATE_FORMAT.format(start),
+    MiXiTApplication.DATE_FORMAT.format(start),
     DateFormat.getTimeInstance(DateFormat.SHORT).format(startLocale),
     DateFormat.getTimeInstance(DateFormat.SHORT).format(endLocale)
 )

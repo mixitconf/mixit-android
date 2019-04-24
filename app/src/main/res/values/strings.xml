@@ -4,6 +4,7 @@
     <string name="event_day2">Friday 24th May</string>
     <string name="event_day3">Saturday 25th May</string>
 
+    <string name="title_sync">Synchronize data</string>
     <string name="title_talks">Talks</string>
     <string name="title_speakers">Speakers</string>
     <string name="title_website">Web site</string>
@@ -70,4 +71,8 @@
     <string name="party">Party</string>
 
 
+    <string name="error_sync_speakers">Error on speaker synchronization (%s)</string>
+    <string name="error_sync_talks">Error on talk synchronization (%s)</string>
+    <string name="sync_data">Data are synchronized</string>
+    <string name="networkPermission">Data synchronization is only available if you give rigths to this app to go on the Internet</string>
 </resources>

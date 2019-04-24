@@ -5,12 +5,12 @@
     <string name="event_day2">Vendredi 20 mai</string>
     <string name="event_day3">Samedi 25 mai</string>
 
+    <string name="title_sync">Synchroniser les données</string>
     <string name="title_talks">Talks</string>
     <string name="title_speakers">Speakers</string>
     <string name="title_website">Site Web</string>
     <string name="title_twitter">Suivez nous</string>
     <string name="title_github">Contribuez</string>
-
     <string name="title_about">A propos</string>
 
     <string name="talk_time_range">"%1$s de %2$s à %3$s "</string>
@@ -67,5 +67,10 @@
     <string name="calendar_question1">Veux-tu ajouter cette session à ton calendrier ?</string>
     <string name="calendar_question2">Tu as déjà un événement défini dans ton calendrier sur les mêmes plages horaires. Veux-tu ajouter cette session à ton calendrier ?</string>
     <string name="party">Party</string>
+
+    <string name="error_sync_speakers">Erreur lors de la synchronisation des speakers (%s)</string>
+    <string name="error_sync_talks">Erreur lors de la synchronisation des talks (%s)</string>
+    <string name="sync_data">Les données sont synchronisées</string>
+    <string name="networkPermission">La synchronization des données n\'est possible que si tu donnes le droit à l\'application d\'accéder à Internet</string>
 
 </resources>

@@ -1,7 +1,7 @@
 package org.mixitconf.model.entity
 
 import androidx.room.TypeConverter
-import org.mixitconf.model.*
+import org.mixitconf.model.enums.*
 import java.util.*
 
 class EnumConverters {

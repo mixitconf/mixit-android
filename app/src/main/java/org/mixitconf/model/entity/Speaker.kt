@@ -7,10 +7,10 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.github.rjeschke.txtmark.Processor
 import com.squareup.picasso.Picasso
+import org.mixitconf.MiXiTApplication
 import org.mixitconf.R
-import org.mixitconf.model.LinkType
-import org.mixitconf.service.Constant
-import org.mixitconf.service.toHtml
+import org.mixitconf.model.enums.LinkType
+import org.mixitconf.toHtml
 
 @Entity
 data class Speaker(
@@ -19,7 +19,6 @@ data class Speaker(
     val firstname: String,
     val lastname: String,
     val company: String?,
-    val photoUrl: String?,
     val descriptionFr: String?,
     val descriptionEn: String?
 ) {
@@ -67,7 +66,7 @@ fun ImageView.setSpeakerImage(speaker: Speaker) {
 }
 
 private fun String.toSlug(): String =
-    toLowerCase().toCharArray().map { if (Constant.SPECIAL_SLUG_CHARACTERS[it] == null) it else Constant.SPECIAL_SLUG_CHARACTERS[it] }.joinToString(
+    toLowerCase().toCharArray().map { if (MiXiTApplication.SPECIAL_SLUG_CHARACTERS[it] == null) it else MiXiTApplication.SPECIAL_SLUG_CHARACTERS[it] }.joinToString(
         ""
     )
 

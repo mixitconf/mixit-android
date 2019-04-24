@@ -1,10 +1,9 @@
 package org.mixitconf.model.entity
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.mixitconf.model.LinkType
-import org.mixitconf.model.Social
+import org.mixitconf.model.enums.LinkType
+import org.mixitconf.model.enums.Social
 import java.util.*
 
 @Entity
