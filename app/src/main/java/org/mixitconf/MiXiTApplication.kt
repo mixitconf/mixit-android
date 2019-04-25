@@ -16,6 +16,7 @@ import okhttp3.OkHttpClient
 import org.mixitconf.model.dao.MiXiTDatabase
 import org.mixitconf.service.initialization.DataInitializerService
 import org.mixitconf.service.initialization.TalkService
+import org.mixitconf.service.synchronization.INIT_PARAM
 import org.mixitconf.service.synchronization.MiXiTApiCaller
 import org.mixitconf.service.synchronization.SynchronizationService
 import retrofit2.Retrofit
@@ -82,10 +83,9 @@ class MiXiTApplication : Application() {
      */
     override fun onCreate() {
         super.onCreate()
-        // TODO test if user has to initialize
         if(hasPermission(Manifest.permission.INTERNET)){
             Intent(applicationContext, SynchronizationService::class.java).also { intent ->
-                startService(intent)
+                startService(intent.putExtra(INIT_PARAM, true))
             }
         }
         else{

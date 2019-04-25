@@ -3,9 +3,11 @@ package org.mixitconf.service.synchronization
 import android.content.Intent
 import androidx.room.Transaction
 import kotlinx.coroutines.launch
+import org.mixitconf.MiXiTApplication
 import org.mixitconf.R
 import org.mixitconf.mixitApp
 import org.mixitconf.service.MiXitService
+import org.mixitconf.service.initialization.dto.toEntity
 import org.mixitconf.service.synchronization.dto.TalkApiDto
 import org.mixitconf.service.synchronization.dto.UserApiDto
 import org.mixitconf.service.synchronization.dto.toEntity
@@ -22,16 +24,21 @@ interface MiXiTApiCaller {
 
 }
 
+const val INIT_PARAM = "org.mixitconf.service.synchronization"
+
 class SynchronizationService : MiXitService(SynchronizationService::class.simpleName) {
 
-    override fun onHandleIntent(intent: Intent?) {
-        launch {
-            synchronizeSpeakers()
-        }
-        launch {
-            synchronizeTalks()
+    override fun onHandleIntent(intent: Intent) {
+        if(!intent.getBooleanExtra(INIT_PARAM, false)  || mixitApp.eventDao.readOneByYear(MiXiTApplication.CURRENT_EDITION) == null) {
+            launch {
+                synchronizeSpeakers()
+            }
+            launch {
+                synchronizeTalks()
+            }
         }
     }
+
 
     @Transaction
     fun synchronizeSpeakers() {
@@ -60,15 +67,18 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
     @Transaction
     fun synchronizeTalks() {
         callApi(mixitApp.miXiTApiCaller.talks(), R.string.error_sync_talks) { talks ->
-            val ids = talks.map { it.id } + mixitApp.talkService.findNonTalkMoments().map { it.id }
+            val nonTalkMoments = mixitApp.talkService.findNonTalkMoments()
+            val ids = talks.map { it.id } + nonTalkMoments.map { it.id }
 
             mixitApp.talkDao.apply {
                 val talksToDelete = this.readAll().filter { !ids.contains(it.id) }.map { it.id }
                 if (talksToDelete.isNotEmpty()) {
                     this.deleteAllById(talksToDelete)
                 }
-                talks.forEach {
-                    if(this.readOne(it.id!!) != null) this.update(it.toEntity()) else this.create(it.toEntity())
+
+                val talksToUpdate = talks.map { it.toEntity() } + nonTalkMoments.map { it.toEntity() }
+                talksToUpdate.forEach {
+                    if(this.readOne(it.id) != null) this.update(it) else this.create(it)
                 }
                 toast(mixitApp.getText(R.string.sync_data))
             }

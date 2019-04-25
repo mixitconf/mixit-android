@@ -48,9 +48,6 @@ open class MixitActivity : AppCompatActivity() {
             android.R.id.home -> {
                 startActivity(Intent(applicationContext, MainActivity::class.java))
             }
-            R.id.navigation_about -> {
-                startActivity(Intent(applicationContext, MixitActivity::class.java))
-            }
             R.id.navigation_github -> {
                 startActivity(
                     Intent(

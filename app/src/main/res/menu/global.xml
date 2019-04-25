@@ -27,9 +27,5 @@
           android:title="@string/come_to_party"
           app:showAsAction="never"/>
 
-    <item android:id="@+id/navigation_about"
-          android:title="@string/title_about"
-          app:showAsAction="never"/>
-
 
 </menu>
