@@ -12,8 +12,8 @@ interface EventSponsoringDao {
     @Query("select * from EventSponsoring")
     fun readAll(): List<EventSponsoring>
 
-    @Query("select * from EventSponsoring where sponsorId = :id")
-    fun readOne(id: String): EventSponsoring
+    @Query("select * from EventSponsoring where sponsorId = :sponsorId and eventId= :eventId")
+    fun readOne(sponsorId: String, eventId: String): EventSponsoring
 
     @Update
     fun update(eventSponsoring: EventSponsoring)

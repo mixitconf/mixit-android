@@ -25,6 +25,8 @@ class SpeakerDetailViewModel(app: Application) : AndroidViewModel(app), Coroutin
             val speaker = mixitApp.speakerDao.readOne(id)!!
             speaker.talks.clear()
             speaker.talks.addAll(mixitApp.talkDao.readAllBySpeakerId(speaker.login))
+            speaker.links.clear()
+            speaker.links.addAll(mixitApp.linkDao.readAllBySpeakerId(speaker.login))
             liveData.postValue(speaker)
         }
     }

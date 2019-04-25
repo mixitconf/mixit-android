@@ -2,6 +2,7 @@ package org.mixitconf.model.dao
 
 import androidx.room.*
 import org.mixitconf.model.entity.Link
+import org.mixitconf.model.entity.Talk
 
 @Dao
 interface LinkDao {
@@ -10,6 +11,9 @@ interface LinkDao {
 
     @Query("select * from Link")
     fun readAll(): List<Link>
+
+    @Query("select * from Link where speakerId = :id")
+    fun readAllBySpeakerId(id: String): List<Link>
 
     @Query("select * from Link where id = :id")
     fun readOne(id: String): Link

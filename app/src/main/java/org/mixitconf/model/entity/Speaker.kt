@@ -24,7 +24,7 @@ data class Speaker(
 ) {
     // These list is only populated when we want to see the speaker detail
     @Ignore
-    val links: List<Link> = mutableListOf()
+    val links: MutableList<Link> = mutableListOf()
     @Ignore
     val talks: MutableList<Talk> = mutableListOf()
 }
@@ -36,19 +36,19 @@ val Speaker.descriptionInMarkdown
     get() = if (descriptionFr.isNullOrEmpty()) null else Processor.process(descriptionFr).toHtml()
 
 private val Speaker.socialLink: Link?
-    get() = links.firstOrNull { it.linkType == LinkType.Social }
+    get() = if(links.isEmpty()) null else links.firstOrNull { it.linkType == LinkType.Social }
 
 private val Speaker.webLink: Link?
-    get() = links.firstOrNull { it.linkType == LinkType.Social }
+    get() = if(links.isEmpty()) null else links.firstOrNull { it.linkType != LinkType.Social }
 
 val Speaker.hasLink
-    get() = socialLink != null && webLink != null
+    get() = socialLink != null || webLink != null
 
 val Speaker.linkUri
     get() = Uri.parse(socialLink?.url ?: webLink?.url)
 
 val Speaker.imageLinkResourceId
-    get() = if (socialLink != null) socialLink!!.socialType.resourceId else R.drawable.mxt_icon_web
+    get() = if (socialLink != null) socialLink!!.socialType!!.resourceId else R.drawable.mxt_icon_web
 
 
 fun ImageView.setSpeakerImage(speaker: Speaker) {

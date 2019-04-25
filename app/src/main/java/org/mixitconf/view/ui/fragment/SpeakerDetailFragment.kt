@@ -36,10 +36,10 @@ class SpeakerDetailFragment : Fragment() {
             speakerDetailDescription.text = speaker.descriptionInMarkdown
             speakerDetailImage.setSpeakerImage(speaker)
 
-            if (speaker.hasLink) {
+            if (speaker.hasLink && activity!=null) {
                 navigation_speaker_link.setImageResource(speaker.imageLinkResourceId)
                 navigation_speaker_link.setOnClickListener {
-                    mixitApp.applicationContext.startActivity(Intent(Intent.ACTION_VIEW, speaker.linkUri))
+                    activity!!.startActivity(Intent(Intent.ACTION_VIEW, speaker.linkUri))
                 }
             }
             (speakerDetailTalkList.adapter as TalkListAdapter).update(speaker.talks)

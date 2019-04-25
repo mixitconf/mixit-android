@@ -12,5 +12,5 @@ data class LinkDto(
 
 fun LinkDto.toEntity(userId: String): Link {
     val social = Social.values().firstOrNull { url.contains(it.pattern) }
-    return Link(name, url, userId, if(social==null) LinkType.Social else LinkType.Web)
+    return Link(name, url, userId, if(social!=null) LinkType.Social else LinkType.Web)
 }
