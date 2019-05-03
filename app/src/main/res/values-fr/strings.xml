@@ -33,7 +33,7 @@
     <string name="room7" tools:keep="@string/room7">Mezzanine</string>
     <string name="unknown" tools:keep="@string/unknown">Salle inconnue</string>
     <string name="mummy">Salle Milky Way (S117)</string>
-
+    <string name="surprise">Surprise...</string>
 
     <string name="hearing_risp">Cette salle sera équipée en vélotypie avec un système RISP pour les personnes sourdes ou malentendantes</string>
     <string name="hearing_scrivo">Cette salle sera équipée avec un système de transcription semi automatique (Scrivobox) pour les personnes sourdes ou malentendantes</string>
@@ -44,6 +44,8 @@
     <string name="RANDOM">RANDOM</string>
     <string name="KEYNOTE">KEYNOTE</string>
     <string name="KEYNOTE_SURPRISE">OPENING SESSION</string>
+    <string name="CLOSING_SESSION">CLOSING SESSION</string>
+
     <string name="about_title">MiXiT 2019 Client</string>
     <string name="about_description">Cette application a été créée par la team MiXiT pour vous aider à suivre la conférence. Le projet est Open Source et vous pouvez nous aider à améliorer l\'application. Le projet est disponible sous <a href="https://github.com/mixitconf/mixit-android">Github</a>. Pour plus d\'informations vous pouvez consulter notre <a href="https://mixitconf.org">site</a> </string>.
     <string name="planning_team_word">Le mot de la team</string>

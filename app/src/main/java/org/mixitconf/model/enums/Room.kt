@@ -17,7 +17,8 @@ enum class Room(val i18nId: Int, val capacity: Int, val filmed: Boolean=false, v
     ROOM6(R.string.room6, 30),
     ROOM7(R.string.room7, 30),
     MUMMY(R.string.mummy, 2),
-    UNKNOWN(R.string.unknown, 0)
+    UNKNOWN(R.string.unknown, 0),
+    SURPRISE(R.string.surprise, 0)
 }
 
 val Room.hardOfHearingSytem

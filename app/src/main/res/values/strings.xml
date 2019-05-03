@@ -30,6 +30,7 @@
     <string name="room6" tools:keep="@string/room6">Lovelace Room (S123)</string>
     <string name="room7" tools:keep="@string/room7">Mezzanine</string>
     <string name="unknown" tools:keep="@string/room7">Unknown room</string>
+    <string name="surprise">Surprise...</string>
     <string name="mummy">Milky Way room (S117)</string>
 
 
@@ -46,6 +47,7 @@
     <string name="RANDOM">RANDOM</string>
     <string name="KEYNOTE">KEYNOTE</string>
     <string name="KEYNOTE_SURPRISE">OPENING SESSION</string>
+    <string name="CLOSING_SESSION">CLOSING SESSION</string>
     <string name="planning_team_word">Team introduction</string>
     <string name="planning_session_intro">Session introduction by speakers</string>
     <string name="planning_team_outro">Team conclusion</string>

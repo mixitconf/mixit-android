@@ -68,7 +68,7 @@ class TalkListAdapter(
             time.text = talk.getTimeLabel(ressources)
 
             when (talk.format) {
-                TALK, WORKSHOP, KEYNOTE, KEYNOTE_SURPRISE -> {
+                TALK, WORKSHOP, KEYNOTE, KEYNOTE_SURPRISE, CLOSING_SESSION -> {
                     paintItemView(talk.getBgColorDependingOnTime(android.R.color.white))
                     displayFields(talk = talk)
                 }

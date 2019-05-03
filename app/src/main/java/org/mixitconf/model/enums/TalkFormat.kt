@@ -8,6 +8,7 @@ enum class TalkFormat(val duration: Int, val label: Int) {
     RANDOM(25, R.string.RANDOM),
     KEYNOTE(25, R.string.KEYNOTE),
     KEYNOTE_SURPRISE(25, R.string.KEYNOTE_SURPRISE),
+    CLOSING_SESSION(25, R.string.CLOSING_SESSION),
 
     WELCOME(45, R.string.planning_reception),
     SESSION_INTRO(15, R.string.planning_session_intro),
@@ -21,4 +22,4 @@ enum class TalkFormat(val duration: Int, val label: Int) {
 }
 
 fun TalkFormat.isTalk(): Boolean =
-    this == TalkFormat.TALK || this == TalkFormat.WORKSHOP || this == TalkFormat.RANDOM || this == TalkFormat.KEYNOTE || this == TalkFormat.KEYNOTE_SURPRISE
+    this == TalkFormat.TALK || this == TalkFormat.WORKSHOP || this == TalkFormat.RANDOM || this == TalkFormat.KEYNOTE || this == TalkFormat.KEYNOTE_SURPRISE || this == TalkFormat.CLOSING_SESSION
