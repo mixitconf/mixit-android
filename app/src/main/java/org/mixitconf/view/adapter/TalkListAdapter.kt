@@ -127,7 +127,7 @@ class TalkListAdapter(
         } else {
             itemView.setOnClickListener { onTalkListener.onTalkSelected(talk.id) }
             generalFields.forEach { it.visibility = View.VISIBLE }
-            talkLanguage.visibility = (talk.language == Language.FRENCH).visibility
+            talkLanguage.visibility = View.GONE
             image.setImageResource(talk.topicDrawableResource)
             type.setText(talk.format.label)
             description.text = talk.summary

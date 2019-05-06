@@ -34,6 +34,7 @@
     <string name="unknown" tools:keep="@string/unknown">Salle inconnue</string>
     <string name="mummy">Salle Milky Way (S117)</string>
     <string name="surprise">Surprise...</string>
+    <string name="outside">Dehors dans la cours</string>
 
     <string name="hearing_risp">Cette salle sera équipée en vélotypie avec un système RISP pour les personnes sourdes ou malentendantes</string>
     <string name="hearing_scrivo">Cette salle sera équipée avec un système de transcription semi automatique (Scrivobox) pour les personnes sourdes ou malentendantes</string>

@@ -31,6 +31,7 @@
     <string name="room7" tools:keep="@string/room7">Mezzanine</string>
     <string name="unknown" tools:keep="@string/room7">Unknown room</string>
     <string name="surprise">Surprise...</string>
+    <string name="outside">Outside in the playground</string>
     <string name="mummy">Milky Way room (S117)</string>
 
 
