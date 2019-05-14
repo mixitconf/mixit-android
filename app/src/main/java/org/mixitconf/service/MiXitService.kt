@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import org.mixitconf.mixitApp
 import retrofit2.Call
 import retrofit2.Response
+import java.net.UnknownHostException
 import kotlin.coroutines.CoroutineContext
 
 
@@ -37,7 +38,11 @@ abstract class MiXitService(name: String?) : IntentService(name), CoroutineScope
             } else {
                 toast(String.format(mixitApp.getText(errorMessage).toString(), response.errorBody()))
             }
-        } catch (e: RuntimeException) {
+        }
+        catch (e: UnknownHostException) {
+            toast(String.format(mixitApp.getText(errorMessage).toString(), "Host not available. Try later"))
+        }
+        catch (e: RuntimeException) {
             toast(String.format(mixitApp.getText(errorMessage).toString(), e.message))
         }
     }

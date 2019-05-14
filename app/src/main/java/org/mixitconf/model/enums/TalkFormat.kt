@@ -5,6 +5,7 @@ import org.mixitconf.R
 enum class TalkFormat(val duration: Int, val label: Int) {
     TALK(50, R.string.TALK),
     WORKSHOP(110, R.string.WORKSHOP),
+    LIGHTNING_TALK(5, R.string.RANDOM),
     RANDOM(25, R.string.RANDOM),
     KEYNOTE(25, R.string.KEYNOTE),
     KEYNOTE_SURPRISE(25, R.string.KEYNOTE_SURPRISE),

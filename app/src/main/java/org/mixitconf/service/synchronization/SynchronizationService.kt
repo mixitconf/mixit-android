@@ -3,7 +3,6 @@ package org.mixitconf.service.synchronization
 import android.content.Intent
 import androidx.room.Transaction
 import kotlinx.coroutines.launch
-import org.mixitconf.MiXiTApplication
 import org.mixitconf.R
 import org.mixitconf.mixitApp
 import org.mixitconf.service.MiXitService
@@ -24,18 +23,15 @@ interface MiXiTApiCaller {
 
 }
 
-const val INIT_PARAM = "org.mixitconf.service.synchronization"
 
 class SynchronizationService : MiXitService(SynchronizationService::class.simpleName) {
 
     override fun onHandleIntent(intent: Intent) {
-        if(!intent.getBooleanExtra(INIT_PARAM, false)  || mixitApp.eventDao.readOneByYear(MiXiTApplication.CURRENT_EDITION) == null) {
-            launch {
-                synchronizeSpeakers()
-            }
-            launch {
-                synchronizeTalks()
-            }
+        launch {
+            synchronizeSpeakers()
+        }
+        launch {
+            synchronizeTalks()
         }
     }
 
@@ -53,7 +49,7 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
 
                 users.forEach {
                     val login = it.login!!
-                    if(this.readOne(login) != null) this.update(it.toEntity()) else this.create(it.toEntity())
+                    if (this.readOne(login) != null) this.update(it.toEntity()) else this.create(it.toEntity())
                     mixitApp.linkDao.deleteBySpeaker(login)
                     it.links.forEach {
                         mixitApp.linkDao.create(it.toEntity(login))
@@ -78,7 +74,7 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
 
                 val talksToUpdate = talks.map { it.toEntity() } + nonTalkMoments.map { it.toEntity() }
                 talksToUpdate.forEach {
-                    if(this.readOne(it.id) != null) this.update(it) else this.create(it)
+                    if (this.readOne(it.id) != null) this.update(it) else this.create(it)
                 }
                 toast(mixitApp.getText(R.string.sync_data))
             }

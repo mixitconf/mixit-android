@@ -9,6 +9,7 @@ enum class SponsorshipLevel {
     BREAKFAST,
     LUNCH,
     HOSTING,
+    ECOLOGY,
     VIDEO,
     COMMUNITY,
     MIXTEEN,

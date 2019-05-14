@@ -38,6 +38,7 @@
 
     <string name="hearing_risp">Cette salle sera équipée en vélotypie avec un système RISP pour les personnes sourdes ou malentendantes</string>
     <string name="hearing_scrivo">Cette salle sera équipée avec un système de transcription semi automatique (Scrivobox) pour les personnes sourdes ou malentendantes</string>
+    <string name="open_scrivo">Transcription Scrivobox</string>
     <string name="video">Cette session sera filmée, et la vidéo sera postée sur notre site après la conférence</string>
 
     <string name="TALK">TALK</string>
