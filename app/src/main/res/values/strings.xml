@@ -37,6 +37,7 @@
 
     <string name="hearing_risp">This room will be equipped with a web-based RISP system for people who are deaf or hard of hearing</string>
     <string name="hearing_scrivo">This room will be equipped with a semi automatic transcription system (Scrivobox) for people who are deaf or hard of hearing</string>
+    <string name="open_scrivo">Scrivobox transcription</string>
     <string name="video">This session will be filmed and the video will be posted on our website after the conference</string>
 
 

@@ -3,6 +3,7 @@ package org.mixitconf.view.ui.fragment
 import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.view.LayoutInflater
@@ -56,6 +57,19 @@ class TalkDetailFragment : Fragment() {
             talkDescHearing.text =
                 resources.getText(if (talk.room.scribo) R.string.hearing_scrivo else if (talk.room.risp) R.string.hearing_risp else R.string.unknown)
 
+            if(talk.room.scriboUrl.isNullOrEmpty()){
+                buttonTranscription.visibility = View.GONE
+            }
+            else {
+                buttonTranscription.visibility = View.VISIBLE
+                buttonTranscription.setOnClickListener{
+                    startActivity(Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(talk.room.scriboUrl)
+                    ))
+                }
+            }
+
             (talkSpeakerList.adapter as SpeakerListAdapter).update(talk.speakers)
 
             navigation_calendar_add.setOnClickListener { calendarAddEvent(calendarLoader, talk) }
@@ -101,5 +115,6 @@ class TalkDetailFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         navigation_calendar_add.setOnClickListener(null)
+        buttonTranscription.setOnClickListener(null)
     }
 }
