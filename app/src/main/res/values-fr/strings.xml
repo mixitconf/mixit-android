@@ -31,6 +31,7 @@
     <string name="room5" tools:keep="@string/room5">Salle Turing (S122)</string>
     <string name="room6" tools:keep="@string/room6">Salle Lovelace (S123)</string>
     <string name="room7" tools:keep="@string/room7">Mezzanine</string>
+    <string name="room8" tools:keep="@string/room8">Salon des symboles</string>
     <string name="unknown" tools:keep="@string/unknown">Salle inconnue</string>
     <string name="mummy">Salle Milky Way (S117)</string>
     <string name="surprise">Surprise...</string>

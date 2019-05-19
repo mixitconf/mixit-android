@@ -29,6 +29,7 @@
     <string name="room5" tools:keep="@string/room5">Turing Room (S122)</string>
     <string name="room6" tools:keep="@string/room6">Lovelace Room (S123)</string>
     <string name="room7" tools:keep="@string/room7">Mezzanine</string>
+    <string name="room8" tools:keep="@string/room8">Salon des symboles</string>
     <string name="unknown" tools:keep="@string/room7">Unknown room</string>
     <string name="surprise">Surprise...</string>
     <string name="outside">Outside in the playground</string>
