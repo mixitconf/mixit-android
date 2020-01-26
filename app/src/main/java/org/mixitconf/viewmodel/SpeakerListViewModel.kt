@@ -15,7 +15,7 @@ import kotlin.coroutines.CoroutineContext
 class SpeakerListViewModel(app: Application) : AndroidViewModel(app), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Default
+        get() = Dispatchers.IO
 
     val liveData = MutableLiveData<List<Speaker>>().also { load() }
 

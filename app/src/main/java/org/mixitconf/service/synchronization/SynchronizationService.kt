@@ -26,7 +26,7 @@ interface MiXiTApiCaller {
 
 class SynchronizationService : MiXitService(SynchronizationService::class.simpleName) {
 
-    override fun onHandleIntent(intent: Intent) {
+    override fun onHandleIntent(intent: Intent?) {
         launch {
             synchronizeSpeakers()
         }
@@ -34,7 +34,6 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
             synchronizeTalks()
         }
     }
-
 
     @Transaction
     fun synchronizeSpeakers() {
@@ -80,4 +79,6 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
             }
         }
     }
+
+
 }

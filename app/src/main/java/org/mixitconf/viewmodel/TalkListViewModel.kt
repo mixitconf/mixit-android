@@ -17,7 +17,7 @@ import kotlin.coroutines.CoroutineContext
 class TalkListViewModel(app: Application) : AndroidViewModel(app), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Default
+        get() = Dispatchers.IO
 
     val liveData = MutableLiveData<List<Talk>>().also { load() }
 
@@ -26,7 +26,13 @@ class TalkListViewModel(app: Application) : AndroidViewModel(app), CoroutineScop
         launch {
             val talks = mixitApp.talkDao.readAll()
             if (!talks.isNullOrEmpty()) {
-                liveData.postValue(talks.sortedWith(compareBy<Talk> { it.startLocale }.thenBy { it.endLocale }.thenBy { it.room }))
+                // HAck for the conf
+                try {
+                    liveData.postValue(talks.sortedWith(compareBy<Talk> { it.startLocale }.thenBy { it.endLocale }.thenBy { it.room }))
+                }
+                catch (e: NullPointerException){
+                    liveData.postValue(talks)
+                }
             }
 
         }
