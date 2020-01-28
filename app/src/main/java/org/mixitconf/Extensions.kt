@@ -63,34 +63,26 @@ fun Fragment.withIdInBundle(id: String): Fragment {
 }
 
 
-fun AppCompatActivity.openFragmentDetail(id: String, fragment: Fragment): Int =
-    this.supportFragmentManager
-        .beginTransaction()
-        .apply {
-            fragment.withIdInBundle(id)
-            replace(R.id.container, fragment)
-            addToBackStack(fragment.tag)
-        }
-        .commit()
+fun AppCompatActivity.openFragmentDetail(id: String, fragment: Fragment): Int = this.supportFragmentManager.beginTransaction().apply {
+        fragment.withIdInBundle(id)
+        replace(R.id.container, fragment)
+        addToBackStack(fragment.tag)
+    }.commit()
 
-fun AppCompatActivity.openFragment(fragment: Fragment): Int =
-    this.supportFragmentManager
-        .beginTransaction()
-        .apply {
-            replace(R.id.container, fragment)
-            addToBackStack(fragment.tag)
-        }
-        .commit()
+fun AppCompatActivity.openFragment(fragment: Fragment): Int = this.supportFragmentManager.beginTransaction().apply {
+        replace(R.id.container, fragment)
+        addToBackStack(fragment.tag)
+    }.commit()
 
 
-fun <T: RecyclerView.ViewHolder> RecyclerView.default(init: () -> RecyclerView.Adapter<T>) = this.apply {
+fun <T : RecyclerView.ViewHolder> RecyclerView.default(init: () -> RecyclerView.Adapter<T>) = this.apply {
     setHasFixedSize(true)
     addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     layoutManager = LinearLayoutManager(context)
-    adapter  = init()
+    adapter = init()
     return this
 }
 
 
 val Boolean.visibility
-        get() = if(this) View.VISIBLE else View.GONE
+    get() = if (this) View.VISIBLE else View.GONE

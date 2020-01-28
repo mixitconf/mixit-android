@@ -6,14 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.mixitconf.view.ui.OnSpeakerSelectedListener
 import org.mixitconf.R
 import org.mixitconf.model.entity.Speaker
 import org.mixitconf.model.entity.fullname
 import org.mixitconf.model.entity.setSpeakerImage
+import org.mixitconf.view.ui.OnSpeakerSelectedListener
 
-class SpeakerListAdapter(val onSpeakerListener: OnSpeakerSelectedListener) :
-    RecyclerView.Adapter<SpeakerListAdapter.UserViewHolder>() {
+class SpeakerListAdapter(private val onSpeakerListener: OnSpeakerSelectedListener) : RecyclerView.Adapter<SpeakerListAdapter.UserViewHolder>() {
 
     private val items = mutableListOf<Speaker>()
 
@@ -31,12 +30,9 @@ class SpeakerListAdapter(val onSpeakerListener: OnSpeakerSelectedListener) :
 
     override fun getItemCount(): Int = items.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder =
-        UserViewHolder(
-            LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.fragment_speaker_item, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder = UserViewHolder(
+        LayoutInflater.from(parent.context).inflate(R.layout.fragment_speaker_item, parent, false)
+    )
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = items[position]

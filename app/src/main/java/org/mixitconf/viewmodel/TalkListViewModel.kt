@@ -29,8 +29,7 @@ class TalkListViewModel(app: Application) : AndroidViewModel(app), CoroutineScop
                 // HAck for the conf
                 try {
                     liveData.postValue(talks.sortedWith(compareBy<Talk> { it.startLocale }.thenBy { it.endLocale }.thenBy { it.room }))
-                }
-                catch (e: NullPointerException){
+                } catch (e: NullPointerException) {
                     liveData.postValue(talks)
                 }
             }

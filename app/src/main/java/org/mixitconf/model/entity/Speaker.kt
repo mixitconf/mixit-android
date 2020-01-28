@@ -11,16 +11,11 @@ import org.mixitconf.MiXiTApplication
 import org.mixitconf.R
 import org.mixitconf.model.enums.LinkType
 import org.mixitconf.toHtml
+import java.util.*
 
 @Entity
 data class Speaker(
-    @PrimaryKey
-    val login: String,
-    val firstname: String,
-    val lastname: String,
-    val company: String?,
-    val descriptionFr: String?,
-    val descriptionEn: String?
+    @PrimaryKey val login: String, val firstname: String, val lastname: String, val company: String?, val descriptionFr: String?, val descriptionEn: String?
 ) {
     // These list is only populated when we want to see the speaker detail
     @Ignore
@@ -36,38 +31,30 @@ val Speaker.descriptionInMarkdown
     get() = if (descriptionFr.isNullOrEmpty()) null else Processor.process(descriptionFr).toHtml()
 
 private val Speaker.socialLink: Link?
-    get() = if(links.isEmpty()) null else links.firstOrNull { it.linkType == LinkType.Social }
+    get() = if (links.isEmpty()) null else links.firstOrNull { it.linkType == LinkType.Social }
 
 private val Speaker.webLink: Link?
-    get() = if(links.isEmpty()) null else links.firstOrNull { it.linkType != LinkType.Social }
+    get() = if (links.isEmpty()) null else links.firstOrNull { it.linkType != LinkType.Social }
 
 val Speaker.hasLink
     get() = socialLink != null || webLink != null
 
 val Speaker.linkUri
-    get() = Uri.parse(socialLink?.url ?: webLink?.url)
+    get() = Uri.parse(socialLink?.url ?: webLink?.url ?: "https://mixitconf.org/user/${login}")
 
 val Speaker.imageLinkResourceId
-    get() = if (socialLink != null) socialLink!!.socialType!!.resourceId else R.drawable.mxt_icon_web
+    get() = if (socialLink != null) socialLink!!.socialType.resourceId else R.drawable.mxt_icon_web
 
 
 fun ImageView.setSpeakerImage(speaker: Speaker) {
     // Speaker images are downloaded on the app startup
     val imageResource = context.resources.getIdentifier(
-        speaker.login.toSlug().toValidImageName().toLowerCase(),
-        "drawable",
-        context.applicationInfo.packageName
+        speaker.login.toSlug().toValidImageName().toLowerCase(Locale.getDefault()), "drawable", context.applicationInfo.packageName
     )
 
-    Picasso.get()
-        .load(if (imageResource > 0) imageResource else R.drawable.mxt_icon_unknown)
-        .resize(160, 160)
-        .into(this)
+    Picasso.get().load(if (imageResource > 0) imageResource else R.drawable.mxt_icon_unknown).resize(160, 160).into(this)
 }
 
-private fun String.toSlug(): String =
-    toLowerCase().toCharArray().map { if (MiXiTApplication.SPECIAL_SLUG_CHARACTERS[it] == null) it else MiXiTApplication.SPECIAL_SLUG_CHARACTERS[it] }.joinToString(
-        ""
-    )
+private fun String.toSlug(): String = toLowerCase(Locale.getDefault()).toCharArray().map { if (MiXiTApplication.SPECIAL_SLUG_CHARACTERS[it] == null) it else MiXiTApplication.SPECIAL_SLUG_CHARACTERS[it] }.joinToString("")
 
 private fun String.toValidImageName(): String = if (this.startsWith("1")) "S$this" else this

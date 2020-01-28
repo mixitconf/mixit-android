@@ -26,8 +26,7 @@ class MiXiTApplication : Application() {
     companion object {
         const val CURRENT_EDITION = 2019
         val SPECIAL_SLUG_CHARACTERS = mapOf(
-            Pair('é', 'e'), Pair('è', 'e'), Pair('ï', 'i'), Pair(' ', '_'), Pair('ê', 'e'), Pair('.', '_')
-            , Pair('\'', '_'), Pair('ô', 'o'), Pair('à', 'a'), Pair('-', '_')
+            Pair('é', 'e'), Pair('è', 'e'), Pair('ï', 'i'), Pair(' ', '_'), Pair('ê', 'e'), Pair('.', '_'), Pair('\'', '_'), Pair('ô', 'o'), Pair('à', 'a'), Pair('-', '_')
         )
 
         val DATE_FORMAT = SimpleDateFormat("EEE", Locale.getDefault())
@@ -37,8 +36,7 @@ class MiXiTApplication : Application() {
     }
 
     private val database: MiXiTDatabase by lazy {
-        Room.databaseBuilder(applicationContext, MiXiTDatabase::class.java, DATABASE_NAME)
-            .build()
+        Room.databaseBuilder(applicationContext, MiXiTDatabase::class.java, DATABASE_NAME).build()
     }
 
     val talkService by lazy {
@@ -57,19 +55,10 @@ class MiXiTApplication : Application() {
         database.eventDao()
     }
 
-    val miXiTApiCaller by lazy {
-        val client = OkHttpClient.Builder()
-            .connectTimeout(1, TimeUnit.MINUTES)
-            .readTimeout(1, TimeUnit.MINUTES)
-            .writeTimeout(10, TimeUnit.SECONDS)
-            .build()
+    val miXiTApiCaller: MiXiTApiCaller by lazy {
+        val client = OkHttpClient.Builder().connectTimeout(1, TimeUnit.MINUTES).readTimeout(1, TimeUnit.MINUTES).writeTimeout(10, TimeUnit.SECONDS).build()
 
-        Retrofit.Builder()
-            .baseUrl(MIXIT_API)
-            .addConverterFactory(JacksonConverterFactory.create())
-            .client(client)
-            .build()
-            .create(MiXiTApiCaller::class.java)
+        Retrofit.Builder().baseUrl(MIXIT_API).addConverterFactory(JacksonConverterFactory.create()).client(client).build().create(MiXiTApiCaller::class.java)
     }
 
     /**

@@ -17,8 +17,8 @@ import org.mixitconf.model.enums.SponsorshipLevel
 @RunWith(AndroidJUnit4ClassRunner::class)
 class EventSponsoringDaoTest {
 
-    lateinit var database: MiXiTDatabase
-    lateinit var dao: EventSponsoringDao
+    private lateinit var database: MiXiTDatabase
+    private lateinit var dao: EventSponsoringDao
     private val element = EventSponsoring("sponsorId", "2019", SponsorshipLevel.GOLD)
 
     @Before
@@ -35,17 +35,17 @@ class EventSponsoringDaoTest {
 
     @Test
     fun readAll() {
-        Truth.assertThat(dao.readAll()).hasSize(1);
+        Truth.assertThat(dao.readAll()).hasSize(1)
     }
 
     @Test
     fun readOne() {
-        Truth.assertThat(dao.readOne(element.sponsorId, "2019")).isEqualTo(element);
+        Truth.assertThat(dao.readOne(element.sponsorId, "2019")).isEqualTo(element)
     }
 
     @Test
     fun readOneByUnknownId() {
-        Truth.assertThat(dao.readOne("dddd", "eee")).isNull();
+        Truth.assertThat(dao.readOne("dddd", "eee")).isNull()
     }
 
     @Test

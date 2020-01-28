@@ -7,21 +7,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.mixitconf.view.ui.OnTalkSelectedListener
 import org.mixitconf.R
-import org.mixitconf.model.enums.Language
-import org.mixitconf.model.enums.TalkFormat.*
+import org.mixitconf.getLegacyColor
 import org.mixitconf.model.entity.Talk
 import org.mixitconf.model.entity.getBgColorDependingOnTime
 import org.mixitconf.model.entity.getTimeLabel
 import org.mixitconf.model.entity.topicDrawableResource
-import org.mixitconf.getLegacyColor
+import org.mixitconf.model.enums.TalkFormat.*
+import org.mixitconf.view.ui.OnTalkSelectedListener
 import org.mixitconf.visibility
 
 
 class TalkListAdapter(
-    val onTalkListener: OnTalkSelectedListener,
-    val ressources: Resources
+    private val onTalkListener: OnTalkSelectedListener, private val ressources: Resources
 ) : RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
 
     private val items = mutableListOf<Talk>()
@@ -44,12 +42,9 @@ class TalkListAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TalkListAdapter.ViewHolder =
-        ViewHolder(
-            LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.fragment_talk_item, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
+        LayoutInflater.from(parent.context).inflate(R.layout.fragment_talk_item, parent, false)
+    )
 
 
     override fun onViewRecycled(holder: ViewHolder) {
@@ -82,8 +77,7 @@ class TalkListAdapter(
                 }
                 PARTY -> {
                     paintItemView(
-                        talk.getBgColorDependingOnTime(R.color.colorAccent),
-                        timeColor = android.R.color.white
+                        talk.getBgColorDependingOnTime(R.color.colorAccent), timeColor = android.R.color.white
                     )
                     displayFields()
                 }
@@ -101,9 +95,7 @@ class TalkListAdapter(
     }
 
     private fun ViewHolder.paintItemView(
-        background: Int,
-        nameColor: Int = android.R.color.black,
-        timeColor: Int = R.color.textShadow
+        background: Int, nameColor: Int = android.R.color.black, timeColor: Int = R.color.textShadow
     ) {
         itemView.setBackgroundColor(ressources.getLegacyColor(background))
         name.setTextColor(ressources.getLegacyColor(nameColor))
@@ -111,9 +103,7 @@ class TalkListAdapter(
     }
 
     private fun ViewHolder.displayFields(
-        talk: Talk? = null,
-        nameOnCenter: Boolean = false,
-        showTime: Boolean = true
+        talk: Talk? = null, nameOnCenter: Boolean = false, showTime: Boolean = true
     ) {
 
         name.textAlignment = if (nameOnCenter) View.TEXT_ALIGNMENT_CENTER else View.TEXT_ALIGNMENT_TEXT_START
@@ -131,7 +121,7 @@ class TalkListAdapter(
             image.setImageResource(talk.topicDrawableResource)
             type.setText(talk.format.label)
             description.text = talk.summary
-            room.setText(ressources.getText(talk.room.i18nId))
+            room.text = ressources.getText(talk.room.i18nId)
         }
         time.visibility = showTime.visibility
     }

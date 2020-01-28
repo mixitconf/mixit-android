@@ -50,8 +50,8 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
                     val login = it.login!!
                     if (this.readOne(login) != null) this.update(it.toEntity()) else this.create(it.toEntity())
                     mixitApp.linkDao.deleteBySpeaker(login)
-                    it.links.forEach {
-                        mixitApp.linkDao.create(it.toEntity(login))
+                    it.links.forEach { link ->
+                        mixitApp.linkDao.create(link.toEntity(login))
                     }
                 }
                 toast(mixitApp.getText(R.string.sync_data))

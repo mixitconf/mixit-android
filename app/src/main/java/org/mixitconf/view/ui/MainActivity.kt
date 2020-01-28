@@ -1,21 +1,17 @@
 package org.mixitconf.view.ui
 
-import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.mixitconf.R
-import org.mixitconf.mixitApp
+import org.mixitconf.openFragment
+import org.mixitconf.openFragmentDetail
 import org.mixitconf.view.ui.fragment.SpeakerDetailFragment
 import org.mixitconf.view.ui.fragment.SpeakerFragment
 import org.mixitconf.view.ui.fragment.TalkDetailFragment
 import org.mixitconf.view.ui.fragment.TalkFragment
-import org.mixitconf.openFragment
-import org.mixitconf.openFragmentDetail
 
 /**
  * Interface implemented by parent activity to display a talk when user clicks on a talk in the list
@@ -59,8 +55,7 @@ open class MainActivity : MixitActivity(), OnTalkSelectedListener, OnSpeakerSele
             R.id.navigation_website -> {
                 applicationContext.startActivity(
                     Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://mixitconf.org/schedule")
+                        Intent.ACTION_VIEW, Uri.parse("https://mixitconf.org/schedule")
                     ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 )
                 return@OnNavigationItemSelectedListener true

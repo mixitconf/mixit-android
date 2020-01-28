@@ -23,7 +23,7 @@ class SpeakerListViewModel(app: Application) : AndroidViewModel(app), CoroutineS
     private fun load() {
         launch {
             val speakers = mixitApp.speakerDao.readAll()
-            if(!speakers.isNullOrEmpty()){
+            if (!speakers.isNullOrEmpty()) {
                 liveData.postValue(speakers.sortedBy { it.firstname })
             }
 

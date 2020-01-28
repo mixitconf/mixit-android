@@ -10,7 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_speaker_detail.*
 import kotlinx.android.synthetic.main.fragment_speaker_detail_content.*
-import org.mixitconf.*
+import org.mixitconf.MiXiTApplication
+import org.mixitconf.R
+import org.mixitconf.default
+import org.mixitconf.mixitApp
 import org.mixitconf.model.entity.*
 import org.mixitconf.view.adapter.TalkListAdapter
 import org.mixitconf.view.ui.OnTalkSelectedListener
@@ -19,8 +22,7 @@ import org.mixitconf.viewmodel.SpeakerDetailViewModel
 
 class SpeakerDetailFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.fragment_speaker_detail, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater.inflate(R.layout.fragment_speaker_detail, container, false)
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -36,7 +38,7 @@ class SpeakerDetailFragment : Fragment() {
             speakerDetailDescription.text = speaker.descriptionInMarkdown
             speakerDetailImage.setSpeakerImage(speaker)
 
-            if (speaker.hasLink && activity!=null) {
+            if (speaker.hasLink && activity != null) {
                 navigation_speaker_link.setImageResource(speaker.imageLinkResourceId)
                 navigation_speaker_link.setOnClickListener {
                     activity!!.startActivity(Intent(Intent.ACTION_VIEW, speaker.linkUri))

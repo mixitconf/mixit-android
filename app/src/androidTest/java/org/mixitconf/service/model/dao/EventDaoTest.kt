@@ -17,8 +17,8 @@ import org.mixitconf.model.entity.Event
 @RunWith(AndroidJUnit4ClassRunner::class)
 class EventDaoTest{
 
-    lateinit var database: MiXiTDatabase
-    lateinit var dao: EventDao
+    private lateinit var database: MiXiTDatabase
+    private lateinit var dao: EventDao
     private val event = Event("id", createDate(25, 8, 0) , createDate(26, 18, 0), 2019)
 
     @Before
@@ -35,24 +35,24 @@ class EventDaoTest{
 
     @Test
     fun readAll(){
-       Truth.assertThat(dao.readAll()).hasSize(1);
+       Truth.assertThat(dao.readAll()).hasSize(1)
     }
 
     @Test
     fun readOne(){
-        Truth.assertThat(dao.readOne(event.id)).isEqualTo(event);
+        Truth.assertThat(dao.readOne(event.id)).isEqualTo(event)
     }
 
     @Test
     fun readOneByUnknownId(){
-        Truth.assertThat(dao.readOne("dddd")).isNull();
+        Truth.assertThat(dao.readOne("dddd")).isNull()
     }
 
     @Test
     fun update(){
         val end = createDate(25, 18, 0)
         dao.update(event.copy(end = end))
-        Truth.assertThat(dao.readOne(event.id).end).isEqualTo(end);
+        Truth.assertThat(dao.readOne(event.id).end).isEqualTo(end)
     }
 
     @Test

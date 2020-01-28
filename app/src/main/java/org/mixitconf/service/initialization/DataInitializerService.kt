@@ -19,7 +19,7 @@ class DataInitializerService : MiXitService(DataInitializerService::class.simple
     /**
      * This reader is called on the first app installation to initialize database
      */
-    val events by lazy {
+    private val events by lazy {
         val jsonInputStream = mixitApp.resources.openRawResource(R.raw.events)
         jacksonObjectMapper().readValue<List<EventDto>>(jsonInputStream)
     }
@@ -27,7 +27,7 @@ class DataInitializerService : MiXitService(DataInitializerService::class.simple
     /**
      * This reader is called on the first app installation to initialize database
      */
-    val talks by lazy {
+    private val talks by lazy {
         val jsonInputStream = mixitApp.resources.openRawResource(R.raw.talks_2019)
         val talks: List<TalkDto> = jacksonObjectMapper().readValue(jsonInputStream)
         talks + mixitApp.talkService.findNonTalkMoments()
@@ -36,7 +36,7 @@ class DataInitializerService : MiXitService(DataInitializerService::class.simple
     /**
      * This reader is called on the first app installation to initialize database
      */
-    val users by lazy {
+    private val users by lazy {
         val json = mixitApp.resources.openRawResource(R.raw.users)
         jacksonObjectMapper().readValue<List<UserDto>>(json)
     }

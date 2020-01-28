@@ -7,21 +7,20 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import org.mixitconf.mixitApp
 import retrofit2.Call
-import retrofit2.Response
 import java.net.UnknownHostException
 import kotlin.coroutines.CoroutineContext
 
 
 abstract class MiXitService(name: String?) : IntentService(name), CoroutineScope {
 
-    val mHandler = Handler()
+    private val mHandler = Handler()
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default
 
     // Helper for showing tests
     fun toast(text: CharSequence) {
-        mHandler.post(Runnable { Toast.makeText(mixitApp, text, Toast.LENGTH_LONG).show() })
+        mHandler.post { Toast.makeText(mixitApp, text, Toast.LENGTH_LONG).show() }
     }
 
     /**
@@ -31,18 +30,16 @@ abstract class MiXitService(name: String?) : IntentService(name), CoroutineScope
         try {
             val response = call.execute()
             if (response.isSuccessful) {
-                if(response.body()!!.isEmpty()){
+                if (response.body()!!.isEmpty()) {
                     toast(String.format(mixitApp.getText(errorMessage).toString(), "no data"))
                 }
                 callback(response.body()!!)
             } else {
                 toast(String.format(mixitApp.getText(errorMessage).toString(), response.errorBody()))
             }
-        }
-        catch (e: UnknownHostException) {
+        } catch (e: UnknownHostException) {
             toast(String.format(mixitApp.getText(errorMessage).toString(), "Host not available. Try later"))
-        }
-        catch (e: RuntimeException) {
+        } catch (e: RuntimeException) {
             toast(String.format(mixitApp.getText(errorMessage).toString(), e.message))
         }
     }

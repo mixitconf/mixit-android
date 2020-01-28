@@ -12,7 +12,7 @@ class ExampleUnitTest {
 
     @Test
     fun addition_isCorrect() {
-        val speakers = arrayListOf<String>("id1", "id2")
+        val speakers = arrayListOf("id1", "id2")
         assertEquals(speakers.joinToString(","), "id1,id2")
     }
 

@@ -15,50 +15,36 @@ import java.util.*
  */
 class TalkService(private val context: Context) {
 
-    enum class Day(val day: Int) { one(23), two(24), three(25) }
+    enum class Day(val day: Int) { One(23), Two(24), Three(25) }
 
-    fun findNonTalkMoments(): List<TalkDto> =
-        listOf(
-            createNonTalkMoment(Day.one, TalkFormat.DAY, 8, 29, R.string.event_day1),
-            createNonTalkMoment(Day.one, TalkFormat.WELCOME, 8, 30),
-            createNonTalkMoment(Day.one, TalkFormat.ORGA, 9, 15),
-            createNonTalkMoment(Day.one, TalkFormat.SESSION_INTRO, 10, 0),
-            createNonTalkMoment(Day.one, TalkFormat.PAUSE_25_MIN, 10, 15),
-            createNonTalkMoment(Day.one, TalkFormat.PAUSE_10_MIN, 11, 30),
-            createNonTalkMoment(Day.one, TalkFormat.LUNCH, 12, 30),
-            createNonTalkMoment(Day.one, TalkFormat.PAUSE_10_MIN, 15, 20),
-            createNonTalkMoment(Day.one, TalkFormat.PAUSE_30_MIN, 16, 20),
+    fun findNonTalkMoments(): List<TalkDto> = listOf(
+        createNonTalkMoment(Day.One, TalkFormat.DAY, 8, 29, R.string.event_day1),
+        createNonTalkMoment(Day.One, TalkFormat.WELCOME, 8, 30),
+        createNonTalkMoment(Day.One, TalkFormat.ORGA, 9, 15),
+        createNonTalkMoment(Day.One, TalkFormat.SESSION_INTRO, 10, 0),
+        createNonTalkMoment(Day.One, TalkFormat.PAUSE_25_MIN, 10, 15),
+        createNonTalkMoment(Day.One, TalkFormat.PAUSE_10_MIN, 11, 30),
+        createNonTalkMoment(Day.One, TalkFormat.LUNCH, 12, 30),
+        createNonTalkMoment(Day.One, TalkFormat.PAUSE_10_MIN, 15, 20),
+        createNonTalkMoment(Day.One, TalkFormat.PAUSE_30_MIN, 16, 20),
 
-            createNonTalkMoment(Day.two, TalkFormat.DAY, 8, 29, R.string.event_day2),
-            createNonTalkMoment(Day.two, TalkFormat.WELCOME, 8, 30),
-            createNonTalkMoment(Day.two, TalkFormat.ORGA, 9, 15),
-            createNonTalkMoment(Day.two, TalkFormat.SESSION_INTRO, 10, 0),
-            createNonTalkMoment(Day.two, TalkFormat.PAUSE_25_MIN, 10, 15),
-            createNonTalkMoment(Day.two, TalkFormat.PAUSE_10_MIN, 11, 30),
-            createNonTalkMoment(Day.two, TalkFormat.LUNCH, 12, 30),
-            createNonTalkMoment(Day.two, TalkFormat.PAUSE_10_MIN, 15, 20),
-            createNonTalkMoment(Day.two, TalkFormat.PAUSE_30_MIN, 16, 20),
+        createNonTalkMoment(Day.Two, TalkFormat.DAY, 8, 29, R.string.event_day2),
+        createNonTalkMoment(Day.Two, TalkFormat.WELCOME, 8, 30),
+        createNonTalkMoment(Day.Two, TalkFormat.ORGA, 9, 15),
+        createNonTalkMoment(Day.Two, TalkFormat.SESSION_INTRO, 10, 0),
+        createNonTalkMoment(Day.Two, TalkFormat.PAUSE_25_MIN, 10, 15),
+        createNonTalkMoment(Day.Two, TalkFormat.PAUSE_10_MIN, 11, 30),
+        createNonTalkMoment(Day.Two, TalkFormat.LUNCH, 12, 30),
+        createNonTalkMoment(Day.Two, TalkFormat.PAUSE_10_MIN, 15, 20),
+        createNonTalkMoment(Day.Two, TalkFormat.PAUSE_30_MIN, 16, 20),
 
-            createNonTalkMoment(Day.three, TalkFormat.DAY, 8, 29, R.string.event_day3),
-            createNonTalkMoment(Day.three, TalkFormat.LUNCH, 12, 0)
-        )
+        createNonTalkMoment(Day.Three, TalkFormat.DAY, 8, 29, R.string.event_day3),
+        createNonTalkMoment(Day.Three, TalkFormat.LUNCH, 12, 0)
+    )
 
-    private fun createNonTalkMoment(day: Day, talkFormat: TalkFormat, startHour: Int, startMinute: Int, title: Int = talkFormat.label) =
-        TalkDto(
-            talkFormat,
-            "2019",
-            context.getString(title),
-            "",
-            emptyList(),
-            Language.FRENCH,
-            Date(),
-            "",
-            "",
-            Room.UNKNOWN,
-            createDate(day.day, startHour, startMinute),
-            createDate(day.day, startHour, startMinute).addMinutes(talkFormat.duration),
-            id = day.name + talkFormat.name + startHour
-        )
+    private fun createNonTalkMoment(day: Day, talkFormat: TalkFormat, startHour: Int, startMinute: Int, title: Int = talkFormat.label) = TalkDto(
+        talkFormat, "2019", context.getString(title), "", emptyList(), Language.FRENCH, Date(), "", "", Room.UNKNOWN, createDate(day.day, startHour, startMinute), createDate(day.day, startHour, startMinute).addMinutes(talkFormat.duration), id = day.name + talkFormat.name + startHour
+    )
 
 
 }

@@ -2,7 +2,6 @@ package org.mixitconf.model.dao
 
 import androidx.room.*
 import org.mixitconf.model.entity.Link
-import org.mixitconf.model.entity.Talk
 
 @Dao
 interface LinkDao {

@@ -5,6 +5,7 @@ import org.mixitconf.model.entity.Event
 
 @Dao
 interface EventDao {
+
     @Insert
     fun create(event: Event)
 

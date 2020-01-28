@@ -17,8 +17,8 @@ import org.mixitconf.model.enums.LinkType
 @RunWith(AndroidJUnit4ClassRunner::class)
 class LinkDaoTest {
 
-    lateinit var database: MiXiTDatabase
-    lateinit var dao: LinkDao
+    private lateinit var database: MiXiTDatabase
+    private lateinit var dao: LinkDao
     private val element = Link("twitter", "https://twitter.com/guillaumeehret", "1", LinkType.Social)
 
     @Before
@@ -35,28 +35,28 @@ class LinkDaoTest {
 
     @Test
     fun readAll() {
-        Truth.assertThat(dao.readAll()).hasSize(1);
+        Truth.assertThat(dao.readAll()).hasSize(1)
     }
 
     @Test
     fun readOne() {
-        Truth.assertThat(dao.readOne(element.id)).isEqualTo(element);
+        Truth.assertThat(dao.readOne(element.id)).isEqualTo(element)
     }
 
     @Test
     fun readAllBySpeakerId() {
-        Truth.assertThat(dao.readAllBySpeakerId(element.speakerId)).hasSize(1);
+        Truth.assertThat(dao.readAllBySpeakerId(element.speakerId)).hasSize(1)
     }
 
     @Test
     fun readOneByUnknownId() {
-        Truth.assertThat(dao.readOne("dddd")).isNull();
+        Truth.assertThat(dao.readOne("dddd")).isNull()
     }
 
     @Test
     fun update() {
         dao.update(element.copy(name = "social"))
-        Truth.assertThat(dao.readOne(element.id).name).isEqualTo("social");
+        Truth.assertThat(dao.readOne(element.id).name).isEqualTo("social")
     }
 
     @Test

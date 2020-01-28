@@ -25,18 +25,7 @@ data class TalkApiDto(
 )
 
 fun TalkApiDto.toEntity() = Talk(
-    id!!,
-    format!!,
-    event!!,
-    title!!,
-    summary!!,
-    speakerIds!!.joinToString(","),
-    language,
-    description,
-    topic!!,
-    room!!,
-    start!!,
-    end!!
+    id!!, format!!, event!!, title!!, summary!!, speakerIds!!.joinToString(","), language, description, topic!!, room!!, start!!, end!!
 )
 
 

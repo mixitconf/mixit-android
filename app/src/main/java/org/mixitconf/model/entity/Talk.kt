@@ -17,9 +17,7 @@ import java.util.*
 
 @Entity
 data class Talk(
-    @PrimaryKey
-    val id: String,
-    val format: TalkFormat,
+    @PrimaryKey val id: String, val format: TalkFormat,
     val event: String,
     val title: String,
     val summary: String,
@@ -31,7 +29,7 @@ data class Talk(
     val start: Date,
     val end: Date,
     val favorite: Boolean = false
-){
+) {
     // This list is only populated when we want to see the talk detail. For that we read speakers by their ids
     @Ignore
     val speakers: MutableList<Speaker> = mutableListOf()
@@ -59,10 +57,10 @@ val Talk.endLocale: Date
     get() = if (format.isTalk()) end.inFrenchLocale else end
 
 val Talk.descriptionInMarkdown
-    get() = if(description.isNullOrEmpty()) null else Processor.process(description).toHtml()
+    get() = if (description.isNullOrEmpty()) null else Processor.process(description).toHtml()
 
 val Talk.summaryInMarkdown
-    get() = if(summary.isNullOrEmpty()) null else Processor.process(summary).toHtml()
+    get() = if (summary.isEmpty()) "" else Processor.process(summary).toHtml()
 
 
 val Talk.startLocaleTime
@@ -80,14 +78,8 @@ private val Date.inFrenchLocale
         return calendar.time
     }
 
-private val Date.timeInFrenchLocale
-    get() = this.inFrenchLocale.time
-
 fun Talk.getTimeLabel(resources: Resources): String = String.format(
-    resources.getString(R.string.talk_time_range),
-    MiXiTApplication.DATE_FORMAT.format(start),
-    DateFormat.getTimeInstance(DateFormat.SHORT).format(startLocale),
-    DateFormat.getTimeInstance(DateFormat.SHORT).format(endLocale)
+    resources.getString(R.string.talk_time_range), MiXiTApplication.DATE_FORMAT.format(start), DateFormat.getTimeInstance(DateFormat.SHORT).format(startLocale), DateFormat.getTimeInstance(DateFormat.SHORT).format(endLocale)
 )
 
 fun Talk.getBgColorDependingOnTime(color: Int): Int = if (Date().time > end.time) R.color.unknown else color

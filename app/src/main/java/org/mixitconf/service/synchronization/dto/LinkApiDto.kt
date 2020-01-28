@@ -6,8 +6,7 @@ import org.mixitconf.model.enums.Social
 
 
 data class LinkApiDto(
-    var name: String? = null,
-    var url: String? = null
+    var name: String? = null, var url: String? = null
 )
 
 fun LinkApiDto.toEntity(userId: String): Link {
