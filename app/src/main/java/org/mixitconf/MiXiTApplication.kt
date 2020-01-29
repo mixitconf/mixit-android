@@ -13,7 +13,7 @@ import okhttp3.OkHttpClient
 import org.mixitconf.model.dao.MiXiTDatabase
 import org.mixitconf.service.initialization.DataInitializerService
 import org.mixitconf.service.initialization.TalkService
-import org.mixitconf.service.synchronization.MiXiTApiCaller
+import org.mixitconf.service.synchronization.WebsiteRepository
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.text.SimpleDateFormat
@@ -55,10 +55,10 @@ class MiXiTApplication : Application() {
         database.eventDao()
     }
 
-    val miXiTApiCaller: MiXiTApiCaller by lazy {
+    val websiteRepository: WebsiteRepository by lazy {
         val client = OkHttpClient.Builder().connectTimeout(1, TimeUnit.MINUTES).readTimeout(1, TimeUnit.MINUTES).writeTimeout(10, TimeUnit.SECONDS).build()
 
-        Retrofit.Builder().baseUrl(MIXIT_API).addConverterFactory(JacksonConverterFactory.create()).client(client).build().create(MiXiTApiCaller::class.java)
+        Retrofit.Builder().baseUrl(MIXIT_API).addConverterFactory(JacksonConverterFactory.create()).client(client).build().create(WebsiteRepository::class.java)
     }
 
     /**

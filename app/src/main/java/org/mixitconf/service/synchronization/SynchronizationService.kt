@@ -7,21 +7,7 @@ import org.mixitconf.R
 import org.mixitconf.mixitApp
 import org.mixitconf.service.MiXitService
 import org.mixitconf.service.initialization.dto.toEntity
-import org.mixitconf.service.synchronization.dto.TalkApiDto
-import org.mixitconf.service.synchronization.dto.UserApiDto
 import org.mixitconf.service.synchronization.dto.toEntity
-import retrofit2.Call
-import retrofit2.http.GET
-
-interface MiXiTApiCaller {
-
-    @GET("speaker")
-    fun speakers(): Call<List<UserApiDto>>
-
-    @GET("talk")
-    fun talks(): Call<List<TalkApiDto>>
-
-}
 
 
 class SynchronizationService : MiXitService(SynchronizationService::class.simpleName) {
@@ -37,7 +23,7 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
 
     @Transaction
     fun synchronizeSpeakers() {
-        callApi(mixitApp.miXiTApiCaller.speakers(), R.string.error_sync_speakers) { users ->
+        callApi(mixitApp.websiteRepository.speakers(), R.string.error_sync_speakers) { users ->
             val logins = users.map { it.login }
 
             mixitApp.speakerDao.apply {
@@ -61,7 +47,7 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
 
     @Transaction
     fun synchronizeTalks() {
-        callApi(mixitApp.miXiTApiCaller.talks(), R.string.error_sync_talks) { talks ->
+        callApi(mixitApp.websiteRepository.talks(), R.string.error_sync_talks) { talks ->
             val nonTalkMoments = mixitApp.talkService.findNonTalkMoments()
             val ids = talks.map { it.id } + nonTalkMoments.map { it.id }
 
