@@ -2,8 +2,12 @@ package org.mixitconf
 
 import android.app.Application
 import android.app.IntentService
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -13,7 +17,8 @@ import okhttp3.OkHttpClient
 import org.mixitconf.model.dao.MiXiTDatabase
 import org.mixitconf.service.initialization.DataInitializerService
 import org.mixitconf.service.initialization.TalkService
-import org.mixitconf.service.synchronization.WebsiteRepository
+import org.mixitconf.service.synchronization.WebsiteDao
+import org.mixitconf.service.synchronization.WebsiteRestService
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.text.SimpleDateFormat
@@ -30,9 +35,11 @@ class MiXiTApplication : Application() {
         )
 
         val DATE_FORMAT = SimpleDateFormat("EEE", Locale.getDefault())
+
         const val OBJECT_ID = "id"
         const val MIXIT_API = "https://mixitconf.org/api/2019/"
         const val DATABASE_NAME = "mixitconf"
+        const val FRAGMENT_ID = "fragmentId"
     }
 
     private val database: MiXiTDatabase by lazy {
@@ -55,10 +62,34 @@ class MiXiTApplication : Application() {
         database.eventDao()
     }
 
-    val websiteRepository: WebsiteRepository by lazy {
-        val client = OkHttpClient.Builder().connectTimeout(1, TimeUnit.MINUTES).readTimeout(1, TimeUnit.MINUTES).writeTimeout(10, TimeUnit.SECONDS).build()
 
-        Retrofit.Builder().baseUrl(MIXIT_API).addConverterFactory(JacksonConverterFactory.create()).client(client).build().create(WebsiteRepository::class.java)
+    val websiteDao: WebsiteDao by lazy {
+        WebsiteDao(websiteRestService)
+    }
+
+    val websiteRestService: WebsiteRestService by lazy {
+        val client = OkHttpClient.Builder()
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(1, TimeUnit.MINUTES)
+            .writeTimeout(10, TimeUnit.SECONDS).build()
+
+        Retrofit.Builder().baseUrl(MIXIT_API).addConverterFactory(JacksonConverterFactory.create()).client(client).build().create(WebsiteRestService::class.java)
+    }
+
+
+    // Create a notification channel. Since API 26 (Android O) each app need to send notification in its own channel
+    val notificationChannelId: String by lazy {
+        val channelId = "mixitconf_channel"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val priority = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId, getString(R.string.channel_name), priority).apply {
+                description = getString(R.string.channel_description)
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+        channelId
     }
 
     /**

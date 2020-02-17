@@ -48,6 +48,9 @@ open class MixitActivity : AppCompatActivity() {
             android.R.id.home -> {
                 startActivity(Intent(applicationContext, MainActivity::class.java))
             }
+            R.id.navigation_settings -> {
+                startActivity(Intent(applicationContext, SettingsActivity::class.java))
+            }
             R.id.navigation_github -> {
                 startActivity(
                     Intent(
@@ -58,6 +61,7 @@ open class MixitActivity : AppCompatActivity() {
             R.id.navigation_synchronize -> {
                 if (mixitApp.hasPermission(Manifest.permission.INTERNET)) {
                     Intent(applicationContext, SynchronizationService::class.java).also { intent ->
+                        Toast.makeText(applicationContext, R.string.sync_start, Toast.LENGTH_LONG).show()
                         startService(intent)
                     }
                 } else {

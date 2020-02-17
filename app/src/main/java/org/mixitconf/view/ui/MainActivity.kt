@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import org.mixitconf.MiXiTApplication
 import org.mixitconf.R
 import org.mixitconf.openFragment
 import org.mixitconf.openFragmentDetail
@@ -33,6 +34,14 @@ open class MainActivity : MixitActivity(), OnTalkSelectedListener, OnSpeakerSele
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        // When activity is started via a notification we want to open a specific fragment
+        val fragmentId = intent.getIntExtra(MiXiTApplication.FRAGMENT_ID, 0)
+        when (fragmentId) {
+            R.id.navigation_talk -> openFragment(TalkFragment())
+            R.id.navigation_speaker -> openFragment(SpeakerFragment())
+            else -> { }
+        }
     }
 
     override fun onTalkSelected(id: String) = openFragmentDetail(id, TalkDetailFragment())

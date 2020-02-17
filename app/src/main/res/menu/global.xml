@@ -3,10 +3,22 @@
       xmlns:tools="http://schemas.android.com/tools" tools:context=".HomeActivity">
 
     <item
+            android:id="@+id/navigation_synchronize"
+            android:icon="@drawable/mxt_icon_refresh"
+            android:title="@string/title_sync"
+            app:showAsAction="ifRoom|collapseActionView"/>
+
+    <item
             android:id="@+id/navigation_twitter"
             android:icon="@drawable/mxt_icon_twitter_zoom"
             android:title="@string/title_twitter"
             app:showAsAction="ifRoom|collapseActionView"/>
+
+    <item
+            android:id="@+id/navigation_settings"
+            android:title="@string/title_settings"
+            app:showAsAction="ifRoom|collapseActionView"/>
+
 
     <item
             android:id="@+id/navigation_github"
@@ -14,10 +26,6 @@
             android:title="@string/title_github"
             app:showAsAction="ifRoom|collapseActionView"/>
 
-    <item
-            android:id="@+id/navigation_synchronize"
-            android:title="@string/title_sync"
-            app:showAsAction="never"/>
 
     <item android:id="@+id/comeToMiXiTButton"
           android:title="@string/come_to_mixit"

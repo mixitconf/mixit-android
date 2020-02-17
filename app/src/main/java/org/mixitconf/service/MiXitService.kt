@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import org.mixitconf.mixitApp
 import retrofit2.Call
+import java.lang.Exception
 import java.net.UnknownHostException
 import kotlin.coroutines.CoroutineContext
 
@@ -18,29 +19,25 @@ abstract class MiXitService(name: String?) : IntentService(name), CoroutineScope
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default
 
-    // Helper for showing tests
-    fun toast(text: CharSequence) {
-        mHandler.post { Toast.makeText(mixitApp, text, Toast.LENGTH_LONG).show() }
-    }
 
     /**
      * Launch a retrofit request and analyze response
      */
-    fun <T> callApi(call: Call<List<T>>, errorMessage: Int, callback: (List<T>) -> Unit) {
+    fun <T> callApi(call: Call<List<T>>, errorMessage: Notification, callback: (List<T>) -> Unit) {
         try {
             val response = call.execute()
             if (response.isSuccessful) {
                 if (response.body()!!.isEmpty()) {
-                    toast(String.format(mixitApp.getText(errorMessage).toString(), "no data"))
+                    NotificationService.startNotification(mixitApp, errorMessage, "no data")
                 }
                 callback(response.body()!!)
             } else {
-                toast(String.format(mixitApp.getText(errorMessage).toString(), response.errorBody()))
+                NotificationService.startNotification(mixitApp, errorMessage, response.errorBody().toString())
             }
         } catch (e: UnknownHostException) {
-            toast(String.format(mixitApp.getText(errorMessage).toString(), "Host not available. Try later"))
-        } catch (e: RuntimeException) {
-            toast(String.format(mixitApp.getText(errorMessage).toString(), e.message))
+            NotificationService.startNotification(mixitApp, errorMessage, "Host not available. Try later")
+        } catch (e: Exception) {
+            NotificationService.startNotification(mixitApp, errorMessage,  e.message)
         }
     }
 

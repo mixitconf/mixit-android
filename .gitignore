@@ -9,3 +9,4 @@ output.json
 /build
 /captures
 .externalNativeBuild
+.idea

@@ -12,6 +12,9 @@
     <string name="title_twitter">Suivez nous</string>
     <string name="title_github">Contribuez</string>
     <string name="title_about">A propos</string>
+    <string name="title_settings">Paramètres</string>
+    <string name="title_login">Connexion</string>
+
 
     <string name="talk_time_range">"%1$s de %2$s à %3$s "</string>
 
@@ -76,6 +79,24 @@
     <string name="error_sync_speakers">Erreur lors de la synchronisation des speakers (%s)</string>
     <string name="error_sync_talks">Erreur lors de la synchronisation des talks (%s)</string>
     <string name="sync_data">Les données sont synchronisées</string>
+    <string name="sync_start">La synchronisation des données est lancée en arrière plan...</string>
     <string name="networkPermission">La synchronization des données n\'est possible que si tu donnes le droit à l\'application d\'accéder à Internet</string>
+
+    <string name="channel_name">Notification MiXiT</string>
+    <string name="channel_description">L\'application MiXiT envoie des notifications quand les données sont synchronisées ou lorsque l\'un de vos talks ou ateliers marqués comme favori est sur le point de démarrer</string>
+
+    <string name="sync_talk">La synchronisattion des conférences est terminée.</string>
+    <string name="sync_talk_error">Erreur pendant la synchronisation des conférences. Essayez à nouveau plus tard. </string>
+    <string name="sync_speaker">La synchronisattion des speakers est terminée.</string>
+    <string name="sync_speaker_error">Erreur pendant la synchronisation des speakers. Essayez à nouveau plus tard.</string>
+
+    <string name="settings_sync_header">Synchronisation</string>
+    <string name="settings_sync_talks_speakers">Synchronise les conférences et leurs orateurs périodiquement</string>
+    <string name="settings_sync_talks_speakers_summary_on">Synchronise automatiquement les données de l\'application avec celles du site web MiXiT</string>
+    <string name="settings_sync_talks_speakers_summary_off">La synchronisation des données avec le site web ne se fera que lorsque vous utiliserez le boutton raffraichir du menu</string>
+
+    <string name="settings_sync_favorites">Synchronisation favoris</string>
+    <string name="settings_sync_favorites_summary_on">Vos favoris définis sur l\'application seront synchronisés avec le site web MiXiT</string>
+    <string name="settings_sync_favorites_summary_off">Les favoris ne seront pas synchronisés avec le site web et ne seront définis que dans l\'application Android</string>
 
 </resources>

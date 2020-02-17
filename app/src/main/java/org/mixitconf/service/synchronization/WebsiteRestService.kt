@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-interface WebsiteRepository {
+interface WebsiteRestService {
 
     /**
      * Read speaker list for current edition

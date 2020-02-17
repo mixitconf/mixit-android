@@ -89,6 +89,7 @@ class TalkListAdapter(
                     paintItemView(talk.getBgColorDependingOnTime(R.color.colorShadow))
                     displayFields()
                 }
+                LIGHTNING_TALK -> TODO("Not implemented")
             }
         }
 

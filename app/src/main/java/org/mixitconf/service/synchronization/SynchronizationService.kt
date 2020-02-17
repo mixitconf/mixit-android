@@ -3,9 +3,11 @@ package org.mixitconf.service.synchronization
 import android.content.Intent
 import androidx.room.Transaction
 import kotlinx.coroutines.launch
+import org.mixitconf.service.NotificationService
 import org.mixitconf.R
 import org.mixitconf.mixitApp
 import org.mixitconf.service.MiXitService
+import org.mixitconf.service.Notification
 import org.mixitconf.service.initialization.dto.toEntity
 import org.mixitconf.service.synchronization.dto.toEntity
 
@@ -23,7 +25,7 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
 
     @Transaction
     fun synchronizeSpeakers() {
-        callApi(mixitApp.websiteRepository.speakers(), R.string.error_sync_speakers) { users ->
+        callApi(mixitApp.websiteRestService.speakers(), Notification.ACTION_LOAD_SPEAKERS_IN_ERROR) { users ->
             val logins = users.map { it.login }
 
             mixitApp.speakerDao.apply {
@@ -40,14 +42,14 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
                         mixitApp.linkDao.create(link.toEntity(login))
                     }
                 }
-                toast(mixitApp.getText(R.string.sync_data))
+                NotificationService.startNotification(mixitApp, Notification.ACTION_LOAD_SPEAKERS)
             }
         }
     }
 
     @Transaction
     fun synchronizeTalks() {
-        callApi(mixitApp.websiteRepository.talks(), R.string.error_sync_talks) { talks ->
+        callApi(mixitApp.websiteRestService.talks(), Notification.ACTION_LOAD_TALKS_IN_ERROR) { talks ->
             val nonTalkMoments = mixitApp.talkService.findNonTalkMoments()
             val ids = talks.map { it.id } + nonTalkMoments.map { it.id }
 
@@ -61,7 +63,7 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
                 talksToUpdate.forEach {
                     if (this.readOne(it.id) != null) this.update(it) else this.create(it)
                 }
-                toast(mixitApp.getText(R.string.sync_data))
+                NotificationService.startNotification(mixitApp, Notification.ACTION_LOAD_TALKS)
             }
         }
     }
