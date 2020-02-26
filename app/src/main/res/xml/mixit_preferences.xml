@@ -31,6 +31,12 @@
                 app:summaryOn="@string/settings_sync_favorites_summary_on"
                 app:title="@string/settings_sync_favorites" />
 
+        <EditTextPreference
+                app:key="sync_email"
+                app:title="@string/settings_sync_favorites_summary"
+                app:useSimpleSummaryProvider="true"
+                app:dependency="sync_favorite"/>
+
     </PreferenceCategory>
 
 
