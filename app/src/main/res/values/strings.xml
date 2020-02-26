@@ -86,9 +86,9 @@
 
     <string name="channel_name">MiXiT notification</string>
     <string name="channel_description">MiXiT app send notifications when data are synchronized or when one of your favorite is saved</string>
-    <string name="sync_talk">Talk synchronization is done.</string>
+    <string name="sync_talk">Talk synchronization is done and data are been updated.</string>
     <string name="sync_talk_error">Error on talk synchronization. Retry later please.</string>
-    <string name="sync_speaker">Speaker synchronization is done.</string>
+    <string name="sync_speaker">Speaker synchronization is done and data are been updated.</string>
     <string name="sync_speaker_error">Error on speaker synchronization. Retry later please.</string>
 
     <string name="settings_sync_header">Sync</string>

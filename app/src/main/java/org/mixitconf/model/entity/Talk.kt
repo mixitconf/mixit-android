@@ -33,6 +33,7 @@ data class Talk(
     // This list is only populated when we want to see the talk detail. For that we read speakers by their ids
     @Ignore
     val speakers: MutableList<Speaker> = mutableListOf()
+
 }
 
 val Talk.speakerIdList
@@ -47,6 +48,8 @@ val Talk.topicDrawableResource
         "makers" -> R.drawable.mxt_topic_maker
         "team" -> R.drawable.mxt_topic_team
         "tech" -> R.drawable.mxt_topic_tech
+        "ethics" -> R.drawable.mxt_topic_ethics
+        "lifestyle" -> R.drawable.mxt_topic_lifestyle
         else -> R.drawable.mxt_topic_design
     }
 

@@ -85,9 +85,9 @@
     <string name="channel_name">Notification MiXiT</string>
     <string name="channel_description">L\'application MiXiT envoie des notifications quand les données sont synchronisées ou lorsque l\'un de vos talks ou ateliers marqués comme favori est sur le point de démarrer</string>
 
-    <string name="sync_talk">La synchronisattion des conférences est terminée.</string>
+    <string name="sync_talk">La synchronisattion des conférences est terminée et des données ont été mises à jour.</string>
     <string name="sync_talk_error">Erreur pendant la synchronisation des conférences. Essayez à nouveau plus tard. </string>
-    <string name="sync_speaker">La synchronisattion des speakers est terminée.</string>
+    <string name="sync_speaker">La synchronisattion des speakers est terminée et des données ont été mises à jour.</string>
     <string name="sync_speaker_error">Erreur pendant la synchronisation des speakers. Essayez à nouveau plus tard.</string>
 
     <string name="settings_sync_header">Synchronisation</string>
