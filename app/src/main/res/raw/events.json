@@ -776,7 +776,7 @@
     },
     {
         "current": true,
-        "end": "2019-05-24",
+        "end": "2020-05-24",
         "id": "mixit19",
         "photoUrls": [],
         "sponsors": [
@@ -823,121 +823,121 @@
             {
                 "level": "GOLD",
                 "sponsorId": "Sopra Steria",
-                "subscriptionDate": "2019-01-15"
+                "subscriptionDate": "2020-01-15"
             },
             {
                 "level": "GOLD",
                 "sponsorId": "linkvalue",
-                "subscriptionDate": "2019-01-18"
+                "subscriptionDate": "2020-01-18"
             },
             {
                 "level": "PARTY",
                 "sponsorId": "braincube",
-                "subscriptionDate": "2019-01-18"
+                "subscriptionDate": "2020-01-18"
             },
             {
                 "level": "GOLD",
                 "sponsorId": "Hopwork",
-                "subscriptionDate": "2019-01-21"
+                "subscriptionDate": "2020-01-21"
             },
             {
                 "level": "GOLD",
                 "sponsorId": "Bonitasoft",
-                "subscriptionDate": "2019-01-21"
+                "subscriptionDate": "2020-01-21"
             },
             {
                 "level": "GOLD",
                 "sponsorId": "VISEO",
-                "subscriptionDate": "2019-02-11"
+                "subscriptionDate": "2020-02-11"
             },
             {
                 "level": "SILVER",
                 "sponsorId": "sourcingisr",
-                "subscriptionDate": "2019-02-11"
+                "subscriptionDate": "2020-02-11"
             },
             {
                 "level": "SILVER",
                 "sponsorId": "SII_rhonealpes",
-                "subscriptionDate": "2019-03-04"
+                "subscriptionDate": "2020-03-04"
             },
             {
                 "level": "SILVER",
                 "sponsorId": "conserto",
-                "subscriptionDate": "2019-03-04"
+                "subscriptionDate": "2020-03-04"
             },
             {
                 "level": "GOLD",
                 "sponsorId": "societegenerale",
-                "subscriptionDate": "2019-03-04"
+                "subscriptionDate": "2020-03-04"
             },
             {
                 "level": "GOLD",
                 "sponsorId": "thales",
-                "subscriptionDate": "2019-03-06"
+                "subscriptionDate": "2020-03-06"
             },
             {
                 "level": "MIXTEEN",
                 "sponsorId": "Redhat",
-                "subscriptionDate": "2019-03-11"
+                "subscriptionDate": "2020-03-11"
             },
             {
                 "level": "GOLD",
                 "sponsorId": "WorldlineFrance",
-                "subscriptionDate": "2019-03-12"
+                "subscriptionDate": "2020-03-12"
             },
             {
                 "level": "LANYARD",
                 "sponsorId": "Redhat",
-                "subscriptionDate": "2019-03-13"
+                "subscriptionDate": "2020-03-13"
             },
             {
                 "level": "SILVER",
                 "sponsorId": "akuiteo",
-                "subscriptionDate": "2019-03-13"
+                "subscriptionDate": "2020-03-13"
             },
             {
                 "level": "GOLD",
                 "sponsorId": "microsoft",
-                "subscriptionDate": "2019-03-20"
+                "subscriptionDate": "2020-03-20"
             },
             {
                 "level": "GOLD",
                 "sponsorId": "talan",
-                "subscriptionDate": "2019-03-25"
+                "subscriptionDate": "2020-03-25"
             },
             {
                 "level": "PARTY",
                 "sponsorId": "onlylyon",
-                "subscriptionDate": "2019-03-25"
+                "subscriptionDate": "2020-03-25"
             },
             {
                 "level": "MIXTEEN",
                 "sponsorId": "keyrus",
-                "subscriptionDate": "2019-04-05"
+                "subscriptionDate": "2020-04-05"
             },
             {
                 "level": "SILVER",
                 "sponsorId": "cabinet-asi",
-                "subscriptionDate": "2019-04-23"
+                "subscriptionDate": "2020-04-23"
             },
             {
                 "level": "ECOLOGY",
                 "sponsorId": "redfroggy",
-                "subscriptionDate": "2019-04-28"
+                "subscriptionDate": "2020-04-28"
             },
             {
                 "level": "MIXTEEN",
                 "sponsorId": "esker",
-                "subscriptionDate": "2019-04-29"
+                "subscriptionDate": "2020-04-29"
             },
             {
                 "level": "ECOLOGY",
                 "sponsorId": "mdbat",
-                "subscriptionDate": "2019-05-01"
+                "subscriptionDate": "2020-05-01"
             }
         ],
-        "start": "2019-05-23",
+        "start": "2020-05-23",
         "videoUrl": null,
-        "year": 2019
+        "year": 2020
     }
 ]

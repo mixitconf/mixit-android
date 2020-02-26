@@ -19,7 +19,7 @@ class EventDaoTest{
 
     private lateinit var database: MiXiTDatabase
     private lateinit var dao: EventDao
-    private val event = Event("id", createDate(25, 8, 0) , createDate(26, 18, 0), 2019)
+    private val event = Event("id", createDate(29, 8, 0) , createDate(30, 18, 0), 2020)
 
     @Before
     fun onInit(){

@@ -28,7 +28,7 @@ class DataInitializerService : MiXitService(DataInitializerService::class.simple
      * This reader is called on the first app installation to initialize database
      */
     private val talks by lazy {
-        val jsonInputStream = mixitApp.resources.openRawResource(R.raw.talks_2019)
+        val jsonInputStream = mixitApp.resources.openRawResource(R.raw.talks_2020)
         val talks: List<TalkDto> = jacksonObjectMapper().readValue(jsonInputStream)
         talks + mixitApp.talkService.findNonTalkMoments()
     }

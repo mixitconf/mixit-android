@@ -15,7 +15,7 @@ import java.util.*
  */
 class TalkService(private val context: Context) {
 
-    enum class Day(val day: Int) { One(23), Two(24), Three(25) }
+    enum class Day(val day: Int) { One(29), Two(30), Three(25) }
 
     fun findNonTalkMoments(): List<TalkDto> = listOf(
         createNonTalkMoment(Day.One, TalkFormat.DAY, 8, 29, R.string.event_day1),
@@ -36,14 +36,14 @@ class TalkService(private val context: Context) {
         createNonTalkMoment(Day.Two, TalkFormat.PAUSE_10_MIN, 11, 30),
         createNonTalkMoment(Day.Two, TalkFormat.LUNCH, 12, 30),
         createNonTalkMoment(Day.Two, TalkFormat.PAUSE_10_MIN, 15, 20),
-        createNonTalkMoment(Day.Two, TalkFormat.PAUSE_30_MIN, 16, 20),
+        createNonTalkMoment(Day.Two, TalkFormat.PAUSE_30_MIN, 16, 20)
 
-        createNonTalkMoment(Day.Three, TalkFormat.DAY, 8, 29, R.string.event_day3),
-        createNonTalkMoment(Day.Three, TalkFormat.LUNCH, 12, 0)
+//        createNonTalkMoment(Day.Three, TalkFormat.DAY, 8, 29, R.string.event_day3),
+//        createNonTalkMoment(Day.Three, TalkFormat.LUNCH, 12, 0)
     )
 
     private fun createNonTalkMoment(day: Day, talkFormat: TalkFormat, startHour: Int, startMinute: Int, title: Int = talkFormat.label) = TalkDto(
-        talkFormat, "2019", context.getString(title), "", emptyList(), Language.FRENCH, Date(), "", "", Room.UNKNOWN, createDate(day.day, startHour, startMinute), createDate(day.day, startHour, startMinute).addMinutes(talkFormat.duration), id = day.name + talkFormat.name + startHour
+        talkFormat, "2020", context.getString(title), "", emptyList(), Language.FRENCH, Date(), "", "", Room.UNKNOWN, createDate(day.day, startHour, startMinute), createDate(day.day, startHour, startMinute).addMinutes(talkFormat.duration), id = day.name + talkFormat.name + startHour
     )
 
 

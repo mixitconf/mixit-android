@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit
 class MiXiTApplication : Application() {
 
     companion object {
-        const val CURRENT_EDITION = 2019
+        const val CURRENT_EDITION = 2020
         const val SECOND: Long = 1000
 
         val SPECIAL_SLUG_CHARACTERS = mapOf(

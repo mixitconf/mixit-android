@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MiXiT 2019</string>
-    <string name="event_day1">Jeudi 19 mai</string>
-    <string name="event_day2">Vendredi 20 mai</string>
-    <string name="event_day3">Samedi 25 mai</string>
+    <string name="app_name">MiXiT 2020</string>
+    <string name="event_day1">Mercredi 29 avril</string>
+    <string name="event_day2">Jeudi 30 avril</string>
 
     <string name="title_sync">Synchroniser les données</string>
     <string name="title_talks">Talks</string>
@@ -52,7 +51,7 @@
     <string name="KEYNOTE_SURPRISE">OPENING SESSION</string>
     <string name="CLOSING_SESSION">CLOSING SESSION</string>
 
-    <string name="about_title">MiXiT 2019 Client</string>
+    <string name="about_title">MiXiT 2020 Client</string>
     <string name="about_description">Cette application a été créée par la team MiXiT pour vous aider à suivre la conférence. Le projet est Open Source et vous pouvez nous aider à améliorer l\'application. Le projet est disponible sous <a href="https://github.com/mixitconf/mixit-android">Github</a>. Pour plus d\'informations vous pouvez consulter notre <a href="https://mixitconf.org">site</a> </string>.
     <string name="planning_team_word">Le mot de la team</string>
     <string name="planning_team_outro">Le mot de la fin de la team</string>
@@ -65,7 +64,7 @@
     <string name="planning_reception">Accueil (café)</string>
 
     <string name="welcome">La conférence lyonnaise avec des crêpes et du coeur</string>
-    <string name="dates">23 \u0026 25 mai 2019</string>
+    <string name="dates">29 \u0026 30 avril 2020</string>
 
     <string name="come_to_mixit">Venir à MiXiT</string>
     <string name="come_to_party">Venir à la soirée</string>
