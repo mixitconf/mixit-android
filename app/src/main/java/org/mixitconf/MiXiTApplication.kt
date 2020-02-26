@@ -12,7 +12,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -25,7 +24,8 @@ import org.mixitconf.service.initialization.DataInitializerService
 import org.mixitconf.service.initialization.TalkService
 import org.mixitconf.service.synchronization.SynchronizationJobService
 import org.mixitconf.service.synchronization.WebsiteDao
-import org.mixitconf.service.synchronization.WebsiteRestService
+import org.mixitconf.service.synchronization.WebsiteTalkService
+import org.mixitconf.service.synchronization.WebsiteUserService
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.text.SimpleDateFormat
@@ -37,7 +37,7 @@ class MiXiTApplication : Application() {
 
     companion object {
         const val CURRENT_EDITION = 2019
-        const val SECOND:Long = 1000
+        const val SECOND: Long = 1000
 
         val SPECIAL_SLUG_CHARACTERS = mapOf(
             Pair('é', 'e'), Pair('è', 'e'), Pair('ï', 'i'), Pair(' ', '_'), Pair('ê', 'e'), Pair('.', '_'), Pair('\'', '_'), Pair('ô', 'o'), Pair('à', 'a'), Pair('-', '_')
@@ -46,14 +46,15 @@ class MiXiTApplication : Application() {
         val DATE_FORMAT = SimpleDateFormat("EEE", Locale.getDefault())
 
         const val OBJECT_ID = "id"
-        const val MIXIT_API = "https://mixitconf.org/api/2019/"
+        const val MIXIT_TALK_API = "https://mixitconf.org/api/2019/"
+        const val MIXIT_USER_API = "https://mixitconf.org/api/external/"
         const val DATABASE_NAME = "mixitconf"
         const val FRAGMENT_ID = "fragmentId"
 
         const val PREF_DATA_SYNC = "sync_data"
         const val PREF_DATA_SYNC_JOB = 1
         const val PREF_FAVORITE_SYNC = "sync_favorite"
-        const val PREF_SYNC_RECURRENT_UPDATE_IN_SEC = 4 * 60 *60
+        const val PREF_SYNC_RECURRENT_UPDATE_IN_SEC = 4 * 60 * 60
 
         fun scheduleAutomaticDataUpdate(context: Context) {
             PreferenceManager.getDefaultSharedPreferences(context).apply {
@@ -107,18 +108,19 @@ class MiXiTApplication : Application() {
 
 
     val websiteDao: WebsiteDao by lazy {
-        WebsiteDao(websiteRestService)
+        WebsiteDao(websiteTalkService)
     }
 
-    val websiteRestService: WebsiteRestService by lazy {
-        val client = OkHttpClient.Builder()
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .readTimeout(1, TimeUnit.MINUTES)
-            .writeTimeout(10, TimeUnit.SECONDS).build()
+    private fun createWebClient() = OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS).readTimeout(1, TimeUnit.MINUTES).writeTimeout(10, TimeUnit.SECONDS).build()
 
-        Retrofit.Builder().baseUrl(MIXIT_API).addConverterFactory(JacksonConverterFactory.create()).client(client).build().create(WebsiteRestService::class.java)
+    val websiteTalkService: WebsiteTalkService by lazy {
+        Retrofit.Builder().baseUrl(MIXIT_TALK_API).addConverterFactory(JacksonConverterFactory.create()).client(createWebClient()).build().create(WebsiteTalkService::class.java)
     }
 
+
+    val websiteUserService: WebsiteUserService by lazy {
+        Retrofit.Builder().baseUrl(MIXIT_USER_API).addConverterFactory(JacksonConverterFactory.create()).client(createWebClient()).build().create(WebsiteUserService::class.java)
+    }
 
     // Create a notification channel. Since API 26 (Android O) each app need to send notification in its own channel
     val notificationChannelId: String by lazy {

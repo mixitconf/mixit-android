@@ -33,7 +33,7 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
 
     @Transaction
     fun synchronizeSpeakers(backProcess: Boolean) {
-        callApi(mixitApp.websiteRestService.speakers(), Notification.ACTION_LOAD_SPEAKERS_IN_ERROR, backProcess) { users ->
+        callApi(mixitApp.websiteTalkService.speakers(), Notification.ACTION_LOAD_SPEAKERS_IN_ERROR, backProcess) { users ->
             val logins = users.map { it.login }
 
             mixitApp.speakerDao.apply {
@@ -73,7 +73,7 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
 
     @Transaction
     fun synchronizeTalks(backProcess: Boolean) {
-        callApi(mixitApp.websiteRestService.talks(), Notification.ACTION_LOAD_TALKS_IN_ERROR, backProcess) { talks ->
+        callApi(mixitApp.websiteTalkService.talks(), Notification.ACTION_LOAD_TALKS_IN_ERROR, backProcess) { talks ->
             val nonTalkMoments = mixitApp.talkService.findNonTalkMoments()
             val ids = talks.map { it.id } + nonTalkMoments.map { it.id }
 

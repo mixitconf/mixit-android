@@ -8,10 +8,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class WebsiteDao(private val websiteRestService: WebsiteRestService) {
+class WebsiteDao(private val websiteTalkService: WebsiteTalkService) {
 
     fun speakers() = MutableLiveData<List<UserApiDto>>().apply {
-        websiteRestService.speakers().enqueue(object : Callback<List<UserApiDto>> {
+        websiteTalkService.speakers().enqueue(object : Callback<List<UserApiDto>> {
 
             override fun onResponse(call: Call<List<UserApiDto>?>?, response: Response<List<UserApiDto>?>?) {
                 if (response != null && response.isSuccessful){

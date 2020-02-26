@@ -1,7 +1,6 @@
 package org.mixitconf.service.synchronization
 
 import org.mixitconf.service.synchronization.dto.FavoriteDto
-import org.mixitconf.service.synchronization.dto.TalkApiDto
 import org.mixitconf.service.synchronization.dto.UserApiDto
 import org.mixitconf.service.synchronization.dto.WebsiteResponse
 import retrofit2.Call
@@ -9,19 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-interface WebsiteRestService {
-
-    /**
-     * Read speaker list for current edition
-     */
-    @GET("speaker")
-    fun speakers(): Call<List<UserApiDto>>
-
-    /**
-     * Read talk list for current edition
-     */
-    @GET("talk")
-    fun talks(): Call<List<TalkApiDto>>
+interface WebsiteUserService {
 
     /**
      * Send a request to send a token to a user by email. When a user want to refresh his data this token is required. This request can respond with
@@ -32,7 +19,7 @@ interface WebsiteRestService {
      *     <li>500 : {"message":"An expected error occured on email sent"}</li>
      * </ul>
      */
-    @GET("external/token")
+    @GET("token")
     fun askForToken(@Query("email") email: String): Call<WebsiteResponse>
 
     /**
@@ -42,7 +29,7 @@ interface WebsiteRestService {
      *     <li>400 : {"message":"Credentials are invalids"}</li>
      * </ul>
      */
-    @GET("external/token/check")
+    @GET("token/check")
     fun checkToken(@Query("email") email: String, @Query("token") token: String): Call<WebsiteResponse>
 
 
@@ -53,7 +40,7 @@ interface WebsiteRestService {
      *     <li>400 : {"message":"Credentials are invalids"}</li>
      * </ul>
      */
-    @GET("external/me")
+    @GET("me")
     fun profile(@Query("email") email: String, @Query("token") token: String): Call<UserApiDto>
 
 
@@ -64,7 +51,7 @@ interface WebsiteRestService {
      *     <li>400 : {"message":"Credentials are invalids"}</li>
      * </ul>
      */
-    @GET("external/favorites")
+    @GET("favorites")
     fun favorites(@Query("email") email: String, @Query("token") token: String): Call<List<FavoriteDto>>
 
 
@@ -75,7 +62,7 @@ interface WebsiteRestService {
      *     <li>400 : {"message":"Credentials are invalids"}</li>
      * </ul>
      */
-    @GET("external/favorites/talks/{id}")
+    @GET("favorites/talks/{id}")
     fun favorite(@Query("id") talkId: String, @Query("email") email: String, @Query("token") token: String): Call<FavoriteDto>
 
     /**
@@ -85,6 +72,6 @@ interface WebsiteRestService {
      *     <li>400 : {"message":"Credentials are invalids"}</li>
      * </ul>
      */
-    @POST("external/favorites/talks/{id}")
+    @POST("favorites/talks/{id}")
     fun toggleFavorite(@Query("id") talkId: String, @Query("email") email: String, @Query("token") token: String): Call<FavoriteDto>
 }
