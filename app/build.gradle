@@ -8,7 +8,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "org.mixitconf"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 22
         versionName "2.8"

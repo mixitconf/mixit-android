@@ -20,9 +20,10 @@
 
         <SwitchPreferenceCompat
                 app:key="sync_data"
+                app:defaultValue="true"
                 app:summaryOff="@string/settings_sync_talks_speakers_summary_off"
                 app:summaryOn="@string/settings_sync_talks_speakers_summary_on"
-                app:title="@string/settings_sync_talks_speakers" />
+                app:title="@string/settings_sync_talks_speakers"/>
 
         <SwitchPreferenceCompat
                 app:key="sync_favorite"

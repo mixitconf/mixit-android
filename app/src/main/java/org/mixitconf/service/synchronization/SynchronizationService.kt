@@ -1,72 +1,108 @@
 package org.mixitconf.service.synchronization
 
 import android.content.Intent
+import android.widget.Toast
 import androidx.room.Transaction
 import kotlinx.coroutines.launch
-import org.mixitconf.service.NotificationService
 import org.mixitconf.R
 import org.mixitconf.mixitApp
 import org.mixitconf.service.MiXitService
 import org.mixitconf.service.Notification
+import org.mixitconf.service.NotificationService
 import org.mixitconf.service.initialization.dto.toEntity
 import org.mixitconf.service.synchronization.dto.toEntity
 
 
 class SynchronizationService : MiXitService(SynchronizationService::class.simpleName) {
 
+    companion object{
+        const val AUTOMATIC_TASK = "org.mixitconf.service.synchronization.auto"
+    }
+
     override fun onHandleIntent(intent: Intent?) {
+        val backProcess = intent?.getBooleanExtra(AUTOMATIC_TASK, false) ?: false
+
         launch {
-            synchronizeSpeakers()
+            synchronizeSpeakers(backProcess)
         }
         launch {
-            synchronizeTalks()
+            // TODO
+            synchronizeTalks(false)
         }
     }
 
     @Transaction
-    fun synchronizeSpeakers() {
-        callApi(mixitApp.websiteRestService.speakers(), Notification.ACTION_LOAD_SPEAKERS_IN_ERROR) { users ->
+    fun synchronizeSpeakers(backProcess: Boolean) {
+        callApi(mixitApp.websiteRestService.speakers(), Notification.ACTION_LOAD_SPEAKERS_IN_ERROR, backProcess) { users ->
             val logins = users.map { it.login }
 
             mixitApp.speakerDao.apply {
-                val speakersToDelete = this.readAll().filter { !logins.contains(it.login) }.map { it.login }
+                var update = false
+                val speakersToDelete = this.readAll().filterNot { logins.contains(it.login) }.map { it.login }
                 if (speakersToDelete.isNotEmpty()) {
                     this.deleteAllById(speakersToDelete)
+                    update = true
                 }
 
                 users.forEach {
                     val login = it.login!!
-                    if (this.readOne(login) != null) this.update(it.toEntity()) else this.create(it.toEntity())
+                    val existingUser = this.readOne(login)
+                    if (existingUser != null) {
+                        if (existingUser != it.toEntity()) {
+                            this.update(it.toEntity())
+                            update = true
+                        }
+                    } else {
+                        this.create(it.toEntity())
+                        update = true
+                    }
                     mixitApp.linkDao.deleteBySpeaker(login)
                     it.links.forEach { link ->
                         mixitApp.linkDao.create(link.toEntity(login))
                     }
                 }
-                NotificationService.startNotification(mixitApp, Notification.ACTION_LOAD_SPEAKERS)
+                if(!backProcess){
+                    Toast.makeText(mixitApp, R.string.sync_finish, Toast.LENGTH_LONG).show()
+                }
+                else if (update) {
+                    NotificationService.startNotification(mixitApp, Notification.ACTION_LOAD_SPEAKERS)
+                }
             }
         }
     }
 
     @Transaction
-    fun synchronizeTalks() {
-        callApi(mixitApp.websiteRestService.talks(), Notification.ACTION_LOAD_TALKS_IN_ERROR) { talks ->
+    fun synchronizeTalks(backProcess: Boolean) {
+        callApi(mixitApp.websiteRestService.talks(), Notification.ACTION_LOAD_TALKS_IN_ERROR, backProcess) { talks ->
             val nonTalkMoments = mixitApp.talkService.findNonTalkMoments()
             val ids = talks.map { it.id } + nonTalkMoments.map { it.id }
 
             mixitApp.talkDao.apply {
+                var update = false
                 val talksToDelete = this.readAll().filter { !ids.contains(it.id) }.map { it.id }
                 if (talksToDelete.isNotEmpty()) {
                     this.deleteAllById(talksToDelete)
+                    update = true
                 }
 
                 val talksToUpdate = talks.map { it.toEntity() } + nonTalkMoments.map { it.toEntity() }
                 talksToUpdate.forEach {
-                    if (this.readOne(it.id) != null) this.update(it) else this.create(it)
+                    val existingTalk = this.readOne(it.id)
+                    if (existingTalk != null) {
+                        if (existingTalk != it) {
+                            this.update(it)
+                            update = true
+                        }
+                    } else {
+                        this.create(it)
+                        update = true
+                    }
                 }
-                NotificationService.startNotification(mixitApp, Notification.ACTION_LOAD_TALKS)
+                if (update) {
+                    NotificationService.startNotification(mixitApp, Notification.ACTION_LOAD_TALKS)
+                }
             }
         }
     }
-
 
 }

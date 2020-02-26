@@ -37,6 +37,7 @@ fun Resources.getLegacyColor(id: Int) = this.getColor(id)
 fun createDate(day: Int, hour: Int, minute: Int): Date {
     val calendar = Calendar.getInstance(Locale.FRANCE)
     calendar.set(2019, 4, day, hour, minute, 0)
+    calendar.set(Calendar.MILLISECOND, 0)
     return calendar.time
 }
 

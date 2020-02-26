@@ -2,6 +2,8 @@ package org.mixitconf.service
 
 import android.app.IntentService
 import android.os.Handler
+import android.text.style.BackgroundColorSpan
+import android.util.Log
 import android.widget.Toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +16,9 @@ import kotlin.coroutines.CoroutineContext
 
 abstract class MiXitService(name: String?) : IntentService(name), CoroutineScope {
 
-    private val mHandler = Handler()
+    companion object{
+        const val TAG = "MiXitService"
+    }
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default
@@ -23,21 +27,33 @@ abstract class MiXitService(name: String?) : IntentService(name), CoroutineScope
     /**
      * Launch a retrofit request and analyze response
      */
-    fun <T> callApi(call: Call<List<T>>, errorMessage: Notification, callback: (List<T>) -> Unit) {
+    fun <T> callApi(call: Call<List<T>>, errorMessage: Notification, backgroundProcess: Boolean, callback: (List<T>) -> Unit) {
         try {
             val response = call.execute()
             if (response.isSuccessful) {
                 if (response.body()!!.isEmpty()) {
-                    NotificationService.startNotification(mixitApp, errorMessage, "no data")
+                    log(errorMessage, backgroundProcess, "no data")
                 }
                 callback(response.body()!!)
             } else {
-                NotificationService.startNotification(mixitApp, errorMessage, response.errorBody().toString())
+                log(errorMessage, backgroundProcess, response.errorBody().toString())
             }
         } catch (e: UnknownHostException) {
-            NotificationService.startNotification(mixitApp, errorMessage, "Host not available. Try later")
+            log(errorMessage, backgroundProcess, "Host not available. Try later")
         } catch (e: Exception) {
-            NotificationService.startNotification(mixitApp, errorMessage,  e.message)
+            log(errorMessage, backgroundProcess, e.message)
+        }
+    }
+
+    /**
+     * When task is launched by a background service we don't want to add a notification for each error
+     */
+    private fun log(errorMessage: Notification, backgroundProcess: Boolean, message: String?){
+        if(backgroundProcess) {
+            Log.e("MiXitService", message)
+        }
+        else{
+            NotificationService.startNotification(mixitApp, errorMessage,  message)
         }
     }
 
