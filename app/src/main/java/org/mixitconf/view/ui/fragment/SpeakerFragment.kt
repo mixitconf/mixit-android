@@ -29,7 +29,7 @@ class SpeakerFragment : Fragment() {
 
         dataList.default { SpeakerListAdapter(activity as OnSpeakerSelectedListener) }.apply { layoutManager?.onRestoreInstanceState(listState) }
 
-        ViewModelProvider(this).get(SpeakerListViewModel::class.java).liveData.observe(viewLifecycleOwner, Observer {
+        ViewModelProvider(this).get(SpeakerListViewModel::class.java).liveData.observe(this, Observer {
             (dataList.adapter as SpeakerListAdapter).update(it)
         })
     }

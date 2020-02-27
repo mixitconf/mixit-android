@@ -90,6 +90,13 @@ open class MixitActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
+            R.id.navigation_website -> {
+                applicationContext.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW, Uri.parse("https://mixitconf.org/schedule")
+                    ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                )
+            }
         }
         return super.onOptionsItemSelected(item)
     }

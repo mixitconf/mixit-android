@@ -13,7 +13,7 @@
     <string name="title_about">A propos</string>
     <string name="title_settings">Paramètres</string>
     <string name="title_login">Connexion</string>
-
+    <string name="title_favorites">Favoris</string>
 
     <string name="talk_time_range">"%1$s de %2$s à %3$s "</string>
 

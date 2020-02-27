@@ -3,18 +3,18 @@
 
 
     <item
-        android:id="@+id/navigation_talk"
-        android:icon="@drawable/mxt_icon_talk"
-        android:title="@string/title_talks" />
+            android:id="@+id/navigation_talk"
+            android:icon="@drawable/mxt_icon_talk"
+            android:title="@string/title_talks" />
 
     <item
-        android:id="@+id/navigation_speaker"
-        android:icon="@drawable/mxt_icon_speaker"
-        android:title="@string/title_speakers" />
+            android:id="@+id/navigation_favorites"
+            android:icon="@drawable/ic_favorite_white_24dp"
+            android:title="@string/title_favorites" />
 
     <item
-        android:id="@+id/navigation_website"
-        android:icon="@drawable/mxt_icon_web"
-        android:title="@string/title_website" />
+            android:id="@+id/navigation_speaker"
+            android:icon="@drawable/mxt_icon_speaker"
+            android:title="@string/title_speakers" />
 
 </menu>

@@ -17,14 +17,20 @@
     <item
             android:id="@+id/navigation_settings"
             android:title="@string/title_settings"
-            app:showAsAction="ifRoom|collapseActionView"/>
+            app:showAsAction="withText"/>
 
+
+    <item
+            android:id="@+id/navigation_website"
+            android:icon="@drawable/mxt_icon_web"
+            android:title="@string/title_website"
+            app:showAsAction="never"/>
 
     <item
             android:id="@+id/navigation_github"
             android:icon="@drawable/mxt_icon_github_zoom"
             android:title="@string/title_github"
-            app:showAsAction="ifRoom|collapseActionView"/>
+            app:showAsAction="never"/>
 
 
     <item android:id="@+id/comeToMiXiTButton"

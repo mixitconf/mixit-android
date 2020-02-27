@@ -61,12 +61,8 @@ open class MainActivity : MixitActivity(), OnTalkSelectedListener, OnSpeakerSele
                 openFragment(SpeakerFragment())
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_website -> {
-                applicationContext.startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW, Uri.parse("https://mixitconf.org/schedule")
-                    ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                )
+            R.id.navigation_favorites -> {
+                openFragment(TalkFragment(displayOnlyFavorites = true))
                 return@OnNavigationItemSelectedListener true
             }
         }

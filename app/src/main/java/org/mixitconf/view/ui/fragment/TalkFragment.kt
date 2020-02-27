@@ -18,7 +18,7 @@ import org.mixitconf.view.ui.OnTalkSelectedListener
 import org.mixitconf.viewmodel.TalkListViewModel
 
 
-class TalkFragment : Fragment() {
+class TalkFragment(val displayOnlyFavorites:Boolean = false) : Fragment() {
 
     private var listState: Parcelable? = null
 
@@ -35,7 +35,8 @@ class TalkFragment : Fragment() {
         dataList.default { TalkListAdapter(activity as OnTalkSelectedListener, resources) }.apply { layoutManager?.onRestoreInstanceState(listState) }
 
         ViewModelProvider(this).get(TalkListViewModel::class.java).liveData.observe(viewLifecycleOwner, Observer {
-            (dataList.adapter as TalkListAdapter).update(it)
+            val talkToDisplay = if(displayOnlyFavorites) it.filter { it.favorite } else it
+            (dataList.adapter as TalkListAdapter).update(talkToDisplay)
         })
     }
 }
