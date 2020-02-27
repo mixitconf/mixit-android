@@ -1,17 +1,15 @@
 package org.mixitconf.view.ui.fragment
 
 import android.Manifest
-import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.loader.app.LoaderManager
 import kotlinx.android.synthetic.main.fragment_talk_detail.*
 import kotlinx.android.synthetic.main.fragment_talk_detail_content.*
@@ -34,9 +32,9 @@ class TalkDetailFragment : Fragment() {
 
         talkSpeakerList.default { SpeakerListAdapter(activity as OnSpeakerSelectedListener) }
 
-        val model = ViewModelProviders.of(this).get(TalkDetailViewModel::class.java)
+        val model = ViewModelProvider(this).get(TalkDetailViewModel::class.java)
 
-        model.liveData.observe(this, Observer { talk ->
+        model.liveData.observe(viewLifecycleOwner, Observer { talk ->
             val calendarLoader = CalendarLoader(mixitApp, talk)
 
             talkName.text = talk.title
@@ -54,6 +52,10 @@ class TalkDetailFragment : Fragment() {
             talkHearing.visibility = talk.room.hardOfHearingSytem.visibility
             talkDescHearing.visibility = talk.room.hardOfHearingSytem.visibility
             talkDescHearing.text = resources.getText(if (talk.room.scribo) R.string.hearing_scrivo else if (talk.room.risp) R.string.hearing_risp else R.string.unknown)
+            talkNotFavoriteImg.visibility = (!talk.favorite).visibility
+            talkFavoriteImg.visibility = talk.favorite.visibility
+            navigation_favorite_toggle.visibility = (!talk.favorite).visibility
+            navigation_nonfavorite_toggle.visibility = talk.favorite.visibility
 
             if (talk.room.scriboUrl.isNullOrEmpty()) {
                 buttonTranscription.visibility = View.GONE
@@ -70,41 +72,40 @@ class TalkDetailFragment : Fragment() {
 
             (talkSpeakerList.adapter as SpeakerListAdapter).update(talk.speakers)
 
-            navigation_calendar_add.setOnClickListener { calendarAddEvent(calendarLoader, talk) }
+            navigation_favorite_toggle.setOnClickListener {
+                model.saveTalk(talk.copy(favorite = !talk.favorite))
+            }
+            navigation_nonfavorite_toggle.setOnClickListener {
+                model.saveTalk(talk.copy(favorite = !talk.favorite))
+            }
 
             if (mixitApp.hasPermission(Manifest.permission.READ_CALENDAR)) {
                 LoaderManager.getInstance(this).initLoader(0, null, calendarLoader)
             }
         })
 
-        model.loadSpeaker(arguments?.getString(MiXiTApplication.OBJECT_ID) ?: "")
+        model.loadTalk(arguments?.getString(MiXiTApplication.OBJECT_ID) ?: "")
     }
 
-    private fun calendarAddEvent(calendarLoader: CalendarLoader, talk: Talk) {
-        if (!mixitApp.hasPermission(Manifest.permission.WRITE_CALENDAR)) {
-            requestPermissions(arrayOf(Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR), 0)
-        } else {
-            val hasConcurrentEvent = calendarLoader.hasConcurrentEventInCalendar != null && calendarLoader.hasConcurrentEventInCalendar!!
-
-            // If we have an existing event in user calendar, we have to ask him if he wants to insert or not a new one
-            AlertDialog.Builder(context).setTitle(R.string.calendar_add).setMessage(if (hasConcurrentEvent) R.string.calendar_question2 else R.string.calendar_question1).setPositiveButton(android.R.string.yes) { _, _ -> insertEventInCalendar(talk) }.setNegativeButton(android.R.string.no) { _, _ -> }
-                .show()
-        }
-    }
-
-    private fun insertEventInCalendar(talk: Talk) = context!!.startActivity(
-        Intent(Intent.ACTION_INSERT).setType("vnd.android.cursor.item/event").setData(CalendarContract.Events.CONTENT_URI).putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, talk.startLocaleTime).putExtra(
-                CalendarContract.EXTRA_EVENT_END_TIME,
-                talk.endLocaleTime
-            ).putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false).putExtra(CalendarContract.Events.TITLE, "[mixit19] : ${talk.title}").putExtra(CalendarContract.Events.EVENT_LOCATION, resources.getString(talk.room.i18nId)).putExtra(
-                CalendarContract.Events.ALLOWED_REMINDERS,
-                CalendarContract.Reminders.METHOD_ALARM
-            ).putExtra(CalendarContract.Events.DESCRIPTION, talk.summary)
-    )
+//    private fun calendarAddEvent(calendarLoader: CalendarLoader, talk: Talk) {
+//        // With this old code we check if app has the right to write something in calendar and do it
+//        if (!mixitApp.hasPermission(Manifest.permission.WRITE_CALENDAR)) {
+//            requestPermissions(arrayOf(Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR), 0)
+//        } else {
+//            val hasConcurrentEvent = calendarLoader.hasConcurrentEventInCalendar != null && calendarLoader.hasConcurrentEventInCalendar!!
+//            // If we have an existing event in user calendar, we have to ask him if he wants to insert or not a new one
+//            AlertDialog.Builder(context)
+//                .setTitle(R.string.calendar_add)
+//                .setMessage(if (hasConcurrentEvent) R.string.calendar_question2 else R.string.calendar_question1)
+//                .setPositiveButton(android.R.string.yes) { _, _ -> calendarLoader.insertEventInCalendar(talk, context!!) }.setNegativeButton(android.R.string.no) { _, _ -> }
+//                .show()
+//        }
+//    }
 
     override fun onStop() {
         super.onStop()
-        navigation_calendar_add.setOnClickListener(null)
+        navigation_favorite_toggle.setOnClickListener(null)
+        navigation_nonfavorite_toggle.setOnClickListener(null)
         buttonTranscription.setOnClickListener(null)
     }
 }

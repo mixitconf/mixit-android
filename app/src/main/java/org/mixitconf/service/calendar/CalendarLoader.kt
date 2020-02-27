@@ -1,5 +1,7 @@
 package org.mixitconf.service.calendar
 
+import android.content.Context
+import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.CalendarContract
@@ -9,6 +11,8 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import org.mixitconf.MiXiTApplication
 import org.mixitconf.model.entity.Talk
+import org.mixitconf.model.entity.endLocaleTime
+import org.mixitconf.model.entity.startLocaleTime
 
 /**
  * Loader used to find MiXiT talks in the user Calendar. This loader is only launched if user accepts to open
@@ -35,4 +39,14 @@ class CalendarLoader(val app: MiXiTApplication, val talk: Talk) : LoaderManager.
         // N/A
     }
 
+    fun insertEventInCalendar(talk: Talk, context: Context) = context.startActivity(
+        Intent(Intent.ACTION_INSERT).setType("vnd.android.cursor.item/event").setData(CONTENT_URI).putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, talk.startLocaleTime).putExtra(
+            CalendarContract.EXTRA_EVENT_END_TIME,
+            talk.endLocaleTime)
+                .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false)
+                .putExtra(CalendarContract.Events.TITLE, "[mixit19] : ${talk.title}")
+                .putExtra(CalendarContract.Events.EVENT_LOCATION, context.getString(talk.room.i18nId))
+                .putExtra(CalendarContract.Events.ALLOWED_REMINDERS,CalendarContract.Reminders.METHOD_ALARM)
+                .putExtra(CalendarContract.Events.DESCRIPTION, talk.summary)
+    )
 }

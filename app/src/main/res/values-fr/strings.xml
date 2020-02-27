@@ -101,4 +101,6 @@
     <string name="settings_sync_favorites_summary_on">Vos favoris définis sur l\'application seront synchronisés avec le site web MiXiT</string>
     <string name="settings_sync_favorites_summary_off">Les favoris ne seront pas synchronisés avec le site web et ne seront définis que dans l\'application Android</string>
 
+    <string name="talk_is_favorite">Cette conférence est définie comme favorite.</string>
+    <string name="talk_is_not_favorite">Cette conférence n\'est pas marquée comme favorite.</string>
 </resources>

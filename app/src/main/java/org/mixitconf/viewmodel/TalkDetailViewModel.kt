@@ -21,11 +21,19 @@ class TalkDetailViewModel(app: Application) : AndroidViewModel(app), CoroutineSc
     val liveData = MutableLiveData<Talk>()
 
     @Transaction
-    fun loadSpeaker(id: String) {
+    fun loadTalk(id: String) {
         launch {
             val talk = mixitApp.talkDao.readOne(id)!!
             talk.speakers.addAll(mixitApp.speakerDao.readAllByIds(talk.speakerIdList))
             liveData.postValue(talk)
+        }
+    }
+
+    @Transaction
+    fun saveTalk(talk: Talk) {
+        launch {
+            mixitApp.talkDao.update(talk)
+            loadTalk(talk.id)
         }
     }
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_datalist.*
@@ -33,7 +34,7 @@ class TalkFragment : Fragment() {
 
         dataList.default { TalkListAdapter(activity as OnTalkSelectedListener, resources) }.apply { layoutManager?.onRestoreInstanceState(listState) }
 
-        ViewModelProviders.of(this).get(TalkListViewModel::class.java).liveData.observe(this, Observer {
+        ViewModelProvider(this).get(TalkListViewModel::class.java).liveData.observe(viewLifecycleOwner, Observer {
             (dataList.adapter as TalkListAdapter).update(it)
         })
     }

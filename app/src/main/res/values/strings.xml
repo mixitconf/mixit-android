@@ -102,4 +102,6 @@
     <string name="settings_sync_favorites_summary_on">Your favorites defined on the Android app will be synchronized with MiXiT website</string>
     <string name="settings_sync_favorites_summary_off">We only synchronize speakers and talks and your favorites are only defined on this Android app</string>
 
+    <string name="talk_is_favorite">This talk is defined as favorite.</string>
+    <string name="talk_is_not_favorite">This talk is not defined as favorite.</string>
 </resources>

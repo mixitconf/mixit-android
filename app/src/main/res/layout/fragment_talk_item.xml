@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/item_talk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -110,4 +111,23 @@
             app:layout_constraintStart_toStartOf="@+id/talkItemTime"
             app:layout_constraintTop_toBottomOf="@+id/talkItemTime" />
 
+    <ImageView
+            android:id="@+id/talkFavoriteImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/talkItemType"
+            app:srcCompat="@drawable/ic_favorite_black_24dp" />
+
+    <ImageView
+            android:id="@+id/talkNotFavoriteImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/talkItemType"
+            app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

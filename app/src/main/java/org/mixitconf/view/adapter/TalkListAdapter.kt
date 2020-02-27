@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_talk_detail_content.*
 import org.mixitconf.R
 import org.mixitconf.getLegacyColor
 import org.mixitconf.model.entity.Talk
@@ -38,6 +39,8 @@ class TalkListAdapter(
         val time: TextView = view.findViewById(R.id.talkItemTime)
         val room: TextView = view.findViewById(R.id.talkItemRoom)
         val type: TextView = view.findViewById(R.id.talkItemType)
+        val favoriteImg: ImageView = view.findViewById(R.id.talkFavoriteImg)
+        val nonFavoriteImg: ImageView = view.findViewById(R.id.talkNotFavoriteImg)
     }
 
     override fun getItemCount(): Int = items.size
@@ -109,12 +112,13 @@ class TalkListAdapter(
 
         name.textAlignment = if (nameOnCenter) View.TEXT_ALIGNMENT_CENTER else View.TEXT_ALIGNMENT_TEXT_START
 
-        val generalFields = arrayListOf(description, room, type, talkLanguage, image)
+        val generalFields = arrayListOf(description, room, type, talkLanguage, image, nonFavoriteImg, favoriteImg)
 
         if (talk == null) {
             itemView.setOnClickListener(null)
             image.setImageDrawable(null)
             generalFields.forEach { it.visibility = View.GONE }
+
         } else {
             itemView.setOnClickListener { onTalkListener.onTalkSelected(talk.id) }
             generalFields.forEach { it.visibility = View.VISIBLE }
@@ -123,6 +127,8 @@ class TalkListAdapter(
             type.setText(talk.format.label)
             description.text = talk.summary
             room.text = ressources.getText(talk.room.i18nId)
+            nonFavoriteImg.visibility = (!talk.favorite).visibility
+            favoriteImg.visibility = talk.favorite.visibility
         }
         time.visibility = showTime.visibility
     }
