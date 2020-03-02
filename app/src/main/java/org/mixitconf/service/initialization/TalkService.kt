@@ -37,9 +37,6 @@ class TalkService(private val context: Context) {
         createNonTalkMoment(Day.Two, TalkFormat.LUNCH, 12, 30),
         createNonTalkMoment(Day.Two, TalkFormat.PAUSE_10_MIN, 15, 20),
         createNonTalkMoment(Day.Two, TalkFormat.PAUSE_30_MIN, 16, 20)
-
-//        createNonTalkMoment(Day.Three, TalkFormat.DAY, 8, 29, R.string.event_day3),
-//        createNonTalkMoment(Day.Three, TalkFormat.LUNCH, 12, 0)
     )
 
     private fun createNonTalkMoment(day: Day, talkFormat: TalkFormat, startHour: Int, startMinute: Int, title: Int = talkFormat.label) = TalkDto(

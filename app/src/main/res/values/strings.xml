@@ -100,7 +100,7 @@
     <string name="settings_sync_favorites">Sync favorites</string>
     <string name="settings_sync_favorites_summary">To synchronize your favorites with website, we need to know email used to create account on the website. </string>
     <string name="settings_sync_favorites_token">And the last token received by email. When this token will be expired, a window will help you to ask a new one.</string>
-    <string name="settings_sync_favorites_summary_on">Your favorites defined on the Android app will be synchronized with MiXiT website</string>
+    <string name="settings_sync_favorites_summary_on">Your favorites defined on the Android app will be synchronized with MiXiT website. This synchronisation can be only done manually because website requires authentication</string>
     <string name="settings_sync_favorites_summary_off">We only synchronize speakers and talks and your favorites are only defined on this Android app</string>
 
     <string name="talk_is_favorite">This talk is defined as favorite.</string>
