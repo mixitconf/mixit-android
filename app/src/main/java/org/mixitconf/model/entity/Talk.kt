@@ -34,6 +34,32 @@ data class Talk(
     @Ignore
     val speakers: MutableList<Speaker> = mutableListOf()
 
+    fun update(other: Talk) = this.copy(
+        this.id, other.format, other.event, other.title, other.summary, other.speakerIds, other.language, other.description, other.topic, other.room, other.start, other.end, this.favorite
+    )
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Talk
+
+        if (id != other.id) return false
+        if (format != other.format) return false
+        if (event != other.event) return false
+        if (title != other.title) return false
+        if (summary != other.summary) return false
+        if (speakerIds != other.speakerIds) return false
+        if (language != other.language) return false
+        if (description != other.description) return false
+        if (topic != other.topic) return false
+        if (room != other.room) return false
+        if (start != other.start) return false
+        if (end != other.end) return false
+        if (speakers != other.speakers) return false
+
+        return true
+    }
 }
 
 val Talk.speakerIdList

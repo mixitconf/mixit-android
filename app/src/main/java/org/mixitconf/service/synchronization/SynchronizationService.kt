@@ -90,7 +90,7 @@ class SynchronizationService : MiXitService(SynchronizationService::class.simple
                     val existingTalk = this.readOne(it.id)
                     if (existingTalk != null) {
                         if (existingTalk != it) {
-                            this.update(it)
+                            this.update(existingTalk.update(it))
                             update = true
                         }
                     } else {

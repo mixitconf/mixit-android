@@ -103,4 +103,5 @@
 
     <string name="talk_is_favorite">Cette conférence est définie comme favorite.</string>
     <string name="talk_is_not_favorite">Cette conférence n\'est pas marquée comme favorite.</string>
+    <string name="talk_no_favorite">Aucune conférence n\'est marquée comme favori pour le moment.</string>
 </resources>

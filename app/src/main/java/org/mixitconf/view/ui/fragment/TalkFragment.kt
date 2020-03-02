@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_datalist.*
 import org.mixitconf.R
 import org.mixitconf.default
+import org.mixitconf.mixitApp
+import org.mixitconf.model.enums.isTalk
 import org.mixitconf.view.adapter.TalkListAdapter
 import org.mixitconf.view.ui.OnTalkSelectedListener
 import org.mixitconf.viewmodel.TalkListViewModel
@@ -35,8 +38,16 @@ class TalkFragment(val displayOnlyFavorites:Boolean = false) : Fragment() {
         dataList.default { TalkListAdapter(activity as OnTalkSelectedListener, resources) }.apply { layoutManager?.onRestoreInstanceState(listState) }
 
         ViewModelProvider(this).get(TalkListViewModel::class.java).liveData.observe(viewLifecycleOwner, Observer {
-            val talkToDisplay = if(displayOnlyFavorites) it.filter { it.favorite } else it
-            (dataList.adapter as TalkListAdapter).update(talkToDisplay)
+            if(displayOnlyFavorites){
+                val favorites = it.filter { it.favorite }
+                if(favorites.isEmpty()){
+                    Toast.makeText(mixitApp, R.string.talk_no_favorite, Toast.LENGTH_LONG).show()
+                }
+                (dataList.adapter as TalkListAdapter).update(it.filter { it.favorite || !it.format.isTalk()})
+            }
+            else{
+                (dataList.adapter as TalkListAdapter).update(it)
+            }
         })
     }
 }
