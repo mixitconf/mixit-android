@@ -94,12 +94,17 @@
     <string name="settings_sync_talks_speakers">Synchronise les conférences et leurs orateurs périodiquement</string>
     <string name="settings_sync_talks_speakers_summary_on">Synchronise automatiquement les données de l\'application avec celles du site web MiXiT</string>
     <string name="settings_sync_talks_speakers_summary_off">La synchronisation des données avec le site web ne se fera que lorsque vous utiliserez le boutton raffraichir du menu</string>
+    <string name="settings_favorite_notification">Notification favoris</string>
+    <string name="settings_notification_header">Notification</string>
+    <string name="favorite_notification_minute">Nb de minutes avant notification</string>
 
     <string name="settings_sync_favorites">Synchronisation favoris</string>
     <string name="settings_sync_favorites_summary">Pour synchroniser vos favoris avec le site MiXiT nous avons besoin du mail que vous avez utilisé pour créer un compte</string>
     <string name="settings_sync_favorites_token">et le dernier token reçu par email. Quand ce token sera expiré une fenêtre vous permettra de faire une nouvelle demande.</string>
     <string name="settings_sync_favorites_summary_on">Vos favoris définis sur l\'application seront synchronisés avec le site web MiXiT. Cette synchronisation se fait manuellement via le bouton de synchronistaion car le site web demande une authentification</string>
     <string name="settings_sync_favorites_summary_off">Les favoris ne seront pas synchronisés avec le site web et ne seront définis que dans l\'application Android</string>
+    <string name="settings_favorite_notification_on">Vous recevrez une notification juste avant l\'heure de début des conférences marquées en favoris</string>
+    <string name="settings_favorite_notification_off">Vous ne recevrez pas de notification juste avant l\'heure de début des conférences marquées en favoris</string>
 
     <string name="talk_is_favorite">Cette conférence est définie comme favorite.</string>
     <string name="talk_is_not_favorite">Cette conférence n\'est pas marquée comme favorite.</string>

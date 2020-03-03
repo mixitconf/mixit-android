@@ -52,8 +52,9 @@ class MiXiTApplication : Application() {
         const val FRAGMENT_ID = "fragmentId"
 
         const val PREF_DATA_SYNC = "sync_data"
-        const val PREF_DATA_SYNC_JOB = 1
         const val PREF_FAVORITE_SYNC = "sync_favorite"
+        const val PREF_DATA_SYNC_JOB = 1
+
         const val PREF_SYNC_RECURRENT_UPDATE_IN_SEC = 4 * 60 * 60
 
         fun scheduleAutomaticDataUpdate(context: Context) {

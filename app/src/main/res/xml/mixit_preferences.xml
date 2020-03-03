@@ -39,5 +39,21 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="@string/settings_notification_header">
+        <SwitchPreferenceCompat
+                app:key="favorite_notification"
+                app:defaultValue="true"
+                app:summaryOff="@string/settings_favorite_notification_off"
+                app:summaryOn="@string/settings_favorite_notification_on"
+                app:title="@string/settings_favorite_notification" />
+
+        <EditTextPreference
+                app:key="favorite_notification_in_min"
+                app:defaultValue="5"
+                app:title="@string/favorite_notification_minute"
+                app:useSimpleSummaryProvider="true"
+                app:dependency="favorite_notification"/>
+    </PreferenceCategory>
+
 
 </PreferenceScreen>
