@@ -19,10 +19,10 @@ class TalkListViewModel(app: Application) : AndroidViewModel(app), CoroutineScop
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
 
-    val liveData = MutableLiveData<List<Talk>>().also { load() }
+    val liveData = MutableLiveData<List<Talk>>()
 
     @Transaction
-    private fun load() {
+    fun load() {
         launch {
             val talks = mixitApp.talkDao.readAll()
             if (!talks.isNullOrEmpty()) {

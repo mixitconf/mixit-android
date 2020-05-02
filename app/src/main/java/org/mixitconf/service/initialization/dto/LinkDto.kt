@@ -5,9 +5,7 @@ import org.mixitconf.model.enums.LinkType
 import org.mixitconf.model.enums.Social
 
 
-data class LinkDto(
-    val name: String, val url: String
-)
+data class LinkDto(val name: String, val url: String)
 
 fun LinkDto.toEntity(userId: String): Link {
     val social = Social.values().firstOrNull { url.contains(it.pattern) }

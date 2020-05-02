@@ -20,4 +20,7 @@ interface EventSponsoringDao {
 
     @Delete
     fun delete(eventSponsoring: EventSponsoring)
+
+    @Query("delete from EventSponsoring")
+    fun deleteAll()
 }

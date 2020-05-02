@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import org.mixitconf.R
 import org.mixitconf.hasIntentPackage
 import org.mixitconf.mixitApp
-import org.mixitconf.service.synchronization.SynchronizationService
+import org.mixitconf.service.Workers
 
 open class MixitActivity : AppCompatActivity() {
 
@@ -53,17 +53,16 @@ open class MixitActivity : AppCompatActivity() {
             }
             R.id.navigation_github -> {
                 startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW, Uri.parse("https://github.com/mixitconf")
-                    ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                )
+                        Intent(
+                                Intent.ACTION_VIEW, Uri.parse("https://github.com/mixitconf")
+                              ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                             )
             }
             R.id.navigation_synchronize -> {
                 if (mixitApp.hasPermission(Manifest.permission.INTERNET)) {
-                    Intent(applicationContext, SynchronizationService::class.java).also { intent ->
-                        Toast.makeText(applicationContext, R.string.sync_start, Toast.LENGTH_LONG).show()
-                        startService(intent)
-                    }
+                    Workers.createSpeakerSynchronizationWorker(mixitApp, backgroundProcess = false)
+                    Workers.createTalkSynchronizationWorker(mixitApp, backgroundProcess = false)
+                    Toast.makeText(applicationContext, R.string.sync_start, Toast.LENGTH_LONG).show()
                 } else {
                     Toast.makeText(applicationContext, R.string.networkPermission, Toast.LENGTH_LONG).show()
                 }
@@ -77,25 +76,25 @@ open class MixitActivity : AppCompatActivity() {
             R.id.comeToPartyButton -> {
                 if (applicationContext.hasIntentPackage("com.google.android.apps.maps")) {
                     val intent = Intent(
-                        Intent.ACTION_VIEW, Uri.parse("geo:5.7366857,4.8128151?z=18&q=Le+Sucre,+50+Quai+Rambaud,+69002+Lyon")
-                    )
+                            Intent.ACTION_VIEW, Uri.parse("geo:5.7366857,4.8128151?z=18&q=Le+Sucre,+50+Quai+Rambaud,+69002+Lyon")
+                                       )
                     startActivity(intent)
                 }
             }
             R.id.comeToMiXiTButton -> {
                 if (applicationContext.hasIntentPackage("com.google.android.apps.maps")) {
                     val intent = Intent(
-                        Intent.ACTION_VIEW, Uri.parse("geo:45.7481118,4.8591068?z=18&q=Manufacture+des+Tabacs,6+rue+professeur+Rollet,+69008+Lyon")
-                    )
+                            Intent.ACTION_VIEW, Uri.parse("geo:45.7481118,4.8591068?z=18&q=Manufacture+des+Tabacs,6+rue+professeur+Rollet,+69008+Lyon")
+                                       )
                     startActivity(intent)
                 }
             }
             R.id.navigation_website -> {
                 applicationContext.startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW, Uri.parse("https://mixitconf.org/schedule")
-                    ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                )
+                        Intent(
+                                Intent.ACTION_VIEW, Uri.parse("https://mixitconf.org/schedule")
+                              ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                                )
             }
         }
         return super.onOptionsItemSelected(item)

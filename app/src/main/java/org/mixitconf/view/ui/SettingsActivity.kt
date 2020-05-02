@@ -1,11 +1,14 @@
 package org.mixitconf.view.ui
 
 import android.os.Bundle
+import android.text.InputType
+import androidx.preference.EditTextPreference
 import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.PreferenceManager
-import org.mixitconf.MiXiTApplication
 import org.mixitconf.R
+import org.mixitconf.booleanSharedPrefs
 import org.mixitconf.mixitApp
+import org.mixitconf.model.enums.SettingValue
+import org.mixitconf.service.Workers
 
 class SettingsActivity : MixitActivity() {
 
@@ -22,15 +25,23 @@ class SettingsActivity : MixitActivity() {
             setPreferencesFromResource(R.xml.mixit_preferences, rootKey)
         }
 
+        override fun onStart() {
+            super.onStart()
+            preferenceManager.findPreference<EditTextPreference>(SettingValue.FAVORITE_NOTIFICATION_DURATION.key).apply {
+                this?.setOnBindEditTextListener { it.inputType = InputType.TYPE_CLASS_NUMBER }
+            }
+        }
+
         override fun onPause() {
-            PreferenceManager.getDefaultSharedPreferences(mixitApp).apply {
-                val userWantsAutomaticUpdate = this.getBoolean(MiXiTApplication.PREF_DATA_SYNC, true)
-                if (userWantsAutomaticUpdate) {
-                    MiXiTApplication.scheduleAutomaticDataUpdate(mixitApp)
-                }
-                else{
-                    MiXiTApplication.cancelDataUpdate(mixitApp)
-                }
+            Workers.cancelSynchronizationPeriodicWorker(mixitApp)
+            Workers.cancelFavoritePeriodicWorker(mixitApp)
+
+            if (mixitApp.booleanSharedPrefs(SettingValue.DATA_AUTO_SYNC_ENABLE)) {
+                Workers.createSpeakerSynchronizationWorker(mixitApp)
+            }
+
+            if (mixitApp.booleanSharedPrefs(SettingValue.FAVORITE_NOTIFICATION_ENABLE)) {
+                Workers.createFavoritePeriodicWorker(mixitApp)
             }
             super.onPause()
         }

@@ -9,24 +9,24 @@ import java.util.*
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TalkApiDto(
-    var format: TalkFormat? = null,
-    var event: String? = null,
-    var title: String? = null,
-    var summary: String? = null,
-    var speakerIds: List<String>? = null,
-    var language: Language = Language.FRENCH,
-    var addedAt: Date? = null,
-    var description: String? = null,
-    var topic: String? = null,
-    var room: Room? = null,
-    var start: Date? = null,
-    var end: Date? = null,
-    var id: String? = null
-)
+        var format: TalkFormat? = null,
+        var event: String? = null,
+        var title: String? = null,
+        var summary: String? = null,
+        var speakerIds: List<String>? = null,
+        var language: Language = Language.FRENCH,
+        var addedAt: Date? = null,
+        var description: String? = null,
+        var topic: String? = null,
+        var room: Room? = null,
+        var start: Date? = null,
+        var end: Date? = null,
+        var id: String? = null
+                     )
 
 fun TalkApiDto.toEntity() = Talk(
-    id!!, format!!, event!!, title!!, summary!!, speakerIds!!.joinToString(","), language, description, topic!!, room!!, start!!, end!!
-)
+        id!!, format!!, event!!, title!!, summary!!, speakerIds!!.joinToString(","), language, description, topic!!, room!!, start!!, end!!
+                                )
 
 
 

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_talk_detail_content.*
 import org.mixitconf.R
 import org.mixitconf.getLegacyColor
 import org.mixitconf.model.entity.Talk
@@ -20,8 +19,8 @@ import org.mixitconf.visibility
 
 
 class TalkListAdapter(
-    private val onTalkListener: OnTalkSelectedListener, private val ressources: Resources
-) : RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
+        private val onTalkListener: OnTalkSelectedListener, private val ressources: Resources
+                     ) : RecyclerView.Adapter<TalkListAdapter.ViewHolder>() {
 
     private val items = mutableListOf<Talk>()
 
@@ -46,9 +45,8 @@ class TalkListAdapter(
     override fun getItemCount(): Int = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.fragment_talk_item, parent, false)
-    )
-
+            LayoutInflater.from(parent.context).inflate(R.layout.fragment_talk_item, parent, false)
+                                                                                  )
 
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)
@@ -74,14 +72,14 @@ class TalkListAdapter(
                     paintItemView(R.color.colorPrimary, nameColor = android.R.color.white)
                     displayFields(nameOnCenter = true, showTime = false)
                 }
-                RANDOM -> {
+                RANDOM, LIGHTNING_TALK -> {
                     paintItemView(talk.getBgColorDependingOnTime(R.color.colorSecondary))
                     displayFields(talk)
                 }
                 PARTY -> {
                     paintItemView(
-                        talk.getBgColorDependingOnTime(R.color.colorAccent), timeColor = android.R.color.white
-                    )
+                            talk.getBgColorDependingOnTime(R.color.colorAccent), timeColor = android.R.color.white
+                                 )
                     displayFields()
                 }
                 SESSION_INTRO, LUNCH, ORGA, WELCOME -> {
@@ -92,23 +90,23 @@ class TalkListAdapter(
                     paintItemView(talk.getBgColorDependingOnTime(R.color.colorShadow))
                     displayFields()
                 }
-                LIGHTNING_TALK -> TODO("Not implemented")
+
             }
         }
 
     }
 
     private fun ViewHolder.paintItemView(
-        background: Int, nameColor: Int = android.R.color.black, timeColor: Int = R.color.textShadow
-    ) {
+            background: Int, nameColor: Int = android.R.color.black, timeColor: Int = R.color.textShadow
+                                        ) {
         itemView.setBackgroundColor(ressources.getLegacyColor(background))
         name.setTextColor(ressources.getLegacyColor(nameColor))
         time.setTextColor(ressources.getLegacyColor(timeColor))
     }
 
     private fun ViewHolder.displayFields(
-        talk: Talk? = null, nameOnCenter: Boolean = false, showTime: Boolean = true
-    ) {
+            talk: Talk? = null, nameOnCenter: Boolean = false, showTime: Boolean = true
+                                        ) {
 
         name.textAlignment = if (nameOnCenter) View.TEXT_ALIGNMENT_CENTER else View.TEXT_ALIGNMENT_TEXT_START
 

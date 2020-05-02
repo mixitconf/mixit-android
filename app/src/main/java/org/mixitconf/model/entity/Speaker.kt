@@ -14,12 +14,11 @@ import org.mixitconf.toHtml
 import java.util.*
 
 @Entity
-data class Speaker(
-    @PrimaryKey val login: String, val firstname: String, val lastname: String, val company: String?, val descriptionFr: String?, val descriptionEn: String?
-) {
+data class Speaker(@PrimaryKey val login: String, val firstname: String, val lastname: String, val company: String?, val descriptionFr: String?, val descriptionEn: String?) {
     // These list is only populated when we want to see the speaker detail
     @Ignore
     val links: MutableList<Link> = mutableListOf()
+
     @Ignore
     val talks: MutableList<Talk> = mutableListOf()
 }
@@ -49,8 +48,8 @@ val Speaker.imageLinkResourceId
 fun ImageView.setSpeakerImage(speaker: Speaker) {
     // Speaker images are downloaded on the app startup
     val imageResource = context.resources.getIdentifier(
-        speaker.login.toSlug().toValidImageName().toLowerCase(Locale.getDefault()), "drawable", context.applicationInfo.packageName
-    )
+            speaker.login.toSlug().toValidImageName().toLowerCase(Locale.getDefault()), "drawable", context.applicationInfo.packageName
+                                                       )
 
     Picasso.get().load(if (imageResource > 0) imageResource else R.drawable.mxt_icon_unknown).resize(160, 160).into(this)
 }

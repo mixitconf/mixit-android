@@ -40,13 +40,13 @@ class CalendarLoader(val app: MiXiTApplication, val talk: Talk) : LoaderManager.
     }
 
     fun insertEventInCalendar(talk: Talk, context: Context) = context.startActivity(
-        Intent(Intent.ACTION_INSERT).setType("vnd.android.cursor.item/event").setData(CONTENT_URI).putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, talk.startLocaleTime).putExtra(
-            CalendarContract.EXTRA_EVENT_END_TIME,
-            talk.endLocaleTime)
+            Intent(Intent.ACTION_INSERT).setType("vnd.android.cursor.item/event").setData(CONTENT_URI).putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, talk.startLocaleTime).putExtra(
+                    CalendarContract.EXTRA_EVENT_END_TIME,
+                    talk.endLocaleTime)
                 .putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false)
                 .putExtra(CalendarContract.Events.TITLE, "[mixit19] : ${talk.title}")
                 .putExtra(CalendarContract.Events.EVENT_LOCATION, context.getString(talk.room.i18nId))
-                .putExtra(CalendarContract.Events.ALLOWED_REMINDERS,CalendarContract.Reminders.METHOD_ALARM)
+                .putExtra(CalendarContract.Events.ALLOWED_REMINDERS, CalendarContract.Reminders.METHOD_ALARM)
                 .putExtra(CalendarContract.Events.DESCRIPTION, talk.summary)
-    )
+                                                                                   )
 }

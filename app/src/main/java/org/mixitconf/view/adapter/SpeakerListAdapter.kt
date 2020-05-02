@@ -31,8 +31,8 @@ class SpeakerListAdapter(private val onSpeakerListener: OnSpeakerSelectedListene
     override fun getItemCount(): Int = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder = UserViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.fragment_speaker_item, parent, false)
-    )
+            LayoutInflater.from(parent.context).inflate(R.layout.fragment_speaker_item, parent, false)
+                                                                                                      )
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = items[position]

@@ -18,7 +18,7 @@ interface SpeakerDao {
     fun readOne(login: String): Speaker?
 
     @Update
-    fun update(speaker: Speaker):Int
+    fun update(speaker: Speaker): Int
 
     @Delete
     fun delete(speaker: Speaker)

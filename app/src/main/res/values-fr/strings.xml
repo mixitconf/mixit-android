@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MiXiT 2020</string>
+    <string name="empty"></string>
     <string name="event_day1">Mercredi 29 avril</string>
     <string name="event_day2">Jeudi 30 avril</string>
 
@@ -109,4 +110,7 @@
     <string name="talk_is_favorite">Cette conférence est définie comme favorite.</string>
     <string name="talk_is_not_favorite">Cette conférence n\'est pas marquée comme favorite.</string>
     <string name="talk_no_favorite">Aucune conférence n\'est marquée comme favori pour le moment.</string>
+
+    <string name="favorite_will_start">La conférence "%s" va débuter dans %s dans la salle %s</string>
+
 </resources>

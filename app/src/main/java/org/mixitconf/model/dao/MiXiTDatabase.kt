@@ -5,9 +5,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import org.mixitconf.model.entity.*
 
-@Database(
-    entities = [Link::class, Event::class, Talk::class, Speaker::class, EventSponsoring::class], version = 1, exportSchema = true
-)
+@Database(entities = [Link::class, Event::class, Talk::class, Speaker::class, EventSponsoring::class],
+          version = 1,
+          exportSchema = true)
 @TypeConverters(EnumConverters::class)
 abstract class MiXiTDatabase : RoomDatabase() {
 

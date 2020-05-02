@@ -14,7 +14,10 @@ import androidx.loader.app.LoaderManager
 import kotlinx.android.synthetic.main.fragment_talk_detail.*
 import kotlinx.android.synthetic.main.fragment_talk_detail_content.*
 import org.mixitconf.*
-import org.mixitconf.model.entity.*
+import org.mixitconf.model.entity.descriptionInMarkdown
+import org.mixitconf.model.entity.getTimeLabel
+import org.mixitconf.model.entity.summaryInMarkdown
+import org.mixitconf.model.entity.topicDrawableResource
 import org.mixitconf.model.enums.Language
 import org.mixitconf.model.enums.hardOfHearingSytem
 import org.mixitconf.service.calendar.CalendarLoader
@@ -63,10 +66,10 @@ class TalkDetailFragment : Fragment() {
                 buttonTranscription.visibility = View.VISIBLE
                 buttonTranscription.setOnClickListener {
                     startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW, Uri.parse(talk.room.scriboUrl)
-                        )
-                    )
+                            Intent(
+                                    Intent.ACTION_VIEW, Uri.parse(talk.room.scriboUrl)
+                                  )
+                                 )
                 }
             }
 
@@ -87,20 +90,20 @@ class TalkDetailFragment : Fragment() {
         model.loadTalk(arguments?.getString(MiXiTApplication.OBJECT_ID) ?: "")
     }
 
-//    private fun calendarAddEvent(calendarLoader: CalendarLoader, talk: Talk) {
-//        // With this old code we check if app has the right to write something in calendar and do it
-//        if (!mixitApp.hasPermission(Manifest.permission.WRITE_CALENDAR)) {
-//            requestPermissions(arrayOf(Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR), 0)
-//        } else {
-//            val hasConcurrentEvent = calendarLoader.hasConcurrentEventInCalendar != null && calendarLoader.hasConcurrentEventInCalendar!!
-//            // If we have an existing event in user calendar, we have to ask him if he wants to insert or not a new one
-//            AlertDialog.Builder(context)
-//                .setTitle(R.string.calendar_add)
-//                .setMessage(if (hasConcurrentEvent) R.string.calendar_question2 else R.string.calendar_question1)
-//                .setPositiveButton(android.R.string.yes) { _, _ -> calendarLoader.insertEventInCalendar(talk, context!!) }.setNegativeButton(android.R.string.no) { _, _ -> }
-//                .show()
-//        }
-//    }
+    //    private fun calendarAddEvent(calendarLoader: CalendarLoader, talk: Talk) {
+    //        // With this old code we check if app has the right to write something in calendar and do it
+    //        if (!mixitApp.hasPermission(Manifest.permission.WRITE_CALENDAR)) {
+    //            requestPermissions(arrayOf(Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR), 0)
+    //        } else {
+    //            val hasConcurrentEvent = calendarLoader.hasConcurrentEventInCalendar != null && calendarLoader.hasConcurrentEventInCalendar!!
+    //            // If we have an existing event in user calendar, we have to ask him if he wants to insert or not a new one
+    //            AlertDialog.Builder(context)
+    //                .setTitle(R.string.calendar_add)
+    //                .setMessage(if (hasConcurrentEvent) R.string.calendar_question2 else R.string.calendar_question1)
+    //                .setPositiveButton(android.R.string.yes) { _, _ -> calendarLoader.insertEventInCalendar(talk, context!!) }.setNegativeButton(android.R.string.no) { _, _ -> }
+    //                .show()
+    //        }
+    //    }
 
     override fun onStop() {
         super.onStop()

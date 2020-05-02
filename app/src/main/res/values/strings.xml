@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MiXiT 2020</string>
+    <string name="empty"></string>
     <string name="event_day1">Wednesday 29th April</string>
     <string name="event_day2">Thursday 30th April</string>
 
@@ -110,4 +111,6 @@
     <string name="talk_is_favorite">This talk is defined as favorite.</string>
     <string name="talk_is_not_favorite">This talk is not defined as favorite.</string>
     <string name="talk_no_favorite">You have no talks or workshop marked as favorites for the moment.</string>
+
+    <string name="favorite_will_start">Conference "%s" will start in %s in room %s</string>
 </resources>

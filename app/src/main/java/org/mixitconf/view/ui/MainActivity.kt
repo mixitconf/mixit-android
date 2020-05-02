@@ -1,7 +1,5 @@
 package org.mixitconf.view.ui
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,6 +28,16 @@ interface OnSpeakerSelectedListener {
 
 open class MainActivity : MixitActivity(), OnTalkSelectedListener, OnSpeakerSelectedListener {
 
+    val talkFragment by lazy {
+        TalkFragment()
+    }
+    val favoriteFragment by lazy {
+        TalkFragment(displayOnlyFavorites = true)
+    }
+    val speakerFragment by lazy {
+        SpeakerFragment()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,9 +46,10 @@ open class MainActivity : MixitActivity(), OnTalkSelectedListener, OnSpeakerSele
         // When activity is started via a notification we want to open a specific fragment
         val fragmentId = intent.getIntExtra(MiXiTApplication.FRAGMENT_ID, 0)
         when (fragmentId) {
-            R.id.navigation_talk -> openFragment(TalkFragment())
-            R.id.navigation_speaker -> openFragment(SpeakerFragment())
-            else -> { }
+            R.id.navigation_talk -> openFragment(talkFragment)
+            R.id.navigation_speaker -> openFragment(speakerFragment)
+            else -> {
+            }
         }
     }
 
@@ -54,15 +63,15 @@ open class MainActivity : MixitActivity(), OnTalkSelectedListener, OnSpeakerSele
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_talk -> {
-                openFragment(TalkFragment())
+                openFragment(talkFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_speaker -> {
-                openFragment(SpeakerFragment())
+                openFragment(speakerFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_favorites -> {
-                openFragment(TalkFragment(displayOnlyFavorites = true))
+                openFragment(favoriteFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }

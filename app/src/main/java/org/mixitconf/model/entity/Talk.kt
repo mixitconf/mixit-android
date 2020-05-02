@@ -17,26 +17,35 @@ import java.util.*
 
 @Entity
 data class Talk(
-    @PrimaryKey val id: String, val format: TalkFormat,
-    val event: String,
-    val title: String,
-    val summary: String,
-    val speakerIds: String,
-    val language: Language = Language.FRENCH,
-    val description: String?,
-    val topic: String,
-    val room: Room,
-    val start: Date,
-    val end: Date,
-    val favorite: Boolean = false
-) {
+        @PrimaryKey val id: String,
+        val format: TalkFormat,
+        val event: String,
+        val title: String,
+        val summary: String,
+        val speakerIds: String,
+        val language: Language = Language.FRENCH,
+        val description: String?,
+        val topic: String,
+        val room: Room,
+        val start: Date,
+        val end: Date,
+        val favorite: Boolean = false) {
     // This list is only populated when we want to see the talk detail. For that we read speakers by their ids
     @Ignore
     val speakers: MutableList<Speaker> = mutableListOf()
 
     fun update(other: Talk) = this.copy(
-        this.id, other.format, other.event, other.title, other.summary, other.speakerIds, other.language, other.description, other.topic, other.room, other.start, other.end, this.favorite
-    )
+            this.id, other.format, other.event, other.title, other.summary, other.speakerIds, other.language, other.description, other.topic, other.room, other.start, other.end, this.favorite
+                                       )
+
+    fun startSoon(favoriteNotificationDurationInMin: Long): Boolean {
+        if (favoriteNotificationDurationInMin > 0) {
+            val durationInMs = favoriteNotificationDurationInMin * 60 * 1000
+            val now = Date().time
+            return this.startLocaleTime > now && (this.startLocaleTime - now) < durationInMs
+        }
+        return false
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -108,8 +117,8 @@ private val Date.inFrenchLocale
     }
 
 fun Talk.getTimeLabel(resources: Resources): String = String.format(
-    resources.getString(R.string.talk_time_range), MiXiTApplication.DATE_FORMAT.format(start), DateFormat.getTimeInstance(DateFormat.SHORT).format(startLocale), DateFormat.getTimeInstance(DateFormat.SHORT).format(endLocale)
-)
+        resources.getString(R.string.talk_time_range), MiXiTApplication.DATE_FORMAT.format(start), DateFormat.getTimeInstance(DateFormat.SHORT).format(startLocale), DateFormat.getTimeInstance(DateFormat.SHORT).format(endLocale)
+                                                                   )
 
 fun Talk.getBgColorDependingOnTime(color: Int): Int = if (Date().time > end.time) R.color.unknown else color
 

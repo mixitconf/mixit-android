@@ -10,9 +10,12 @@ import android.text.Html
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.mixitconf.model.enums.SettingValue
+import retrofit2.Call
 import java.util.*
 
 
@@ -47,6 +50,17 @@ fun Date.addMinutes(amount: Int): Date {
     calendar.add(Calendar.MINUTE, amount)
     return calendar.time
 }
+
+val Date.durationInText: String
+    get() = ((this.time - (Date().time) / 1000)).let {
+        if (it < 0) {
+            return "0 sec"
+        }
+        if (it < 60) {
+            return "${it} sec."
+        }
+        return "${it / 60} min"
+    }
 
 // Context extension
 // ============================================
@@ -94,3 +108,18 @@ fun <T : RecyclerView.ViewHolder> RecyclerView.default(init: () -> RecyclerView.
 val Boolean.visibility
     get() = if (this) View.VISIBLE else View.GONE
 
+// Read data in shared preference
+
+fun Context.booleanSharedPrefs(settingValue: SettingValue, defaultValue: Boolean = true) = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(settingValue.key, defaultValue)
+
+fun Context.longSharedPrefs(settingValue: SettingValue, defaultValue: Long?) = PreferenceManager.getDefaultSharedPreferences(this).getLong(settingValue.key, defaultValue ?: 0)
+
+fun Context.stringSharedPrefs(settingValue: SettingValue, defaultValue: String? = null) = PreferenceManager.getDefaultSharedPreferences(this).getString(settingValue.key, defaultValue)
+
+// Retrofit call
+fun <T> Call<List<T>>.getAll(): List<T> = this.execute().run {
+    if (isSuccessful && !body().isNullOrEmpty()) {
+        return body() as List<T>
+    }
+    throw RuntimeException("Response is empty or invalid")
+}

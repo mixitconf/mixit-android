@@ -1,7 +1,7 @@
 package org.mixitconf.service.synchronization
 
 import org.mixitconf.service.synchronization.dto.FavoriteDto
-import org.mixitconf.service.synchronization.dto.UserApiDto
+import org.mixitconf.service.synchronization.dto.SpeakerApiDto
 import org.mixitconf.service.synchronization.dto.WebsiteResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -41,7 +41,7 @@ interface WebsiteUserService {
      * </ul>
      */
     @GET("me")
-    fun profile(@Query("email") email: String, @Query("token") token: String): Call<UserApiDto>
+    fun profile(@Query("email") email: String, @Query("token") token: String): Call<SpeakerApiDto>
 
 
     /**

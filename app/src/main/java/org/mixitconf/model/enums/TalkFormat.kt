@@ -17,7 +17,7 @@ enum class TalkFormat(val duration: Int, val label: Int) {
     PAUSE_25_MIN(25, R.string.planning_pause_25),
     PAUSE_30_MIN(30, R.string.planning_pause_30),
     PARTY(210, R.string.party),
-    LUNCH(90,R.string.planning_lunch),
+    LUNCH(90, R.string.planning_lunch),
     ORGA(15, R.string.planning_team_word),
     DAY(0, R.string.app_name);
 }
