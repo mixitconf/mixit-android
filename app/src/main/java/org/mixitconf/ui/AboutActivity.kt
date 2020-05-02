@@ -1,4 +1,4 @@
-package org.mixitconf.view.ui
+package org.mixitconf.ui
 
 import android.os.Bundle
 import android.text.method.LinkMovementMethod

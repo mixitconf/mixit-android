@@ -13,7 +13,7 @@ import androidx.core.app.NotificationCompat.Builder
 import androidx.core.app.TaskStackBuilder
 import org.mixitconf.MiXiTApplication
 import org.mixitconf.R
-import org.mixitconf.view.ui.MainActivity
+import org.mixitconf.ui.MainActivity
 
 
 enum class Notification(val messageId: Int, val fragmentId: Int?, val notificationId: Int) {

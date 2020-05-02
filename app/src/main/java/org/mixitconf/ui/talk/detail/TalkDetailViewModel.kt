@@ -1,4 +1,4 @@
-package org.mixitconf.viewmodel
+package org.mixitconf.ui.talk.detail
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

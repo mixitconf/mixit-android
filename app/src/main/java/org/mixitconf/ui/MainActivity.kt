@@ -1,4 +1,4 @@
-package org.mixitconf.view.ui
+package org.mixitconf.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,10 +7,10 @@ import org.mixitconf.MiXiTApplication
 import org.mixitconf.R
 import org.mixitconf.openFragment
 import org.mixitconf.openFragmentDetail
-import org.mixitconf.view.ui.fragment.SpeakerDetailFragment
-import org.mixitconf.view.ui.fragment.SpeakerFragment
-import org.mixitconf.view.ui.fragment.TalkDetailFragment
-import org.mixitconf.view.ui.fragment.TalkFragment
+import org.mixitconf.ui.speaker.detail.SpeakerDetailFragment
+import org.mixitconf.ui.speaker.list.SpeakerListFragment
+import org.mixitconf.ui.talk.detail.TalkDetailFragment
+import org.mixitconf.ui.talk.list.TalkListFragment
 
 /**
  * Interface implemented by parent activity to display a talk when user clicks on a talk in the list
@@ -29,13 +29,13 @@ interface OnSpeakerSelectedListener {
 open class MainActivity : MixitActivity(), OnTalkSelectedListener, OnSpeakerSelectedListener {
 
     val talkFragment by lazy {
-        TalkFragment()
+        TalkListFragment()
     }
     val favoriteFragment by lazy {
-        TalkFragment(displayOnlyFavorites = true)
+        TalkListFragment(displayOnlyFavorites = true)
     }
     val speakerFragment by lazy {
-        SpeakerFragment()
+        SpeakerListFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package org.mixitconf.view.ui.fragment
+package org.mixitconf.ui.talk.detail
 
 import android.Manifest
 import android.content.Intent
@@ -21,9 +21,8 @@ import org.mixitconf.model.entity.topicDrawableResource
 import org.mixitconf.model.enums.Language
 import org.mixitconf.model.enums.hardOfHearingSytem
 import org.mixitconf.service.calendar.CalendarLoader
-import org.mixitconf.view.adapter.SpeakerListAdapter
-import org.mixitconf.view.ui.OnSpeakerSelectedListener
-import org.mixitconf.viewmodel.TalkDetailViewModel
+import org.mixitconf.ui.adapter.SpeakerListAdapter
+import org.mixitconf.ui.OnSpeakerSelectedListener
 
 
 class TalkDetailFragment : Fragment() {

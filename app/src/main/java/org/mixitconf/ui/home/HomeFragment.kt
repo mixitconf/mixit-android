@@ -1,4 +1,4 @@
-package org.mixitconf.view.ui.fragment
+package org.mixitconf.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

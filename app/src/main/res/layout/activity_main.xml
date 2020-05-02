@@ -5,7 +5,7 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="org.mixitconf.view.ui.MainActivity">
+        tools:context=".ui.MainActivity">
 
     <FrameLayout
             android:id="@+id/container"
@@ -18,7 +18,7 @@
 
         <fragment
                 android:id="@+id/home"
-                android:name="org.mixitconf.view.ui.fragment.HomeFragment"
+                android:name="org.mixitconf.ui.home.HomeFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

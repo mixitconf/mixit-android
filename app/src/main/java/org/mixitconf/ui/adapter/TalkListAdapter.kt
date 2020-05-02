@@ -1,4 +1,4 @@
-package org.mixitconf.view.adapter
+package org.mixitconf.ui.adapter
 
 import android.content.res.Resources
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import org.mixitconf.model.entity.getBgColorDependingOnTime
 import org.mixitconf.model.entity.getTimeLabel
 import org.mixitconf.model.entity.topicDrawableResource
 import org.mixitconf.model.enums.TalkFormat.*
-import org.mixitconf.view.ui.OnTalkSelectedListener
+import org.mixitconf.ui.OnTalkSelectedListener
 import org.mixitconf.visibility
 
 
@@ -98,7 +98,7 @@ class TalkListAdapter(
 
     private fun ViewHolder.paintItemView(
             background: Int, nameColor: Int = android.R.color.black, timeColor: Int = R.color.textShadow
-                                        ) {
+                                                                                                         ) {
         itemView.setBackgroundColor(ressources.getLegacyColor(background))
         name.setTextColor(ressources.getLegacyColor(nameColor))
         time.setTextColor(ressources.getLegacyColor(timeColor))
@@ -106,7 +106,7 @@ class TalkListAdapter(
 
     private fun ViewHolder.displayFields(
             talk: Talk? = null, nameOnCenter: Boolean = false, showTime: Boolean = true
-                                        ) {
+                                                                                                         ) {
 
         name.textAlignment = if (nameOnCenter) View.TEXT_ALIGNMENT_CENTER else View.TEXT_ALIGNMENT_TEXT_START
 

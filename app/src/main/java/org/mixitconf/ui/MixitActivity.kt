@@ -1,4 +1,4 @@
-package org.mixitconf.view.ui
+package org.mixitconf.ui
 
 import android.Manifest
 import android.content.Intent

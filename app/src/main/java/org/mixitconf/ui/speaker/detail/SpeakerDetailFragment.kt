@@ -1,4 +1,4 @@
-package org.mixitconf.view.ui.fragment
+package org.mixitconf.ui.speaker.detail
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,9 +15,8 @@ import org.mixitconf.R
 import org.mixitconf.default
 import org.mixitconf.mixitApp
 import org.mixitconf.model.entity.*
-import org.mixitconf.view.adapter.TalkListAdapter
-import org.mixitconf.view.ui.OnTalkSelectedListener
-import org.mixitconf.viewmodel.SpeakerDetailViewModel
+import org.mixitconf.ui.adapter.TalkListAdapter
+import org.mixitconf.ui.OnTalkSelectedListener
 
 
 class SpeakerDetailFragment : Fragment() {

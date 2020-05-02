@@ -1,4 +1,4 @@
-package org.mixitconf.view.ui.fragment
+package org.mixitconf.ui.speaker.list
 
 import android.os.Bundle
 import android.os.Parcelable
@@ -12,15 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_datalist.*
 import org.mixitconf.R
 import org.mixitconf.default
-import org.mixitconf.view.adapter.SpeakerListAdapter
-import org.mixitconf.view.adapter.TalkListAdapter
-import org.mixitconf.view.ui.OnSpeakerSelectedListener
-import org.mixitconf.viewmodel.SpeakerListViewModel
-import org.mixitconf.viewmodel.TalkListViewModel
-import java.util.*
+import org.mixitconf.ui.adapter.SpeakerListAdapter
+import org.mixitconf.ui.OnSpeakerSelectedListener
 
 
-class SpeakerFragment : Fragment() {
+class SpeakerListFragment : Fragment() {
 
     private var listState: Parcelable? = null
 

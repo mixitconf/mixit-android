@@ -21,13 +21,13 @@
                 android:exported="false" />
 
         <activity
-                android:name=".view.ui.MixitActivity"
+                android:name="org.mixitconf.ui.MixitActivity"
                 android:label="@string/app_name" />
         <activity
-                android:name=".view.ui.AboutActivity"
+                android:name="org.mixitconf.ui.AboutActivity"
                 android:label="@string/title_about" />
         <activity
-                android:name=".view.ui.MainActivity"
+                android:name="org.mixitconf.ui.MainActivity"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".view.ui.SettingsActivity"
+                android:name="org.mixitconf.ui.SettingsActivity"
                 android:label="@string/title_settings" />
     </application>
 
