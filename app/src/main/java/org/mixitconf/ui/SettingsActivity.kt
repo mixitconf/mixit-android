@@ -21,14 +21,18 @@ class SettingsActivity : MixitActivity() {
 
 
     class SettingsFragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.mixit_preferences, rootKey)
         }
 
         override fun onStart() {
             super.onStart()
-            preferenceManager.findPreference<EditTextPreference>(SettingValue.FAVORITE_NOTIFICATION_DURATION.key).apply {
-                this?.setOnBindEditTextListener { it.inputType = InputType.TYPE_CLASS_NUMBER }
+            preferenceManager.findPreference<EditTextPreference>(SettingValue.EMAIL_SYNC.key)?.apply {
+                this.setOnBindEditTextListener { it.inputType =  InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS }
+            }
+            preferenceManager.findPreference<EditTextPreference>(SettingValue.FAVORITE_NOTIFICATION_DURATION.key)?.apply {
+                this.setOnBindEditTextListener { it.inputType =   InputType.TYPE_CLASS_NUMBER }
             }
         }
 

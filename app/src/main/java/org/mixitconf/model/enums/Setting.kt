@@ -5,7 +5,7 @@ enum class SettingValue(val key: String) {
     WS_FAVORITE_SYNC_ENABLE("sync_favorite"),
     EMAIL_SYNC("sync_email"),
     FAVORITE_NOTIFICATION_ENABLE("favorite_notification"),
-    FAVORITE_NOTIFICATION_DURATION("favorite_notification_minute"),
+    FAVORITE_NOTIFICATION_DURATION("favorite_notification_in_min"),
     DATA_INITIALIZED("data_2020_initialized"),
     FAVORITES_POSITION("favorites_position"),
     TALKS_POSITION("talks_position")

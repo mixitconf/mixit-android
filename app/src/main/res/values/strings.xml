@@ -18,7 +18,7 @@
     <string name="talk_time_range">"%1$s from %2$s to %3$s "</string>
     <string name="topic_image">Topic image</string>
 
-    <string name="roomandcapa">%s (cap. %s)</string>
+    <string name="roomandcapa" formatted="false">%s (cap. %s)</string>
     <string name="amphi1" tools:keep="@string/amphi1">Lovelace Amphitheatre</string>
     <string name="amphi2" tools:keep="@string/amphi2">Hamilton Amphitheatre</string>
     <string name="amphic">C Amphitheatre</string>
@@ -93,24 +93,38 @@
     <string name="sync_speaker">Speaker synchronization is done and data are been updated.</string>
     <string name="sync_speaker_error">Error on speaker synchronization. Retry later please.</string>
 
-    <string name="settings_sync_header">Sync</string>
+    <string name="settings_sync_header">Talks</string>
     <string name="settings_sync_talks_speakers">Sync talks and speakers periodically</string>
     <string name="settings_sync_talks_speakers_summary_on">Automatically synchronize talks and speakers with MiXiT website</string>
     <string name="settings_sync_talks_speakers_summary_off">Automatic synchronization is disabled and you have to use the refresh button to sync talks and speakers with MiXiT website</string>
-    <string name="settings_notification_header">Notification</string>
+
+    <string name="settings_favoritesnotif_header">Notifications</string>
+    <string name="settings_favoritesnotif_summary">Be notified before the start of your favorite conferences</string>
+
+    <string name="settings_favorites_header">Favorites Sync</string>
+    <string name="settings_favorites_summary">Synchronize your favorites with those defined on the website (secured feature)</string>
     <string name="settings_favorite_notification">Favorite notification</string>
     <string name="favorite_notification_minute">Minutes before notification</string>
 
     <string name="settings_sync_favorites">Sync favorites</string>
-    <string name="settings_sync_favorites_summary">To synchronize your favorites with website, we need to know email used to create account on the website. </string>
+    <string name="settings_sync_favorites_summary">Synchronize your favorites with website</string>
     <string name="settings_sync_favorites_token">And the last token received by email. When this token will be expired, a window will help you to ask a new one.</string>
     <string name="settings_sync_favorites_summary_on">Your favorites defined on the Android app will be synchronized with MiXiT website. This synchronisation can be only done manually because website requires authentication</string>
     <string name="settings_sync_favorites_summary_off">We only synchronize speakers and talks and your favorites are only defined on this Android app</string>
     <string name="settings_favorite_notification_on">You will receive a notification just before a conference defined as favorite will be start</string>
     <string name="settings_favorite_notification_off">You won\'t receive a notification just before a conference defined as favorite will be start</string>
+
     <string name="talk_is_favorite">This talk is defined as favorite.</string>
     <string name="talk_is_not_favorite">This talk is not defined as favorite.</string>
     <string name="talk_no_favorite">You have no talks or workshop marked as favorites for the moment.</string>
 
-    <string name="favorite_will_start">Conference "%s" will start in %s in room %s</string>
+    <string name="favorite_will_start" formatted="false">Conference "%s" will start in %s in room %s</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>

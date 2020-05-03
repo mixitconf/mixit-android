@@ -21,28 +21,19 @@
         <SwitchPreferenceCompat
                 app:key="sync_data"
                 app:defaultValue="true"
+                app:icon="@drawable/mxt_icon_refresh_colored"
                 app:summaryOff="@string/settings_sync_talks_speakers_summary_off"
                 app:summaryOn="@string/settings_sync_talks_speakers_summary_on"
                 app:title="@string/settings_sync_talks_speakers"/>
 
-        <SwitchPreferenceCompat
-                app:key="sync_favorite"
-                app:summaryOff="@string/settings_sync_favorites_summary_off"
-                app:summaryOn="@string/settings_sync_favorites_summary_on"
-                app:title="@string/settings_sync_favorites" />
-
-        <EditTextPreference
-                app:key="sync_email"
-                app:title="@string/settings_sync_favorites_summary"
-                app:useSimpleSummaryProvider="true"
-                app:dependency="sync_favorite"/>
-
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/settings_notification_header">
+    <PreferenceCategory app:title="@string/settings_favoritesnotif_header">
+
         <SwitchPreferenceCompat
                 app:key="favorite_notification"
                 app:defaultValue="true"
+                app:icon="@drawable/mxt_icon_event_colored"
                 app:summaryOff="@string/settings_favorite_notification_off"
                 app:summaryOn="@string/settings_favorite_notification_on"
                 app:title="@string/settings_favorite_notification" />
@@ -53,6 +44,26 @@
                 app:title="@string/favorite_notification_minute"
                 app:useSimpleSummaryProvider="true"
                 app:dependency="favorite_notification"/>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory app:title="@string/settings_favorites_header"
+            app:singleLineTitle="false" app:summary="@string/settings_favorites_summary">
+
+        <SwitchPreferenceCompat
+                app:key="sync_favorite"
+                app:icon="@drawable/mxt_icon_refresh_colored"
+                app:summaryOff="@string/settings_sync_favorites_summary_off"
+                app:summaryOn="@string/settings_sync_favorites_summary_on"
+                app:title="@string/settings_sync_favorites" />
+
+        <EditTextPreference
+                app:key="sync_email"
+                app:icon="@drawable/mxt_icon_mail_colored"
+                app:title="@string/settings_sync_favorites_summary"
+                app:useSimpleSummaryProvider="true"
+                app:dependency="sync_favorite"/>
+
     </PreferenceCategory>
 
 

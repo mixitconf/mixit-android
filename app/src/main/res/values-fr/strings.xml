@@ -20,7 +20,7 @@
 
     <string name="topic_image">Topic image</string>
 
-    <string name="roomandcapa">%s (cap. %s)</string>
+    <string name="roomandcapa" formatted="false">%s (cap. %s)</string>
     <string name="amphi1" tools:keep="@string/amphi1">Amphithéâtre Lovelace</string>
     <string name="amphi2" tools:keep="@string/amphi2">Amphithéâtre Hamilton</string>
     <string name="amphic">Amphithéâtre C</string>
@@ -53,7 +53,8 @@
     <string name="CLOSING_SESSION">CLOSING SESSION</string>
 
     <string name="about_title">MiXiT 2020 Client</string>
-    <string name="about_description">Cette application a été créée par la team MiXiT pour vous aider à suivre la conférence. Le projet est Open Source et vous pouvez nous aider à améliorer l\'application. Le projet est disponible sous <a href="https://github.com/mixitconf/mixit-android">Github</a>. Pour plus d\'informations vous pouvez consulter notre <a href="https://mixitconf.org">site</a> </string>.
+    <string name="about_description">Cette application a été créée par la team MiXiT pour vous aider à suivre la conférence. Le projet est Open Source et vous pouvez nous aider à améliorer l\'application. Le projet est disponible sous <a href="https://github.com/mixitconf/mixit-android">Github</a>. Pour plus d\'informations vous pouvez consulter notre <a href="https://mixitconf.org">site</a> </string>
+    .
     <string name="planning_team_word">Le mot de la team</string>
     <string name="planning_team_outro">Le mot de la fin de la team</string>
     <string name="planning_session_intro">Présentation des sessions</string>
@@ -91,12 +92,19 @@
     <string name="sync_speaker_error">Erreur pendant la synchronisation des speakers. Essayez à nouveau plus tard.</string>
     <string name="sync_finish">La synchronization des données est terminée</string>
 
-    <string name="settings_sync_header">Synchronisation</string>
+
+    <string name="settings_sync_header">Synchronisation Conférences</string>
     <string name="settings_sync_talks_speakers">Synchronise les conférences et leurs orateurs périodiquement</string>
     <string name="settings_sync_talks_speakers_summary_on">Synchronise automatiquement les données de l\'application avec celles du site web MiXiT</string>
     <string name="settings_sync_talks_speakers_summary_off">La synchronisation des données avec le site web ne se fera que lorsque vous utiliserez le boutton raffraichir du menu</string>
     <string name="settings_favorite_notification">Notification favoris</string>
-    <string name="settings_notification_header">Notification</string>
+
+    <string name="settings_favoritesnotif_header">Notifications</string>
+    <string name="settings_favoritesnotif_summary">Soyez notifié avant le début de vos conférences favorites</string>
+
+    <string name="settings_favorites_header">Synchronisation Favoris</string>
+    <string name="settings_favorites_summary">Synchronisez vos favoris avec le site web</string>
+
     <string name="favorite_notification_minute">Nb de minutes avant notification</string>
 
     <string name="settings_sync_favorites">Synchronisation favoris</string>
@@ -111,6 +119,5 @@
     <string name="talk_is_not_favorite">Cette conférence n\'est pas marquée comme favorite.</string>
     <string name="talk_no_favorite">Aucune conférence n\'est marquée comme favori pour le moment.</string>
 
-    <string name="favorite_will_start">La conférence "%s" va débuter dans %s dans la salle %s</string>
-
+    <string name="favorite_will_start" formatted="false">La conférence "%s" va débuter dans %s dans la salle %s</string>
 </resources>
