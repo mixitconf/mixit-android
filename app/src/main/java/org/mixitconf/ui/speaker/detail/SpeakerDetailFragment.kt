@@ -40,7 +40,7 @@ class SpeakerDetailFragment : Fragment() {
             if (speaker.hasLink && activity != null) {
                 navigation_speaker_link.setImageResource(speaker.imageLinkResourceId)
                 navigation_speaker_link.setOnClickListener {
-                    activity!!.startActivity(Intent(Intent.ACTION_VIEW, speaker.linkUri))
+                    requireActivity().startActivity(Intent(Intent.ACTION_VIEW, speaker.linkUri))
                 }
             }
             (speakerDetailTalkList.adapter as TalkListAdapter).update(speaker.talks)

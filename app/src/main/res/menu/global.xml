@@ -2,6 +2,7 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools" tools:context=".HomeActivity">
 
+
     <item
             android:id="@+id/navigation_synchronize"
             android:icon="@drawable/mxt_icon_refresh"
@@ -13,6 +14,11 @@
             android:icon="@drawable/mxt_icon_twitter_zoom"
             android:title="@string/title_twitter"
             app:showAsAction="ifRoom|collapseActionView"/>
+
+    <item
+            android:id="@+id/email"
+            android:title="Login"
+            app:showAsAction="withText"/>
 
     <item
             android:id="@+id/navigation_settings"

@@ -12,6 +12,7 @@ import org.mixitconf.R
 import org.mixitconf.hasIntentPackage
 import org.mixitconf.mixitApp
 import org.mixitconf.service.Workers
+import org.mixitconf.ui.login.LoginActivity
 
 open class MixitActivity : AppCompatActivity() {
 
@@ -47,6 +48,9 @@ open class MixitActivity : AppCompatActivity() {
         when (item.itemId) {
             android.R.id.home -> {
                 startActivity(Intent(applicationContext, MainActivity::class.java))
+            }
+            R.id.email -> {
+                startActivity(Intent(applicationContext, LoginActivity::class.java))
             }
             R.id.navigation_settings -> {
                 startActivity(Intent(applicationContext, SettingsActivity::class.java))

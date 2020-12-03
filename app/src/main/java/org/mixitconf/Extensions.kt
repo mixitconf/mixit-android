@@ -123,3 +123,9 @@ fun <T> Call<List<T>>.getAll(): List<T> = this.execute().run {
     }
     throw RuntimeException("Response is empty or invalid")
 }
+fun <T> Call<T>.get(): T = this.execute().run {
+    if (isSuccessful && body() != null) {
+        return body() as T
+    }
+    throw RuntimeException("Response is empty or invalid")
+}

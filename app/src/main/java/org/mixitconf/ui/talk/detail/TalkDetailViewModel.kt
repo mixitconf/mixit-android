@@ -3,26 +3,21 @@ package org.mixitconf.ui.talk.detail
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.room.Transaction
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.mixitconf.mixitApp
 import org.mixitconf.model.entity.Talk
 import org.mixitconf.model.entity.speakerIdList
-import kotlin.coroutines.CoroutineContext
 
 
-class TalkDetailViewModel(app: Application) : AndroidViewModel(app), CoroutineScope {
-
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.IO
+class TalkDetailViewModel(app: Application) : AndroidViewModel(app) {
 
     val liveData = MutableLiveData<Talk>()
 
     @Transaction
     fun loadTalk(id: String) {
-        launch {
+        viewModelScope.launch {
             val talk = mixitApp.talkDao.readOne(id)!!
             talk.speakers.addAll(mixitApp.speakerDao.readAllByIds(talk.speakerIdList))
             liveData.postValue(talk)
@@ -31,7 +26,7 @@ class TalkDetailViewModel(app: Application) : AndroidViewModel(app), CoroutineSc
 
     @Transaction
     fun saveTalk(talk: Talk) {
-        launch {
+        viewModelScope.launch {
             mixitApp.talkDao.update(talk)
             loadTalk(talk.id)
         }

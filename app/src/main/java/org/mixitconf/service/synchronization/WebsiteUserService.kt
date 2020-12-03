@@ -2,7 +2,7 @@ package org.mixitconf.service.synchronization
 
 import org.mixitconf.service.synchronization.dto.FavoriteDto
 import org.mixitconf.service.synchronization.dto.SpeakerApiDto
-import org.mixitconf.service.synchronization.dto.WebsiteResponse
+import org.mixitconf.service.synchronization.dto.WebsiteResponseDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -19,8 +19,8 @@ interface WebsiteUserService {
      *     <li>500 : {"message":"An expected error occured on email sent"}</li>
      * </ul>
      */
-    @GET("token")
-    fun askForToken(@Query("email") email: String): Call<WebsiteResponse>
+    @GET("external/token")
+    fun askForToken(@Query("email") email: String): Call<WebsiteResponseDto>
 
     /**
      * Check if a token is valid (used before a askForToken)
@@ -30,7 +30,7 @@ interface WebsiteUserService {
      * </ul>
      */
     @GET("token/check")
-    fun checkToken(@Query("email") email: String, @Query("token") token: String): Call<WebsiteResponse>
+    fun checkToken(@Query("email") email: String, @Query("token") token: String): Call<WebsiteResponseDto>
 
 
     /**

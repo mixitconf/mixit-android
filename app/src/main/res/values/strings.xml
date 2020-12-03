@@ -121,10 +121,16 @@
     <string name="favorite_will_start" formatted="false">Conference "%s" will start in %s in room %s</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_token">Token</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="invalid_username">Not a valid username. Go on MiXiT website to create an account</string>
+    <string name="invalid_token">Token length is invalid or expired</string>
+    <string name="login_failed">Login failed</string>
+    <string name="token_sent">A token was send by email. Please check your mailbox and send it in the future request</string>
+    <string name="invalid_credentials">Credentials are invalid</string>
+    <string name="email_not_known">Your email is not known. You have to create an account on our website if you want to use this functionnality</string>
+    <string name="email_sent_error">MiXiT had an error on email sent. Please retry later</string>
+    <string name="unkown_error">An error occured. Please retry later</string>
+
 </resources>

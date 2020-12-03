@@ -120,4 +120,19 @@
     <string name="talk_no_favorite">Aucune conférence n\'est marquée comme favori pour le moment.</string>
 
     <string name="favorite_will_start" formatted="false">La conférence "%s" va débuter dans %s dans la salle %s</string>
+
+    <string name="title_activity_login">Se connecter</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_token">Jeton</string>
+    <string name="action_sign_in">Se connecter</string>
+    <string name="action_sign_in_short">Se connecter</string>
+    <string name="invalid_username">Login invalide. Allez sur le site de MiXiT pour créer un compte.</string>
+    <string name="invalid_token">La taille du jeton est invalide ou expiré</string>
+    <string name="login_failed">Erreur de connexion</string>
+    <string name="token_sent">Un jeton de connexion a été envoyé par email. Veuillez le copier et réssayer de vous connecter avec ce dernier</string>
+    <string name="invalid_credentials">Les données de connexion sont invalides</string>
+    <string name="email_not_known">Votre email n`est pas reconnu. Veuillez vous rendre sur le site de MiXiT pour vous créer un compte si vous voulez utiliser cette fonctionnalité</string>
+    <string name="email_sent_error">Une erreur est survenue lors de l\'envoi de l\'email. Veuillez réessayer plus tard.</string>
+    <string name="unkown_error">Erreur de connexion. Réessayer plus tard.</string>
+
 </resources>
