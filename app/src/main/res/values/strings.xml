@@ -19,24 +19,25 @@
     <string name="topic_image">Topic image</string>
 
     <string name="roomandcapa">%s (cap. %s)</string>
-    <string name="amphi1" tools:keep="@string/amphi1">Lovelace Amphitheatre</string>
-    <string name="amphi2" tools:keep="@string/amphi2">Hamilton Amphitheatre</string>
+    <string name="amphi1" tools:keep="@string/amphi1">Hamilton Amphitheatre</string>
+    <string name="amphi2" tools:keep="@string/amphi2">Lovelace Amphitheatre</string>
     <string name="amphic">C Amphitheatre</string>
     <string name="amphid">D Amphitheatre</string>
     <string name="amphik">K Amphitheatre</string>
     <string name="speaker">Salle du conseil</string>
-    <string name="room1" tools:keep="@string/room1">Gosling Room (S03)</string>
-    <string name="room2" tools:keep="@string/room2">Eich Room (S02)</string>
-    <string name="room3" tools:keep="@string/room3">Nonaka Room (S120)</string>
-    <string name="room4" tools:keep="@string/room4">Dijkstra Room (S121)</string>
-    <string name="room5" tools:keep="@string/room5">Turing Room (S122)</string>
-    <string name="room6" tools:keep="@string/room6">Lovelace Room (S123)</string>
-    <string name="room7" tools:keep="@string/room7">Mezzanine</string>
+    <string name="room1" tools:keep="@string/room1">Gosling Room (F08)</string>
+    <string name="room2" tools:keep="@string/room2">Kare Room (F02/03)</string>
+    <string name="room3" tools:keep="@string/room3">Turing Room (F01)</string>
+    <string name="room4" tools:keep="@string/room4">Nonaka Room (F07)</string>
+    <string name="room5" tools:keep="@string/room5">Dijkstra Room (F04/F05)</string>
+    <string name="room6" tools:keep="@string/room6">Feinler Room</string>
+    <string name="room7" tools:keep="@string/room7">Hopper room</string>
     <string name="room8" tools:keep="@string/room8">Salon des symboles</string>
-    <string name="unknown" tools:keep="@string/room7">Unknown room</string>
+    <string name="unknown" tools:keep="@string/unknown">Unknown room</string>
     <string name="surprise">Surprise...</string>
+    <string name="twitch">MiXiT On Air</string>
     <string name="outside">Outside in the playground</string>
-    <string name="mummy">Milky Way room (S117)</string>
+    <string name="mummy">Parenthood room</string>
 
 
     <string name="hearing_risp">This room will be equipped with a web-based RISP system for people who are deaf or hard of hearing</string>

@@ -21,23 +21,24 @@
     <string name="topic_image">Topic image</string>
 
     <string name="roomandcapa">%s (cap. %s)</string>
-    <string name="amphi1" tools:keep="@string/amphi1">Amphithéâtre Lovelace</string>
-    <string name="amphi2" tools:keep="@string/amphi2">Amphithéâtre Hamilton</string>
+    <string name="amphi1" tools:keep="@string/amphi1">Amphithéâtre Hamilton</string>
+    <string name="amphi2" tools:keep="@string/amphi2">Amphithéâtre Lovelace</string>
     <string name="amphic">Amphithéâtre C</string>
     <string name="amphid">Amphithéâtre D</string>
     <string name="amphik">Amphithéâtre K</string>
     <string name="speaker">Salle du conseil</string>
-    <string name="room1" tools:keep="@string/room1">Salle Gosling (S03)</string>
-    <string name="room2" tools:keep="@string/room2">Salle Eich (S02)</string>
-    <string name="room3" tools:keep="@string/room3">Salle Nonaka (S120)</string>
-    <string name="room4" tools:keep="@string/room4">Salle Dijkstra (S121)</string>
-    <string name="room5" tools:keep="@string/room5">Salle Turing (S122)</string>
-    <string name="room6" tools:keep="@string/room6">Salle Lovelace (S123)</string>
-    <string name="room7" tools:keep="@string/room7">Mezzanine</string>
+    <string name="room1" tools:keep="@string/room1">Salle Gosling (F08)</string>
+    <string name="room2" tools:keep="@string/room2">Salle Kare (F02/03)</string>
+    <string name="room3" tools:keep="@string/room3">Salle Turing (F01)</string>
+    <string name="room4" tools:keep="@string/room4">Salle Nonaka (F07)</string>
+    <string name="room5" tools:keep="@string/room5">Salle Dijkstra (F04/F05)</string>
+    <string name="room6" tools:keep="@string/room6">Salle Feinler</string>
+    <string name="room7" tools:keep="@string/room7">Salle Hopper</string>
     <string name="room8" tools:keep="@string/room8">Salon des symboles</string>
     <string name="unknown" tools:keep="@string/unknown">Salle inconnue</string>
-    <string name="mummy">Salle Milky Way (S117)</string>
+    <string name="mummy">Salle de parentalité</string>
     <string name="surprise">Surprise...</string>
+    <string name="twitch">MiXiT On Air</string>
     <string name="outside">Dehors dans la cours</string>
 
     <string name="hearing_risp">Cette salle sera équipée en vélotypie avec un système RISP pour les personnes sourdes ou malentendantes</string>
